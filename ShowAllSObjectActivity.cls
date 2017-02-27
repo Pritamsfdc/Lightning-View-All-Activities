@@ -8,7 +8,7 @@
 public class ShowAllSObjectActivity {
 Id sObjectname= ApexPages.currentPage().getParameters().get(‘Id’);
 
-public list tasklist{get;set;}
+public list<Task> tasklist{get;set;}
 public ShowAllSobjectActivity(){
 
 if(sObjectname !=null )
