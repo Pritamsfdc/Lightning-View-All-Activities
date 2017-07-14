@@ -1,5 +1,5 @@
 <!--- This is Lightning Page for display the all activities in Lightning. --->
-<!--- View ALL Activities For Sobjects --->
+<!--- View ALL Activities For Sobjects  by Pritam--->
 <apex:page controller="ShowAllSObjectActivity" sidebar="false" standardStylesheets="false">
 
 	<apex:sectionHeader title="View Activity History"/>
