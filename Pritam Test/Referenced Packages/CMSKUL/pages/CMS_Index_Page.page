@@ -1,3 +1,0 @@
-<apex:page showHeader="false" controller="webkul_cms.Indexpagecontroller">
-  <apex:include pageName="{!page}"/>
-</apex:page>

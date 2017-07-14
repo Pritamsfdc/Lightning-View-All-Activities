@@ -1,9 +1,0 @@
-<p>Dear {!User.Name}, </p>
-<p>
-May you have all the fortune and strength to carry on in the game of life. Wish you a very Happy Birthday. 
-</p>
-
-<p>
-Thanks and Regards.<br> 
-{!Organization.Name}
-</p>

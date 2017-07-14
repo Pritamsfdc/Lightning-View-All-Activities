@@ -1,3 +1,0 @@
-<apex:page title="Upload Content" docType="html-5.0">
-     <c:UploadContentComponent />   
-</apex:page>

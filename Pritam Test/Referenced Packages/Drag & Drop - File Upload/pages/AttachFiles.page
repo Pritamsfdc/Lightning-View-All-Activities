@@ -1,3 +1,0 @@
-<apex:page docType="html-5.0" title="Attach Files" >
-    <c:AttachFilesComponent />   
-</apex:page>

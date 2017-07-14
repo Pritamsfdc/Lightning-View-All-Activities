@@ -1,3 +1,0 @@
-<design:component label="MyTasks">
-    <design:attribute name="heading" label="Label" placeholder="Leave blank for default value" description="Define your custom heading for the component" />  
-</design:component>

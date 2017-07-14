@@ -1,6 +1,0 @@
-<aura:event type="APPLICATION" access="global" >
-    <aura:attribute name="searchTerms" type="String" access="global" />
-    <aura:attribute name="zipCode" type="String" access="global" />
-    <aura:attribute name="radius" type="Integer" access="global" />
-    <aura:attribute name="maxResults" type="Integer" access="global" />
-</aura:event>

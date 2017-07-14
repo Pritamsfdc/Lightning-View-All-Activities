@@ -1,3 +1,0 @@
-<aura:event type="APPLICATION" description="Event" access="global">
-    <aura:attribute name="searchKey" type="String"/>
-</aura:event>
