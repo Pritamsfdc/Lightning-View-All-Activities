@@ -1,0 +1,41 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" >
+
+    <aura:attribute name="maxResults" type="Integer" default="10" access="global" />
+
+    <aura:registerEvent name="meetupSearch" type="lmeetup:MeetupSearchEvent"/>
+
+    <div class="search-container">
+
+        <div class="search-header">
+            <div class="search-header-body">
+                <img src="/resource/lmeetup__MeetupResources/img/logo-2x.png"/>
+                <h4>Search for Meetups</h4>
+            </div>
+        </div>
+
+        <div id="meetup-search-criteria">
+            <div class="div-table">
+                <div class="row">
+                    <div class="col" style="width:80%;text-align:center;">
+                        <ui:inputText aura:id="meetupSearch" value="" placeholder="Search for Event Topics..." class="meetup-search-input meetup-search-input-searchterm" maxlength="100"/>
+                    </div>
+                    <div class="col" style="width:20%;text-align:center;">
+                        <ui:button aura:id="meetupSearchButton" label="Search" class="meetup-search-button" press="{!c.doSearch}"/>
+                    </div>
+                </div>
+            </div>
+            <div class="div-table">
+                <div class="row">
+                    <div class="col" style="width:50%;">
+                        <ui:inputText aura:id="searchZipCode" value="94105" class="meetup-search-input" placeholder="Zip Code" maxlength="10"/>
+                    </div>
+                    <div class="col" style="width:50%;">
+                        <ui:inputNumber aura:id="searchRadius" value="50" class="meetup-search-input" placeholder="Mile Radius" maxlength="2"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</aura:component>

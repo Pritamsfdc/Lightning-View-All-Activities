@@ -1,0 +1,3 @@
+<design:component label="Meetup Search">
+    <design:attribute name="maxResults" label="Max Results" />
+</design:component>

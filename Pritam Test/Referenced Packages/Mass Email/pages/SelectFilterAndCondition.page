@@ -1,0 +1,381 @@
+<apex:page controller="IBSmassemail.SendMassEmailController" standardStylesheets="false" sidebar="false" tabStyle="Mass_Emails__tab" applyBodyTag="false" docType="html-5.0">
+    <html
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink">
+        <head>
+            <apex:stylesheet value="{!URLFOR($Resource.IBSmassemail__SalesforceLightning, 'assets/styles/salesforce-lightning-design-system-vf.css')}" />
+            <apex:includeScript value="{!URLFOR($Resource.IBSmassemail__jQuery)}"/>
+            <script src="{!URLFOR($Resource.aljs, '/appiphony-lightning-js-master/public/src/jquery.aljs-init.js')}"></script>
+            <script src="{!URLFOR($Resource.aljs, '/appiphony-lightning-js-master/public/src/jquery.aljs-multi-select.js')}"></script>
+            <style>
+                .slds .slds-p-vertical--small {
+                    padding-bottom: 0px !important;
+                    color: #54698d;
+                }
+                .thHead{
+                    font-weight: bold !important;
+                    text-align: center !important;
+                    color: black;
+                }               
+                .errorHead{
+                    background-color: #f2dede !important;
+                    border-color: #eed3d7 !important;
+                    color: #b94a48 !important;
+                }                               
+                .fontsz{
+                    font-size: 14px !important;
+                }                         
+                .popupWidth{
+                    width : 50% !important;
+                }   
+                .tb{
+                    margin-top: 0px !important;
+                } 
+                .lnHg{
+                    line-height: 30px !important;
+                } 
+               
+            </style>
+            <script>
+               
+                function showPopup(){
+                    $('#showSelect').addClass('slds-fade-in-open');
+                    $('.slds-backdrop').addClass('slds-backdrop--open');
+                }
+                function closePopup(){
+                    $('#showSelect').removeClass('slds-fade-in-open');
+                    $('.slds-backdrop').removeClass('slds-backdrop--open');
+                }
+                function addLogic(){
+                    $('#logicShow').show();
+                }
+                function removeLogic(){
+                    $('#logicShow').hide();
+                }
+                function sendAndOrConnector(connValue){
+                    $('[id$=andOr]').val(connValue);
+                }
+                function selectConnector(){
+                    var conVal = $('[id$=andOr]').val();
+                    if(conVal !=''){
+                        $('[class='+conVal+']').prop('checked', true);
+                    }   
+                    if(conVal !='' && conVal == 'CUSTOM'){
+                        addLogic();
+                    }                 
+                }
+                $(document).ready(function (){
+                    selectConnector();
+                    
+                });
+            </script>
+            <script>
+                var assetsLocation = '{!URLFOR($Resource.SalesforceLightning)}';
+                  $.aljsInit({
+                    assetsLocation: assetsLocation,
+                    scoped: true
+                });
+                var unselectedItems = JSON.parse("{!JSENCODE(AvailableFields)}");
+            
+                var selectedItems = [];
+                
+                $(document).ready(function() {
+                    $('[data-aljs="multi-select"]').multiSelect({       
+                        unselectedItems: unselectedItems,
+                        selectedItems: selectedItems
+                
+                   });           
+                });
+                
+                function popUpValue(){
+                     var obj = JSON.stringify(selectedItems);
+                     var jsonString = JSON.parse(obj);
+                     var selectedValue='';
+                      for (var i = 0; i < jsonString.length; i++) {
+                              selectedValue+=jsonString[i].id+';';
+                      }
+                      //alert(selectedValue);
+                      showSelectField(selectedValue);
+                }
+          
+            
+            </script>
+        </head>
+        <div class="slds">
+            <c:WizardHeader />
+            <c:SendMassEmailUtility />
+            <apex:outputPanel rendered="{!isAccessible}" layout="none"> 
+                <apex:form id="frm">
+                    <apex:inputHidden value="{!pageNo}" id="pg"/>
+                    <apex:actionFunction name="showSelectField" action="{!showSelectField}" reRender="op">
+                        <apex:param name="abc" value="" assignTo="{!selectedPicklistValues}" id="pm"/>
+                    </apex:actionFunction>
+                    <apex:actionFunction name="addRow1" action="{!addRow}" reRender="op" status="addStatus"/>
+                    <!--<apex:actionFunction name="showSelectField" action="{!showSelectField}" reRender="op" status="addStatus"/>-->
+                    <apex:actionFunction name="showRecords" action="{!step3}" status="addStatus"/>
+                    <apex:actionFunction name="removeRow" action="{!removeRow}" reRender="op" status="addStatus">
+                        <apex:param assignTo="{!removeIndex}" value="" name="re"/>
+                    </apex:actionFunction>
+                    <apex:actionFunction name="passfield" action="{!pass}" reRender="ftn,tx" status="addStatus">
+                        <apex:param assignTo="{!fldName}" value="" name="ft"/>
+                        <apex:param assignTo="{!fldIndex}" value="" name="fi"/>
+                    </apex:actionFunction>
+                    <div data-reactid=".5.0.1" role="alert" class="slds-notify slds-notify--alert slds-theme--inverse-text slds-theme--alert-texture slds-m-top--large">
+                        <span class="slds-assistive-text">Success</span>
+                        <h2>
+                            <svg class="slds-icon icon-text-email slds-icon--small slds-m-right--x-small" aria-hidden="true">
+                                <use xlink:href="{!URLFOR($Resource.SalesforceLightning, '/assets/icons/utility-sprite/svg/symbols.svg#check')}"/>
+                            </svg>
+                            <span>Step 2 of 7</span>
+                        </h2>
+                    </div>
+                    <br/>
+                    <!-------------------------------------Filter Section-------------------------------------------------------------->
+                    <div class="slds-backdrop"></div>
+                    <div class="myapp">
+                        <div class="slds-grid">
+                            <div class="slds-col slds-size--1-of-6"></div>
+                            <div class="slds-col slds-size--4-of-6">
+                                <apex:outputPanel id="err">
+                                    <apex:outputPanel rendered="{!!error}" >
+                                        <div class="slds-notify slds-notify--toast slds-theme--inverse-text errorHead" role="alert">
+                                            <span class="slds-assistive-text">Info</span>
+                                            <div class="notify__content" style = "font-weight: 400;">
+                                                <pre>
+                                                    <apex:outputText value="{!errorMessage}"></apex:outputText>
+                                                </pre>
+                                            </div>
+                                        </div>
+                                    </apex:outputPanel>
+                                </apex:outputPanel>
+                                <apex:outputPanel id="op">
+                                    <apex:outputPanel rendered="{!standardError}" >
+                                        <div class="slds-notify slds-notify--toast slds-theme--inverse-text errorHead" role="alert">
+                                            <span class="slds-assistive-text">Info</span>
+                                            <div class="notify__content" style = "font-weight: 400;">
+                                                <p>
+                                                    <apex:pageMessages ></apex:pageMessages>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </apex:outputPanel>
+                                    <div class="slds-grid">
+                                        <div class="slds-col slds-size--12-of-12">
+                                            <apex:commandButton styleClass="slds-float--right slds-button slds-button--neutral slds-button--brand slds-float--right" value="Customize Columns" status="addStatus" onclick="showPopup(); return false;"/>
+                                        </div>
+                                    </div>
+                                    <div class= "slds-scrollable--x">
+                                        <div aria-labelledby="filterform">
+                                            <fieldset class="slds-box slds-theme--default slds-container--large">
+                                                <legend id="filterform" class="slds-text-heading--small slds-p-vertical--small">Set Filter</legend>
+                                                <div class="slds-form-element">
+                                                    <table class="slds-table slds-table--bordered slds-m-top--large tb" style="border:1px solid #ccc;border-radius:5px;">
+                                                        <thead>
+                                                            <tr class="slds-text-heading--label slds-theme--shade">
+                                                                <th scope="col" class="thHead">
+                                                                    <span class="slds-truncate">S.No.</span>
+                                                                </th>
+                                                                <th scope="col" class="thHead">
+                                                                    <span class="slds-truncate">Field</span>
+                                                                </th>
+                                                                <th scope="col" class="thHead">
+                                                                    <span class="slds-truncate">Operator</span>
+                                                                </th>
+                                                                <th scope="col" class="thHead">
+                                                                    <span class="slds-truncate">Value</span>
+                                                                </th>
+                                                                <th scope="col">
+                                                                    <span class="slds-truncate"></span>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <apex:repeat value="{!fieldsFilterList}" var="fw">
+                                                                <tr>
+                                                                    <td>
+                                                                        <div class="slds-button slds-button--neutral slds-button--brand lnHg">
+                                                                        {!fw.index}
+                                                                    </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <p class="slds-truncate">
+                                                                            <apex:SelectList value="{!fw.fieldNm}" size="1" id="selObject" styleclass="slds-select" onchange="passfield(this.value, {!fw.index});return false;">
+                                                                                <apex:selectOptions value="{!FieldNames}"></apex:selectOptions>
+                                                                            </apex:SelectList>
+                                                                        </p>
+                                                                    </td>
+                                                                    <td>
+                                                                        <p class="slds-truncate">
+                                                                            <apex:outputPanel id="ftn">
+                                                                                <apex:SelectList value="{!fw.operatorNm}" size="1" id="selObject2" styleclass="slds-select">
+                                                                                    <apex:selectOptions value="{!fw.operatorOptions}"></apex:selectOptions>
+                                                                                </apex:SelectList>
+                                                                            </apex:outputPanel>
+                                                                        </p>
+                                                                    </td>
+                                                                    <td>
+                                                                        <p class="slds-truncate">
+                                                                            <apex:outputPanel id="tx">
+                                                                                <apex:inputText styleclass="slds-input" value="{!fw.fieldVal}"/>
+                                                                            </apex:outputPanel>
+                                                                        </p>
+                                                                    </td>
+                                                                    <td>
+                                                                        <apex:outputPanel rendered="{!fieldsFilterList.size == fw.index}">
+                                                                            <a href="javascript:void(0);" onclick="addRow1();return false;" class="slds-button slds-button--icon-bare" >
+                                                                                <c:SvgComponent styleClass="slds-button__icon" path="/assets/icons/utility-sprite/svg/symbols.svg#new" />
+                                                                            </a>
+                                                                        </apex:outputPanel>
+                                                                        <apex:outputPanel rendered="{!fieldsFilterList.size>1}">
+                                                                            <a href="javascript:void(0);" onclick="removeRow('{!fw.index}');return false;" class="slds-button slds-button--icon-bare" >
+                                                                                <c:SvgComponent styleClass="slds-button__icon" path="/assets/icons/utility-sprite/svg/symbols.svg#delete" />
+                                                                            </a>
+                                                                        </apex:outputPanel>
+                                                                    </td>
+                                                                </tr>
+                                                            </apex:repeat>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                        <br/>
+                                    </div>
+                                </apex:outputPanel>
+                                <div aria-labelledby="conditionform">
+                                    <fieldset class="slds-box slds-theme--default slds-container--medium">
+                                        <legend id="conditionform" class="slds-text-heading--small slds-p-vertical--small">Set Condition</legend>
+                                        <div class="slds-form-element">
+                                            <div class="slds-form-element__control">
+                                                <apex:inputHidden value="{!andOrConnector}" id="andOr"/>
+                                                <label class="slds-radio" for="lead">
+                                                    <input type="radio" name="options" id="lead" onclick="removeLogic();sendAndOrConnector('AND');" class="AND"/>
+                                                    <span class="slds-radio--faux"></span>
+                                                    <span class="slds-form-element__label">All of the conditions are met (AND)</span>
+                                                </label>
+                                                <label class="slds-radio" for="education">
+                                                    <input type="radio" name="options" id="education" onclick="removeLogic();sendAndOrConnector('OR');" class= "OR"/>
+                                                    <span class="slds-radio--faux"></span>
+                                                    <span class="slds-form-element__label">Any of the conditions are met (OR)</span>
+                                                </label>
+                                                <label class="slds-radio" for="logic">
+                                                    <input type="radio" name="options" id="logic" onclick="addLogic();sendAndOrConnector('CUSTOM');" class= "CUSTOM"/>
+                                                    <span class="slds-radio--faux"></span>
+                                                    <span class="slds-form-element__label">Customize the logic</span>
+                                                </label>
+                                                <br/>
+                                            </div>
+                                            <div id = "logicShow" style="display:none;">
+                                                <label class="slds-form-element__label slds-form-element__label--top fontsz">Logic*</label>
+                                                <div class="slds-form-element__control">
+                                                    <apex:inputText styleclass="slds-input popupWidth" value="{!customLogicExp}"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                                <br/>
+                            </div>
+                            <div class="slds-col slds-size--1-of-6"></div>
+                        </div>
+                    </div>
+                    <!----------------------field popup------------------------------->
+                    <div aria-hidden="true" role="dialog" class="slds-modal slds-modal--large" id = "showSelect">
+                        <div class="slds-modal__container popupWidth">
+                            <div class="slds-modal__header">
+                                <div class="slds-notify-container">
+                                    <div class="slds-notify slds-notify--toast slds-theme--info" role="alert">
+                                        <span class="slds-assistive-text">Information</span>
+                                        <button class="slds-button slds-button--icon-inverse slds-notify__close" onclick="closePopup();return false;">
+                                            <svg aria-hidden="true" class="slds-button__icon slds-button__icon--large">
+                                                <use xlink:href="{!URLFOR($Resource.SalesforceLightning, '/assets/icons/utility-sprite/svg/symbols.svg#close')}"></use>
+                                            </svg>
+                                            <span class="slds-assistive-text">Close</span>
+                                        </button>
+                                        <div class="notify__content slds-grid">
+                                            <svg aria-hidden="true" class="slds-icon slds-icon--small slds-m-right--small slds-col slds-no-flex">
+                                                <use xlink:href="{!URLFOR($Resource.SalesforceLightning, '/assets/icons/utility-sprite/svg/symbols.svg#info')}"></use>
+                                            </svg>
+                                            <div class="slds-col slds-align-middle">
+                                                <h2 class="slds-text-heading--small">Select Fields to display on columns.</h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h2 class="slds-text-heading--medium">Modal Header</h2>
+                            </div>
+                            <div class="slds-modal__content">
+                                <div class="slds-grid">
+                                    <div class="slds-col slds-size--1-of-12"></div>
+                                    <div class="slds-col slds-size--12-of-12"><br/>
+                                        <!--------------------------------------------Customize Columns --------------------------------------------------->
+                                        <div class="slds-form-element">
+                                            <div class="slds-picklist--draggable slds-grid" data-aljs="multi-select">
+                                                <div class="slds-form-element">
+                                                    <span class="slds-form-element__label thHead" aria-label="select-1">Available Fields</span>
+                                                    <div class="slds-picklist slds-picklist--multi" data-aljs-multi-select="unselected">
+                                                        <ul class="slds-picklist__options slds-picklist__options--multi shown"></ul>
+                                                    </div>
+                                                </div>
+                                                <div class="slds-grid slds-grid--vertical">
+                                                    <button type="button" class="slds-button slds-button--icon-container" data-aljs-multi-select="unselect">
+                                                        <c:multiSelectSvg styleClass="slds-button__icon" path="/appiphony-lightning-js-master/public/assets/icons/utility-sprite/svg/symbols.svg#left" />
+                                                        <span class="slds-assistive-text">Pick list</span>
+                                                    </button>
+                                                    <button type="button" class="slds-button slds-button--icon-container" data-aljs-multi-select="select">
+                                                        <c:multiSelectSvg styleClass="slds-button__icon" path="/appiphony-lightning-js-master/public/assets/icons/utility-sprite/svg/symbols.svg#right" />
+                                                        <span class="slds-assistive-text">Pick list</span>
+                                                    </button>
+                                                </div>
+                                                <div class="slds-form-element">
+                                                    <span class="slds-form-element__label thHead" aria-label="select-2">Selected Fields</span>
+                                                    <div class="slds-picklist slds-picklist--multi" data-aljs-multi-select="selected">
+                                                        <ul class="slds-picklist__options slds-picklist__options--multi shown"></ul>
+                                                    </div>
+                                                </div>
+                                                <div class="slds-grid slds-grid--vertical">
+                                                    <button type="button" class="slds-button slds-button--icon-container" data-aljs-multi-select="move-up">
+                                                        <c:multiSelectSvg styleClass="slds-button__icon" path="/appiphony-lightning-js-master/public/assets/icons/utility-sprite/svg/symbols.svg#up" />
+                                                    <span class="slds-assistive-text">Pick list</span>
+                                                    </button>
+                                                    <button type="button" class="slds-button slds-button--icon-container" data-aljs-multi-select="move-down">
+                                                        <c:multiSelectSvg styleClass="slds-button__icon" path="/appiphony-lightning-js-master/public/assets/icons/utility-sprite/svg/symbols.svg#down" />                   
+                                                    <span class="slds-assistive-text">Pick list</span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div><br/>
+                                        <!-----------------------------------End of CustomizeColumns------------------->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-modal__footer">
+                                <div class="slds-x-small-buttons--horizontal">
+                                    <button class = "slds-button slds-button--neutral" onclick="closePopup();return false;">Cancel</button>
+                                    <apex:commandButton styleClass="slds-button slds-button--neutral slds-button--brand" onclick="popUpValue();closePopup();return false;" value="OK"></apex:commandButton>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-backdrop"></div>
+                    <!----------------------------end popup----------------------------->
+                    <!-----------------------------------End of Filter Section--------------------------------------------------------->
+                    <div class="slds-grid slds-grid--align-center slds-theme--info">
+                        <apex:commandButton action="{!previous}" value="Previous" styleClass="slds-button slds-button--inverse slds-m-around--x-small"/>
+                        <apex:commandButton value="Next" styleClass="slds-button slds-button--inverse slds-m-around--x-small" onclick="showRecords();return false;"/>
+                    </div>
+                </apex:form>
+            </apex:outputPanel>
+            <apex:outputPanel rendered="{!!isAccessible}">
+                <div class="slds-notify slds-notify--toast slds-theme--inverse-text errorHead" role="alert">
+                    <span class="slds-assistive-text">Page Message Info</span>
+                    <div class="notify__content" style = "font-weight: 400;">
+                        <p>
+                            You have some permission issue on objects and fields, please contact your system administrator.
+                        </p>
+                    </div>
+                </div>
+            </apex:outputPanel>
+        </div>
+    </html>
+</apex:page>

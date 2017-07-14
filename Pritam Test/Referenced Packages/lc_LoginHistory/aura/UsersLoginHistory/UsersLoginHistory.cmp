@@ -1,0 +1,56 @@
+<aura:component controller="LoginHistoryObject" implements="force:appHostable,flexipage:availableForAllPageTypes" >
+    <!-- Attributes for Records Followed List     -->
+    <aura:attribute name="lstFlwRecords" type="LoginHistoryObject"/>
+    <aura:attribute name="limitRows" type="Integer" default="8"/>
+    <aura:attribute name="validRange" type="Boolean" default="true"/>
+    <aura:attribute name="componentName" type="String" default="Users Login History"/>
+    <aura:attribute name="selectedObj" type="String" default="All Status"/>
+    <ltng:require styles="/resource/roreblcloghist__btstrp12" />
+    <!-- Initialization event handler -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <div class="ifollow">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xs-6 col-sm-10">{!v.componentName}</div>
+                    <div class="col-xs-6 col-sm-2">
+                        <div class="overflow">
+                        <ui:inputSelect class="selectList" aura:id="lstobjects" change="{!c.onSelectChange}">
+                        <ui:inputSelectOption text="All Status" label="All Status"/>
+                        <ui:inputSelectOption text="Success" label="Success"/>
+                        <ui:inputSelectOption text="Failed" label="Failed"/>                            
+                        </ui:inputSelect>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+         <div>
+         <ul>
+        <aura:if isTrue="{!v.validRange}">
+            <aura:iteration items="{!v.lstFlwRecords}" var="rec">
+                <li>
+                    <c:UsersLoginHistoryCard followedrecord="{!rec}"/>
+                </li>
+            </aura:iteration>
+            <aura:set attribute="else">
+                <li>
+                <div class="validation">    
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-xs-2 col-sm-1"><img class="imgFlag" src="/resource/roreblcloghist__redflag"/></div>
+                        <div class="col-xs-10 col-sm-11">Please enter a number between 1 and 12 in the <b>Number of Records to Display</b> attribute</div>           
+                    </div>    
+        		</div>    
+                </div>    
+                    
+                    
+                </li>
+            </aura:set>
+        </aura:if>
+    </ul>  
+        </div>
+        </div>
+        </div>
+</aura:component>

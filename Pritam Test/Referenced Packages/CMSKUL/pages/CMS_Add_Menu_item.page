@@ -1,0 +1,81 @@
+<apex:page standardController="webkul_cms__Menu_Item__c" extensions="webkul_cms.Menuitemextension">
+ <style>
+.btn.btn-pop {
+    background: #89C47F none repeat scroll 0 0;
+    border: 0 none !important;
+    color: #fff !important;
+    font-size: 14px;
+    margin: 10px !important;
+    padding: 8px 15px !important;
+}
+.btn.btn-pop-cancel{
+ background: #CCCCCC none repeat scroll 0 0;
+    border: 0 none !important;
+    color: #fff !important;
+    font-size: 14px;
+    margin: 10px !important;
+    padding: 8px 15px !important;
+}
+.btn {
+    border: medium none;
+    border-radius: 3px;
+    font-size: 17px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    margin-right: 10px;
+    padding: 12px 25px;
+    position: relative;
+    text-shadow: none;
+    text-transform: uppercase;
+}
+body .bDetailBlock.bPageBlock .pbBody .labelCol, body .bDetailBlock.bPageBlock .pbBody .dataCol, body .bDetailBlock.bPageBlock .pbBody .data2Col, body .bPageBlock.bEditBlock .pbBody .labelCol, body .bPageBlock.bEditBlock .pbBody .dataCol, body .bPageBlock.bEditBlock .pbBody .data2Col
+{
+border:none;
+}
+label{
+color:#333;
+font-size:14px;
+display:block;
+margin-top:4px;
+}
+
+input {
+    font-size:14px;
+    border: 1px solid #333;
+    border-radius: 3px;
+    padding: 5px;
+}
+</style>
+<apex:form >
+
+ <apex:pageBlock id="theLink" mode="maindetail" >
+       
+     
+        
+         <apex:pageBlocksection >
+           <apex:inputField value="{!webkul_cms__Menu_Item__c.name}"/>
+            <apex:inputField value="{!webkul_cms__Menu_Item__c.webkul_cms__Menu_Name__c}"/>
+           </apex:pageBlocksection>
+           <apex:pageBlocksection >
+               <apex:pageblockSectionItem >
+              <apex:outputLabel value="{!$Label.webkul_cms__article}"/>
+                <apex:selectList value="{!selected}" size="1">
+                <apex:actionSupport event="onchange" action="{!generatelink}" reRender="theLink"/>
+                    <apex:selectOptions value="{!articles}"/>
+                </apex:selectList>
+                </apex:pageblockSectionItem>
+            </apex:pageBlocksection>
+           <apex:pageBlocksection >
+               <apex:pageBlockSectionItem >
+                <apex:outputLabel value="{!$Label.webkul_cms__link}"/>
+                    <apex:inputText value="{!Link}" style="width:300px;" disabled="true"/>
+            </apex:pageBlockSectionItem>
+     </apex:pageBlocksection>
+  <center>
+      <apex:commandButton value="{!$Label.webkul_cms__save}" action="{!savemenuitem}" styleClass="btn btn-pop" />
+      <apex:commandButton value="{!$Label.webkul_cms__cancel}" action="{!cancel}" styleClass="btn btn-pop-cancel" />
+  </center>
+             
+  </apex:pageBlock>
+</apex:form>
+</apex:page>

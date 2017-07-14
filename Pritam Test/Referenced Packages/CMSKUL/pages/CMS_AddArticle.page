@@ -1,0 +1,234 @@
+<apex:page standardController="webkul_cms__Article__c" extensions="webkul_cms.articleextension">
+
+<apex:includeScript value="{!urlfor($Resource.webkul_cms__CMSResources, 'small-icon/tinymce/js/tinymce/tinymce.min.js')}"/>
+
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<apex:includeScript value="{!URLFOR($Resource.webkul_cms__CMSResources,'small-icon/jqueyfile.js')}"/>
+<apex:includeScript value="{!URLFOR($Resource.webkul_cms__CMSResources,'small-icon/bootstrap.js')}"/>
+<apex:stylesheet value="{!URLFOR($Resource.webkul_cms__CMSResources,'small-icon/bootstrap.css')}"/>
+
+<apex:form >
+<style>
+.wk_media-pop{
+
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid black;
+
+    left: 71%;
+    margin-left: -450px;
+    margin-top: -235px;
+    position: fixed;
+    top: 66%;
+    z-index: 999;
+
+       display:{!disp};
+
+}
+.model-box{
+ position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:#000;
+    opacity:0.3;
+    z-imdex:998;
+    display:none;
+
+
+}
+.close{
+        float:right;
+        margin-right:30px;
+        cursor:pointer;
+}
+.heading{
+
+}
+.btn.btn-pop {
+    background: #89C47F none repeat scroll 0 0;
+    border: 0 none !important;
+    color: #fff !important;
+    font-size: 14px;
+    margin: 10px !important;
+    padding: 8px 15px !important;
+}
+.btn {
+    border: medium none;
+    border-radius: 3px;
+    font-size: 17px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    margin-right: 10px;
+    padding: 12px 25px;
+    position: relative;
+    text-shadow: none;
+    text-transform: uppercase;
+}
+.btn.btn-pop-cancel{
+   background: #CCCCCC none repeat scroll 0 0;
+    border: 0 none !important;
+    color: #fff !important;
+    font-size: 14px;
+    margin: 10px !important;
+    padding: 8px 15px !important;
+}
+label{
+color:#333;
+font-size:14px;
+display:block;
+margin-top:4px;
+}
+
+input[type="text"] {
+    font-size:14px;
+    border: 1px solid #333;
+    border-radius: 3px;
+    padding: 5px;
+}
+body .bDetailBlock.bPageBlock .pbBody .labelCol, body .bDetailBlock.bPageBlock .pbBody .dataCol, body .bDetailBlock.bPageBlock .pbBody .data2Col, body .bPageBlock.bEditBlock .pbBody .labelCol, body .bPageBlock.bEditBlock .pbBody .dataCol, body .bPageBlock.bEditBlock .pbBody .data2Col
+{
+border:none;
+}
+.colum{
+margin-right:1%;
+}
+
+.modal-dialog.modal-lg.upload-popup{
+width:500px;
+margin:50px auto;
+outline:10px solid #cccccc;
+}
+.upload-content{
+border-radius:0px!important;
+}
+ button.close-upload, button.close-upload:hover{
+    background:url('{!URLFOR($Resource.webkul_cms__CMSResources,'small-icon/icon-close-grey.png')}') no-repeat center;
+    width:40px;
+    height:39px;
+    margin-right:0px!important;
+    opacity:1!important;
+    float:right;
+    }
+    .folderitems {
+    display: inline-block;
+    margin: 7px;
+    padding: 7px;
+}
+.imageblock {
+    display: -moz-inline-box;
+    float: left;
+    margin: 22px;
+}
+</style>
+<apex:pageBlock mode="maindetail">
+
+
+<apex:pageBlockSection columns="2">
+
+<apex:inputfield value="{!webkul_cms__Article__c.name}"/>
+<apex:inputfield value="{!webkul_cms__Article__c.webkul_cms__Title__c}"/>
+<apex:inputfield value="{!webkul_cms__Article__c.webkul_cms__Category__c}"/>
+</apex:pageBlockSection>
+
+
+  <center>     <button type="button" class="btn btn-pop show" data-toggle="modal" data-target="#myModal1">{!$label.Upload_Image}</button> </center>
+        <div class="modal fade" id="myModal1" role="dialog">
+            <div class="modal-dialog modal-lg upload-popup">
+              <div class="modal-content upload-content">
+                
+                    <div class="modal-body">
+                             <button type="button" class=" close-upload"></button> 
+           <apex:messages />
+           <apex:outputPanel id="ouputpannl">
+             <apex:actionRegion >
+                  <apex:outputLabel value="{!$Label.webkul_cms__select_folder}"></apex:outputLabel><apex:selectList size="1" value="{!Selectedfolder}"><apex:actionsupport event="onchange" action="{!redirct}" rerender="ThePageBlock"/>
+                        <apex:selectOptions value="{!li}">
+                        </apex:selectOptions>
+                    </apex:selectList>
+                </apex:actionRegion>
+                <div> 
+                    <apex:outputLabel value="{!$Label.webkul_cms__choose_file}"></apex:outputLabel><apex:inputFile value="{!document.body}" filename="{!document.name}" title="upload ur file" />
+                    <apex:actionRegion >
+                        <apex:commandButton value="{!$Label.webkul_cms__upload_it}" action="{!upload}" id="uploadbtn" styleClass="btn btn-pop"/>
+                   </apex:actionRegion>
+                </div>
+              
+                <apex:outputpanel id="MyBOX">
+                    <apex:outputLabel value="{!$Label.webkul_cms__select_image_and_get_path}"></apex:outputLabel>
+                   <apex:pageblockSection columns="2" >
+                     <apex:outputLabel value="{!$Label.webkul_cms__path}" for="pt"/> <apex:inputText value="{!path}" styleClass="pathbox" id="pt"/>
+                     <apex:outputLabel value="{!$Label.webkul_cms__width}" for="wd"/><apex:inputText value="{!width}" id="wd"/>
+                     <apex:outputLabel value="{!$Label.webkul_cms__height}" for="ht"/> <apex:inputText value="{!height}" id="ht"/>
+                   </apex:pageblockSection>
+                     <br/>
+                     <apex:actionRegion >
+                           <apex:commandButton value="{!$Label.webkul_cms__insert}" action="{!insertimage}" styleClass="btn btn-pop"/>
+                      </apex:actionRegion>
+                </apex:outputpanel>
+                <div Class="folderitems">
+                    <apex:outputPanel id="ThePageBlock"  >
+                          <apex:repeat value="{!folderitems}" var="fitems">
+                              <div class="imageblock">
+                                  <div class="imagecontainer">
+                                      <apex:actionRegion >
+                                          <apex:image url="/servlet/servlet.FileDownload?file={!fitems.id}" height="100px" width="100px">
+                                              <apex:actionSupport event="onclick" action="{!sendid}" rerender="MyBOX">
+                                                  <apex:param name="parameter" value="/servlet/servlet.FileDownload?file={!fitems.id}" assignTo="{!parameter}"/>
+                                              </apex:actionsupport>
+                                          </apex:image>
+                                      </apex:actionRegion>
+                                  </div>
+                              </div>
+                          </apex:repeat>
+                       </apex:outputpanel>
+                  </div>
+          </apex:outputPanel> 
+   
+                    </div>
+       
+              </div>
+           </div>
+      </div>
+
+  
+
+<apex:pageblockSection columns="1" >
+
+<apex:inputfield value="{!webkul_cms__Article__c.webkul_cms__Description__c}"/>
+
+</apex:pageblockSection>
+<center>
+<apex:commandButton value="{!$Label.webkul_cms__save}" action="{!save}" styleClass="btn btn-pop"/> 
+<apex:commandButton value="Cancel" action="{!cancel}" styleClass="btn btn-pop-cancel"/> 
+</center>
+ <script type="text/javascript">
+       tinymce.init({
+           selector: "textarea",
+           plugins: [
+               "advlist autolink lists link image charmap print preview anchor",
+               "searchreplace visualblocks code fullscreen",
+               "insertdatetime media table contextmenu paste"
+             
+           ],
+           convert_urls: false,
+           toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
+       });
+    </script>
+    
+
+
+</apex:pageBlock>
+ 
+
+<script>
+$('.close-upload').click(function(){
+$('.upload-popup').css('display','none');
+});
+$('.show').click(function(){
+$('.upload-popup').css('display','block');
+});
+</script>
+</apex:form>
+  
+</apex:page>

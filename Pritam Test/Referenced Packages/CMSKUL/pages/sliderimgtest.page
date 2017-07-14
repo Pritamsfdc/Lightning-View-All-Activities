@@ -1,0 +1,163 @@
+<apex:page controller="webkul_cms.CMS_imageslider" showHeader="false">
+<html>
+<head>
+
+<apex:includeScript value="{!URLFOR($Resource.webkul_cms__CMSResources,'small-icon/slider/deep.js')}"/>
+<apex:stylesheet value="{!URLFOR($Resource.webkul_cms__CMSResources,'small-icon/slider/deep.css')}"/>
+<apex:includeScript value="{!URLFOR($Resource.webkul_cms__CMSResources,'small-icon/jqueyfile.js')}"/>
+<apex:includeScript value="{!URLFOR($Resource.webkul_cms__CMSResources,'small-icon/bootstrap.js')}"/>
+<apex:stylesheet value="{!URLFOR($Resource.webkul_cms__CMSResources,'small-icon/bootstrap.css')}"/>
+
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title></title>
+</head>
+<body style="padding:0px; margin:0px; background-color:#fff;">
+
+    <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+    <apex:includeScript value="{!URLFOR($Resource.webkul_cms__CMSResources,'small-icon/slider/js/jssor.slider.mini.js')}"/>
+ <script>
+        jQuery(document).ready(function ($) {
+            
+            var jssor_1_SlideoTransitions = [
+              [{b:5500,d:3000,o:-1,r:240,e:{r:2}}],
+              [{b:-1,d:1,o:-1,c:{x:51.0,t:-51.0}},{b:0,d:1000,o:1,c:{x:-51.0,t:51.0},e:{o:7,c:{x:7,t:7}}}],
+              [{b:-1,d:1,o:-1,sX:9,sY:9},{b:1000,d:1000,o:1,sX:-9,sY:-9,e:{sX:2,sY:2}}],
+              [{b:-1,d:1,o:-1,r:-180,sX:9,sY:9},{b:2000,d:1000,o:1,r:180,sX:-9,sY:-9,e:{r:2,sX:2,sY:2}}],
+              [{b:-1,d:1,o:-1},{b:3000,d:2000,y:180,o:1,e:{y:16}}],
+              [{b:-1,d:1,o:-1,r:-150},{b:7500,d:1600,o:1,r:150,e:{r:3}}],
+              [{b:10000,d:2000,x:-379,e:{x:7}}],
+              [{b:10000,d:2000,x:-379,e:{x:7}}],
+              [{b:-1,d:1,o:-1,r:288,sX:9,sY:9},{b:9100,d:900,x:-1400,y:-660,o:1,r:-288,sX:-9,sY:-9,e:{r:6}},{b:10000,d:1600,x:-200,o:-1,e:{x:16}}]
+            ];
+            
+            var jssor_1_options = {
+              $AutoPlay: true,
+              $SlideDuration: 800,
+              $SlideEasing: $Jease$.$OutQuint,
+              $CaptionSliderOptions: {
+                $Class: $JssorCaptionSlideo$,
+                $Transitions: jssor_1_SlideoTransitions
+              },
+              $ArrowNavigatorOptions: {
+                $Class: $JssorArrowNavigator$
+              },
+              $BulletNavigatorOptions: {
+                $Class: $JssorBulletNavigator$
+              }
+            };
+            
+            var jssor_1_slider = new $JssorSlider$("jssor_1", jssor_1_options);
+            
+       
+            function ScaleSlider() {
+                var refSize = jssor_1_slider.$Elmt.parentNode.clientWidth;
+                if (refSize) {
+                    refSize = Math.min(refSize, 1920);
+                    jssor_1_slider.$ScaleWidth(refSize);
+                }
+                else {
+                    window.setTimeout(ScaleSlider, 30);
+                }
+            }
+            ScaleSlider();
+            $(window).bind("load", ScaleSlider);
+            $(window).bind("resize", ScaleSlider);
+            $(window).bind("orientationchange", ScaleSlider);
+            //responsive code end
+        });
+    </script>
+   <style>
+        
+       
+        .jssorb05 {
+            position: absolute;
+        }
+        .jssorb05 div, .jssorb05 div:hover, .jssorb05 .av {
+            position: absolute;
+            
+            width: 16px;
+            height: 16px;
+            background:none;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .jssorb05 div { background-position: -7px -7px; }
+        .jssorb05 div:hover, .jssorb05 .av:hover { background-position: -37px -7px; }
+        .jssorb05 .av { background-position: -67px -7px; }
+        .jssorb05 .dn, .jssorb05 .dn:hover { background-position: -97px -7px; }
+
+        
+        .jssora12l, .jssora12r {
+            display: block;
+            position: absolute;
+           
+            width: 30px;
+            height: 46px;
+            cursor: pointer;
+            background: url('{!URLFOR($Resource.CMSResources,'small-icon/slider/img/a12.png')}') no-repeat;
+            overflow: hidden;
+        }
+        .jssora12l { background-position: -16px -37px; }
+        .jssora12r { background-position: -75px -37px; }
+        .jssora12l:hover { background-position: -136px -37px; }
+        .jssora12r:hover { background-position: -195px -37px; }
+        .jssora12l.jssora12ldn { background-position: -256px -37px; }
+        .jssora12r.jssora12rdn { background-position: -315px -37px; }
+         .lio{
+        width:100%;
+        margin-left:0px!important;
+        }
+         
+         .text{
+    position:absolute;
+       top:10%;
+    left:10%;
+   
+    }
+    img{
+    padding:0px!important;
+    }
+    </style>
+
+<div class="lio">
+
+   <div id="jssor_1" style="position: relative; margin: 0 auto; top: 0px; left: 0px; width: 1600px; height: 640px; overflow: hidden; visibility: hidden;">
+  
+        <div data-u="loading" style="position: absolute; top: 0px; left: 0px;">
+            <div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block; top: 0px; left: 0px; width: 100%; height: 100%;"></div>
+            <div style="position:absolute;display:block;background:url('img/loading.gif') no-repeat center center;top:0px;left:0px;width:100%;height:100%;"></div>
+        </div>
+        <div data-u="slides" style="cursor: default; position: relative; top: 0px; left: 0px; width: 1600px; height: 640px; overflow: hidden;">
+            
+                 <apex:repeat value="{!Images}" var="img">  
+                         <div class="slide{!img.webkul_cms__Imageorder__c}">  
+                         <apex:outputField value="{!img.webkul_cms__image__c}"/>
+     
+             <div class="text">
+            <apex:outputPanel id="embed_object1" rendered="{!EmbVideoHTMLContent!= null}" layout="none">
+
+              <apex:dynamicComponent componentValue="{!EmbVideoHTMLContent}"/>
+
+            </apex:outputpanel>
+            </div>
+ 
+            
+                         </div>  
+                 </apex:repeat> 
+        </div>
+
+        <div data-u="navigator" class="jssorb05" style="bottom:16px;right:16px;" data-autocenter="1">
+
+            <div data-u="prototype" style="width:16px;height:16px;"></div>
+        </div>
+     
+        <span data-u="arrowleft" class="jssora12l" style="top:0px;left:8px;width:30px;height:46px;" data-autocenter="2"></span>
+        <span data-u="arrowright" class="jssora12r" style="top:0px;right:8px;width:30px;height:46px;" data-autocenter="2"></span>
+       
+    </div>
+</div>
+
+</body>
+</html>
+</apex:page>

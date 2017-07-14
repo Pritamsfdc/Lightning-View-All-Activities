@@ -1,0 +1,100 @@
+.THIS {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.THIS .validation {
+	color: red;
+    font-family: "ProximaNovaSoft-Regular";
+	font-size: 0.875rem;
+}
+
+.THIS .overflow {
+	overflow: hidden;
+}
+
+.THIS .selectList {
+    box-sizing: border-box;
+    font-weight: inherit;
+	font-style: inherit;
+    -moz-appearance: none;
+   -webkit-appearance: none;
+   appearance: none;
+    color: #3C3D3E;
+    padding: 0px 18px 3px 0px;
+    margin: 0px 0px 5px;
+    border: medium none;
+    border-radius: 0px;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: 95% 40%;
+	background-size: 0.8rem 0.6rem, 80% 60%; 
+    background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+Cjxzdmcgd2lkdGg9IjExcHgiIGhlaWdodD0iOHB4IiB2aWV3Qm94PSIwIDAgMTEgOCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4bWxuczpza2V0Y2g9Imh0dHA6Ly93d3cuYm9oZW1pYW5jb2RpbmcuY29tL3NrZXRjaC9ucyI+CiAgICA8IS0tIEdlbmVyYXRvcjogU2tldGNoIDMuMS4xICg4NzYxKSAtIGh0dHA6Ly93d3cuYm9oZW1pYW5jb2RpbmcuY29tL3NrZXRjaCAtLT4KICAgIDx0aXRsZT5kaXJlY3Rkb3duX2xpc3R2aWV3aWNrZXI8L3RpdGxlPgogICAgPGRlc2M+Q3JlYXRlZCB3aXRoIFNrZXRjaC48L2Rlc2M+CiAgICA8ZGVmcz48L2RlZnM+CiAgICA8ZyBpZD0iTGlzdHZpZXciIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHNrZXRjaDp0eXBlPSJNU1BhZ2UiPgogICAgICAgIDxwYXRoIGQ9Ik0wLjgxNDU4OTcxNSwxLjUzNjQyODU3IEMyLjQyNjA1MzcxLDQuMzkzNzMwMjggNC45NTgzNTQyOSw2Ljg3MTg2NCA1LjA2NjY4OCw2Ljk2NjY1NiBDNS4zMTA0Mzg4Niw3LjE4MzMyMzQzIDUuNjg5NjA2ODYsNy4xODMzMjM0MyA1LjkzMzM1NzcyLDYuOTY2NjU2IEM2LjA0MTY5MTQzLDYuODcxODY0IDguNTczOTkyLDQuMzkzNzMwMjggMTAuMTg1NDU2LDEuNTM2NDI4NTcgQzEwLjI5Mzc4OTcsMS4zNDY4NDQ1NyAxMC4yOTM3ODk3LDEuMTE2NjM1NDMgMTAuMTg1NDU2LDAuOTI3MDUxNDI3IEMxMC4wNzcxMjIzLDAuNzM3NDY3NDI3IDkuODg3NTM4MjksMC42MTU1OTE5OTggOS42NzA4NzA4NiwwLjYwMjA1MDI4NCBDOS42NDM3ODc0MywwLjU4ODUwODU3IDcuNjEyNTMwMjksMC40NjY2MzMxNDEgNS41MDAwMjI4NiwwLjQ2NjYzMzE0MSBDMy4zODc1MTU0MywwLjQ2NjYzMzE0MSAxLjM1NjI1ODI5LDAuNTg4NTA4NTcgMS4zMjkxNzQ4NiwwLjYwMjA1MDI4NCBDMS4xMTI1MDc0MywwLjYxNTU5MTk5OCAwLjkwOTM4MTcxNSwwLjczNzQ2NzQyNyAwLjgxNDU4OTcxNSwwLjkyNzA1MTQyNyBDMC43MDYyNTYsMS4xMTY2MzU0MyAwLjcwNjI1NiwxLjM0Njg0NDU3IDAuODE0NTg5NzE1LDEuNTM2NDI4NTcgTDAuODE0NTg5NzE1LDEuNTM2NDI4NTcgWiIgaWQ9ImRpcmVjdGRvd25fbGlzdHZpZXdpY2tlciIgZmlsbD0iIzNDM0QzRSIgc2tldGNoOnR5cGU9Ik1TU2hhcGVHcm91cCI+PC9wYXRoPgogICAgPC9nPgo8L3N2Zz4=");
+}
+
+.THIS ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.THIS outerDiv {
+    font-size: 0.9375rem;
+}
+
+.THIS .cardList {
+    ffloat: right;
+	color: #3C3D3E;
+	font-size: 0.875rem;
+}
+
+.THIS forceArticle {
+    background-color: #FFF;
+    color: #3C3D3E;
+    margin: 14px;
+    border-radius: 0.3125rem;
+    overflow: hidden;
+}
+
+.THIS cardHeader {
+    padding: 14px;
+    color: #3C3D3E;
+    font-size: 1rem;
+    font-family: "ProximaNovaSoft-Regular";
+    border-bottom: 1px solid #F5F6F7;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.THIS headerLabel {
+    box-sizing: border-box;
+}
+
+.THIS cardBody {
+    box-sizing: border-box;
+}
+
+.THIS li {
+    border-bottom: solid 1px #F5F6F7;
+    padding-top: 13px;
+    padding-bottom: 13px;
+}
+
+.THIS listContent {
+    min-height: 100px;
+	clear: both;
+	position: relative;
+}
+
+.THIS p {
+    margin: 4px;
+}
+.THIS.roreblcloghistUsersLoginHistory {
+    list-style-type: none;
+    padding-top: 13px;
+    padding-right: 13px;
+    padding-left: 13px;
+    margin: 0px;
+}

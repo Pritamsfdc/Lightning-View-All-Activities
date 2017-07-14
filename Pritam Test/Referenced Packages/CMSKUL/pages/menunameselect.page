@@ -1,0 +1,20 @@
+<apex:page controller="webkul_cms.MyController">
+      <style>
+    label{
+    display:inline!important;
+  font-size: 17px;
+    font-weight: bold;
+        margin-right:10px;
+    }
+      </style>
+           <apex:pageblock mode="maindetail">
+         <center>  <apex:outputLabel style="font-size:20px;" value="Article-Type-Menu "></apex:outputLabel>         </center> 
+               
+              <apex:pageBlockSection id="section1"  columns="1">
+               <apex:include pageName="webkul_cms__CMS_AddMenu"/>
+              </apex:pageBlockSection>
+
+         
+       </apex:pageblock>
+    
+     </apex:page>

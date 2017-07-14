@@ -1,0 +1,710 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>ADD</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>ADD</shortDescription>
+        <value>ADD</value>
+    </labels>
+    <labels>
+        <fullName>About_Us</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>About Us</shortDescription>
+        <value>About Us</value>
+    </labels>
+    <labels>
+        <fullName>Add_Article_Here</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Add Article Here</shortDescription>
+        <value>Add Article Here</value>
+    </labels>
+    <labels>
+        <fullName>Add_Category_Here</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Add Category Here</shortDescription>
+        <value>Add Category Here</value>
+    </labels>
+    <labels>
+        <fullName>Add_Image_Here</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Add Image Here</shortDescription>
+        <value>Add Image Here</value>
+    </labels>
+    <labels>
+        <fullName>Add_New</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Add New</shortDescription>
+        <value>Add New</value>
+    </labels>
+    <labels>
+        <fullName>Add_New_menu</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Add New menu</shortDescription>
+        <value>Add New menu</value>
+    </labels>
+    <labels>
+        <fullName>Add_User</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Add User</shortDescription>
+        <value>Add User</value>
+    </labels>
+    <labels>
+        <fullName>Add_menu_Items</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Add menu Items</shortDescription>
+        <value>Add menu Items</value>
+    </labels>
+    <labels>
+        <fullName>Add_social_keys_Here</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Add social keys Here</shortDescription>
+        <value>Add social keys Here</value>
+    </labels>
+    <labels>
+        <fullName>Articles</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Articles</shortDescription>
+        <value>Articles</value>
+    </labels>
+    <labels>
+        <fullName>Call_Us</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Call-Us:</shortDescription>
+        <value>Call-Us:</value>
+    </labels>
+    <labels>
+        <fullName>Cancel</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Cancel</shortDescription>
+        <value>Cancel</value>
+    </labels>
+    <labels>
+        <fullName>Categories</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Categories</shortDescription>
+        <value>Categories</value>
+    </labels>
+    <labels>
+        <fullName>Category</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Category</shortDescription>
+        <value>Category</value>
+    </labels>
+    <labels>
+        <fullName>Choose_File</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Choose File</shortDescription>
+        <value>Choose File</value>
+    </labels>
+    <labels>
+        <fullName>Contact_Us</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Contact Us</shortDescription>
+        <value>Contact Us</value>
+    </labels>
+    <labels>
+        <fullName>Content</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Content</shortDescription>
+        <value>Content</value>
+    </labels>
+    <labels>
+        <fullName>Description</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Description</shortDescription>
+        <value>Description</value>
+    </labels>
+    <labels>
+        <fullName>Email</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Email</shortDescription>
+        <value>Email</value>
+    </labels>
+    <labels>
+        <fullName>First_Name</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>First Name</shortDescription>
+        <value>First Name</value>
+    </labels>
+    <labels>
+        <fullName>Footer_Text</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Footer Text</shortDescription>
+        <value>Footer Text</value>
+    </labels>
+    <labels>
+        <fullName>Get_In_Touch_temp</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Get In Touch-temp</shortDescription>
+        <value>Get In Touch</value>
+    </labels>
+    <labels>
+        <fullName>Getting_Helps_temo</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Getting Helps?</shortDescription>
+        <value>Getting Helps?</value>
+    </labels>
+    <labels>
+        <fullName>Global_Settings</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Global Settings</shortDescription>
+        <value>Global Settings</value>
+    </labels>
+    <labels>
+        <fullName>Height</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Height</shortDescription>
+        <value>Height</value>
+    </labels>
+    <labels>
+        <fullName>Help</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Help</shortDescription>
+        <value>Help</value>
+    </labels>
+    <labels>
+        <fullName>Image_Slider</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Image_Slider</shortDescription>
+        <value>Image Slider</value>
+    </labels>
+    <labels>
+        <fullName>Images</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Images</shortDescription>
+        <value>Images</value>
+    </labels>
+    <labels>
+        <fullName>Insert</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Insert</shortDescription>
+        <value>Insert</value>
+    </labels>
+    <labels>
+        <fullName>LastName</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>LastName</shortDescription>
+        <value>Last Name</value>
+    </labels>
+    <labels>
+        <fullName>Layout_Settings</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Layout Settings</shortDescription>
+        <value>Layout Settings</value>
+    </labels>
+    <labels>
+        <fullName>Link</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Link</shortDescription>
+        <value>Link</value>
+    </labels>
+    <labels>
+        <fullName>Location</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Location</shortDescription>
+        <value>Location</value>
+    </labels>
+    <labels>
+        <fullName>Login_Here</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Login Here</shortDescription>
+        <value>Login Here</value>
+    </labels>
+    <labels>
+        <fullName>Logout</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Logout</shortDescription>
+        <value>Logout</value>
+    </labels>
+    <labels>
+        <fullName>Manage</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Manage</shortDescription>
+        <value>Manage</value>
+    </labels>
+    <labels>
+        <fullName>Map</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Map</shortDescription>
+        <value>Map</value>
+    </labels>
+    <labels>
+        <fullName>Menu_Item_Title</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Menu-Item Title</shortDescription>
+        <value>CLOUD MARKETING</value>
+    </labels>
+    <labels>
+        <fullName>Menu_Location</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Menu Location</shortDescription>
+        <value>Menu Location</value>
+    </labels>
+    <labels>
+        <fullName>Menus</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Menus</shortDescription>
+        <value>Menus</value>
+    </labels>
+    <labels>
+        <fullName>Modules</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Modules</shortDescription>
+        <value>Modules</value>
+    </labels>
+    <labels>
+        <fullName>Name</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Name</shortDescription>
+        <value>Name</value>
+    </labels>
+    <labels>
+        <fullName>On_the_Social_Web</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>On the Social Web</shortDescription>
+        <value>On the Social Web</value>
+    </labels>
+    <labels>
+        <fullName>Path</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Path</shortDescription>
+        <value>Path</value>
+    </labels>
+    <labels>
+        <fullName>Position</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Position</shortDescription>
+        <value>Position</value>
+    </labels>
+    <labels>
+        <fullName>Preview</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Preview</shortDescription>
+        <value>Preview</value>
+    </labels>
+    <labels>
+        <fullName>Profile_Name</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Profile Name</shortDescription>
+        <value>Profile Name</value>
+    </labels>
+    <labels>
+        <fullName>Profiles</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Profiles</shortDescription>
+        <value>Profiles</value>
+    </labels>
+    <labels>
+        <fullName>Register</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Register</shortDescription>
+        <value>Register</value>
+    </labels>
+    <labels>
+        <fullName>Register_With_Us</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Register With Us</shortDescription>
+        <value>Register With Us</value>
+    </labels>
+    <labels>
+        <fullName>Reset</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Reset</shortDescription>
+        <value>Reset</value>
+    </labels>
+    <labels>
+        <fullName>Select_Folder</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Select Folder</shortDescription>
+        <value>Select Folder</value>
+    </labels>
+    <labels>
+        <fullName>Select_Image_and_get_path</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Select Image and get path</shortDescription>
+        <value>Select Image and get path :-</value>
+    </labels>
+    <labels>
+        <fullName>Social_Icon</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Social-Icon</shortDescription>
+        <value>Social-Icon</value>
+    </labels>
+    <labels>
+        <fullName>Social_Keys</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Social Keys</shortDescription>
+        <value>Social Keys</value>
+    </labels>
+    <labels>
+        <fullName>Social_Network</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Social Network</shortDescription>
+        <value>Social Network</value>
+    </labels>
+    <labels>
+        <fullName>Templates</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Templates</shortDescription>
+        <value>Templates</value>
+    </labels>
+    <labels>
+        <fullName>Thank_you</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Thank you</shortDescription>
+        <value>Thank you</value>
+    </labels>
+    <labels>
+        <fullName>Title</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Title</shortDescription>
+        <value>Title</value>
+    </labels>
+    <labels>
+        <fullName>Upload_Image</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Upload Image</shortDescription>
+        <value>Upload Image</value>
+    </labels>
+    <labels>
+        <fullName>Upload_It</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Upload It</shortDescription>
+        <value>Upload It</value>
+    </labels>
+    <labels>
+        <fullName>Useful_Links</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Useful_Links</shortDescription>
+        <value>Useful Links</value>
+    </labels>
+    <labels>
+        <fullName>Users</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Users`</shortDescription>
+        <value>Users</value>
+    </labels>
+    <labels>
+        <fullName>Video</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Video</shortDescription>
+        <value>Video</value>
+    </labels>
+    <labels>
+        <fullName>Visual_Force_Page</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Visual Force Page</shortDescription>
+        <value>Visual Force Page</value>
+    </labels>
+    <labels>
+        <fullName>X0000_000_000_000</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>+0000-000-000-000</shortDescription>
+        <value>+2331-123-456-789</value>
+    </labels>
+    <labels>
+        <fullName>XXXXXXXX_XXX_XXX</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>XXXXXXXX@XXX.XXX</shortDescription>
+        <value>cloudmarketing@cms.com</value>
+    </labels>
+    <labels>
+        <fullName>article</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>article</shortDescription>
+        <value>Article</value>
+    </labels>
+    <labels>
+        <fullName>authorization_required</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>authorization_required</shortDescription>
+        <value>Authorization Required</value>
+    </labels>
+    <labels>
+        <fullName>back_to_home</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>back_to_home</shortDescription>
+        <value>Back to Home</value>
+    </labels>
+    <labels>
+        <fullName>change_your_password</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>change_your_password</shortDescription>
+        <value>Change Your Password</value>
+    </labels>
+    <labels>
+        <fullName>contact_text2</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>contact text2</shortDescription>
+        <value>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</value>
+    </labels>
+    <labels>
+        <fullName>down_for_maintenance</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>down_for_maintenance</shortDescription>
+        <value>Is down for maintenance</value>
+    </labels>
+    <labels>
+        <fullName>email_us</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>email us</shortDescription>
+        <value>email us</value>
+    </labels>
+    <labels>
+        <fullName>enter_password</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>enter_password</shortDescription>
+        <value>Did you forget your password? Please enter your username below.</value>
+    </labels>
+    <labels>
+        <fullName>error</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>error</shortDescription>
+        <value>Error: {0}</value>
+    </labels>
+    <labels>
+        <fullName>for_contact_us</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>for contact us</shortDescription>
+        <value>for contact us</value>
+    </labels>
+    <labels>
+        <fullName>forgot_your_password_q</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>forgot_your_password_q</shortDescription>
+        <value>Forgot Your Password?</value>
+    </labels>
+    <labels>
+        <fullName>get_in_touch</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>get_in_touch</shortDescription>
+        <value>Please &lt;a href=&quot;{0}&quot;&gt;{1}&lt;/a&gt; if you need to get in touch.</value>
+    </labels>
+    <labels>
+        <fullName>go_to_login_page</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>go_to_login_page</shortDescription>
+        <value>Go to Login Page</value>
+    </labels>
+    <labels>
+        <fullName>image_order</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>image_order</shortDescription>
+        <value>Image-Order</value>
+    </labels>
+    <labels>
+        <fullName>limit_exceeded</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>limit_exceeded</shortDescription>
+        <value>Limit Exceeded</value>
+    </labels>
+    <labels>
+        <fullName>login_button</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>login_button</shortDescription>
+        <value>Login</value>
+    </labels>
+    <labels>
+        <fullName>login_or_register_first</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>login_or_register_first</shortDescription>
+        <value>You must first log in or register before accessing this page.</value>
+    </labels>
+    <labels>
+        <fullName>logo</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>logo</shortDescription>
+        <value>Logo</value>
+    </labels>
+    <labels>
+        <fullName>new_password</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>new_password</shortDescription>
+        <value>New Password</value>
+    </labels>
+    <labels>
+        <fullName>old_password</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>old_password</shortDescription>
+        <value>Old Password</value>
+    </labels>
+    <labels>
+        <fullName>page_not_found_detail</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>page_not_found_detail</shortDescription>
+        <value>Page Not Found: {0}</value>
+    </labels>
+    <labels>
+        <fullName>password</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>password</shortDescription>
+        <value>Password</value>
+    </labels>
+    <labels>
+        <fullName>published</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>published</shortDescription>
+        <value>Published</value>
+    </labels>
+    <labels>
+        <fullName>save</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>save</shortDescription>
+        <value>Save</value>
+    </labels>
+    <labels>
+        <fullName>site_under_construction</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>site_under_construction</shortDescription>
+        <value>Site Under Construction</value>
+    </labels>
+    <labels>
+        <fullName>sorry_for_inconvenience_back_shortly</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>sorry_for_inconvenience_back_shortly</shortDescription>
+        <value>Sorry for the inconvenience. We&apos;ll be back shortly.</value>
+    </labels>
+    <labels>
+        <fullName>stay_tuned</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>stay_tuned</shortDescription>
+        <value>Stay tuned.</value>
+    </labels>
+    <labels>
+        <fullName>submit</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>submit</shortDescription>
+        <value>Submit</value>
+    </labels>
+    <labels>
+        <fullName>temp_password_sent</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>temp_password_sent</shortDescription>
+        <value>An email has been sent to you with your temporary password.</value>
+    </labels>
+    <labels>
+        <fullName>thank_you_for_registering</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>thank_you_for_registering</shortDescription>
+        <value>Thank you for registering. An email has been sent to you with your temporary password.</value>
+    </labels>
+    <labels>
+        <fullName>username</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>username</shortDescription>
+        <value>Username</value>
+    </labels>
+    <labels>
+        <fullName>verify_new_password</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>verify_new_password</shortDescription>
+        <value>Verify New Password</value>
+    </labels>
+    <labels>
+        <fullName>width</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>width</shortDescription>
+        <value>width</value>
+    </labels>
+</CustomLabels>

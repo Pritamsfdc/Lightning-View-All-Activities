@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <webLinks>
+        <fullName>Attach_Files</fullName>
+        <availability>online</availability>
+        <description>Drag &amp; Drop - File Upload default attach files button</description>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <linkType>url</linkType>
+        <masterLabel>Attach Files</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <url>/apex/dropzone__AttachFiles?id={!Campaign.Id}</url>
+    </webLinks>
+</CustomObject>

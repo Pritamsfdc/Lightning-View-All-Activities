@@ -1,0 +1,17 @@
+<aura:component controller="infografx.UsaOpptyMapController" implements="flexipage:availableForAllPageTypes,force:appHostable" access="GLOBAL">
+    <!-- Initialization event handler -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <aura:attribute name="stateData" type="String"/>
+    <aura:attribute name="mapTitle" type="String" default="Opportunities by State" access="global"/>
+    <aura:attribute name="entity" type="String" default="Account - Billing Address" access="global"/>
+    <aura:attribute name="zoom" type="Boolean" default="false" access="global"/>
+    <aura:attribute name="border" type="Boolean" default="true" access="global"/>
+    <aura:attribute name="size" type="String" default="Medium" access="global"/>
+    <aura:attribute name="style_class" type="String" default="map-border Medium"/>
+
+    <ltng:require scripts="/resource/infografx__ammap_3_20_5_sfdc, /resource/infografx__ammap_usalow, /resource/infografx__amcharts_theme_green" afterScriptsLoaded="{!c.initScripts}"/>
+
+	<div class="{!v.style_class}" id="opptymapdiv" style="{!v.size}"></div>	
+
+</aura:component>

@@ -1,0 +1,251 @@
+<apex:page controller="IBSmassemail.SendMassEmailController" standardStylesheets="false" sidebar="false" tabStyle="Mass_Emails__tab" applyBodyTag="false" docType="html-5.0">
+    <html
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink">
+        <head>
+            <apex:stylesheet value="{!URLFOR($Resource.IBSmassemail__SalesforceLightning, 'assets/styles/salesforce-lightning-design-system-vf.css')}" />
+            <apex:includeScript value="{!URLFOR($Resource.IBSmassemail__jQuery)}"/>
+            <script src="{!URLFOR($Resource.aljs, '/appiphony-lightning-js-master/public/src/jquery.aljs-init.js')}"></script>
+            <script src="{!URLFOR($Resource.aljs, '/appiphony-lightning-js-master/public/lib/moment/moment.js')}"></script>
+            <script src="{!URLFOR($Resource.aljs, '/appiphony-lightning-js-master/public/src/jquery.aljs-datepicker.js')}"></script>
+            <style>
+                .thHeadTemp{
+                    font-weight: bold !important;
+                    color: black !important;
+                    height: 35px;
+                    padding-top: 9px;
+                    padding-left: 8px;
+                }
+                .pad{
+                    padding-top: 1%;
+                }
+                .popupWidth{
+                    width : 50% !important;
+                } 
+                .bottomPad{
+                    padding-bottom: 2%;
+                }
+                .errorHead{
+                    background-color: #f2dede !important;
+                    border-color: #eed3d7 !important;
+                    color: #b94a48 !important;
+                }
+                .slds-datepicker th,.slds-datepicker td{
+                    padding: 0px !important;
+                }
+            </style>
+            <script>
+                var assetsLocation = '{!URLFOR($Resource.SalesforceLightning)}';
+                  $.aljsInit({
+                    assetsLocation: assetsLocation,
+                    scoped: true
+                });
+                
+                 //timepicker
+                  function createTimePicker(mainDivclass,textClass,svgClass){
+                      $('.'+mainDivclass).addClass('slds-datepicker--time');
+                      $('.'+mainDivclass).css('border','1px solid #CCC').css('border-radius','5px').css('display','none');
+                      
+                      var ele = '<ul class="slds-datepicker--time__list">';
+                      ele += '<li aria-selected="false" onclick="$(\'.'+ textClass + '\').val($(this).children().html());$(\'.' + mainDivclass +'\').hide()"><span>12:00 AM</span></li>';
+                      ele += '<li aria-selected="false" onclick="$(\'.'+ textClass + '\').val($(this).children().html());$(\'.' + mainDivclass +'\').hide()"><span>12:30 AM</span></li>';
+                      for(var i = 1 ; i<= 11 ; i++){
+                          ele += '<li aria-selected="false" onclick="$(\'.'+ textClass + '\').val($(this).children().html());$(\'.' + mainDivclass +'\').hide()"><span>' + i + ':00 AM</span></li>';
+                          ele += '<li aria-selected="false" onclick="$(\'.'+ textClass + '\').val($(this).children().html());$(\'.' + mainDivclass +'\').hide()"><span>' + i + ':30 AM</span></li>';  
+                      }
+                      ele += '<li aria-selected="false" onclick="$(\'.'+ textClass + '\').val($(this).children().html());$(\'.' + mainDivclass +'\').hide()"><span>12:00 PM</span></li>';
+                      ele += '<li aria-selected="false" onclick="$(\'.'+ textClass + '\').val($(this).children().html());$(\'.' + mainDivclass +'\').hide()"><span>12:30 PM</span></li>';
+                      for(var i = 1 ; i<= 11 ; i++){
+                          ele += '<li aria-selected="false" onclick="$(\'.'+ textClass + '\').val($(this).children().html());$(\'.' + mainDivclass +'\').hide()"><span>' + i + ':00 PM</span></li>';
+                          ele += '<li aria-selected="false" onclick="$(\'.'+ textClass + '\').val($(this).children().html());$(\'.' + mainDivclass +'\').hide()"><span>' + i + ':30 PM</span></li>';  
+                      }
+                      ele += '</ul>';                           
+                      $('.'+mainDivclass).html(ele);
+                                                  
+                      $('.'+svgClass).attr("onclick","$('."+ mainDivclass +"').show()");                          
+                      $('.'+textClass).attr("onfocus","$('."+ mainDivclass +"').show()");
+                      
+                      
+                  } 
+                  
+                  //for hide time picker
+                  $(document).click(function(event) {
+                      ele = event.target;
+                      if($(ele).prop('tagName') == 'HTML' || $(ele).prop('tagName') == 'FORM' || $(ele).prop('tagName') == 'DIV'){
+                          if($('.taskRemTimeDiv') != undefined){
+                              $('.taskRemTimeDiv').hide();  
+                          }
+                      }
+                      
+                  });
+                  
+                function addDateTimeDetail(){
+                    $('#scheduleDt').show();
+                }
+                function removeDateTimeDetail(){
+                    $('#scheduleDt').hide();
+                }
+                function sendOption(sendValue){
+                    //alert(sendValue);
+                    $('[id$=sendOptions]').val(sendValue);
+                    
+                    //alert($('[id$=sendOptions]').val());
+                }
+                function selectSend(){
+                    var sendVal = $('[id$=sendOptions]').val();
+                    //alert(sendVal);
+                    if(sendVal !=''){
+                        $('[class='+sendVal+']').prop('checked', true);
+                    }  
+                    if(sendVal == 'SCHEDULE'){
+                        addDateTimeDetail();
+                    }                
+                }
+                function intializeDate(){
+                    $('.scDate').datepicker();
+                }
+                $(document).ready(function (){
+                    intializeDate();
+                    createTimePicker('taskRemTimeDiv','taskRemTime','taskRemSvg');
+                    selectSend();
+                });
+            </script>
+        </head>
+        <div class="slds">
+            <c:WizardHeader />
+            <c:SendMassEmailUtility />
+            <apex:outputPanel rendered="{!isAccessible}" layout="none">  
+                <apex:form id="frm">
+                    <div data-reactid=".5.0.1" role="alert" class="slds-notify slds-notify--alert slds-theme--inverse-text slds-theme--alert-texture slds-m-top--large">
+                        <span class="slds-assistive-text">Success</span>
+                        <h2>
+                            <svg class="slds-icon icon-text-email slds-icon--small slds-m-right--x-small" aria-hidden="true">
+                                <use xlink:href="{!URLFOR($Resource.SalesforceLightning, '/assets/icons/utility-sprite/svg/symbols.svg#check')}"/>
+                            </svg>
+                            <span>Step 6 of 7</span>
+                        </h2>
+                    </div>
+                    <br/>
+                    <apex:outputPanel id="op">
+                    
+                    </apex:outputPanel>
+                    <!-------------------------------------Schedule Section-------------------------------------------------------------->
+                    <div class="slds-backdrop"></div>
+                    
+                        <div class="myapp">
+                            <div class="slds-grid">
+                                <div class="slds-col slds-size--1-of-6"></div>
+                                <div class="slds-col slds-size--4-of-6 slds-table slds-table--bordered" style="border:1px solid #ccc;border-radius:5px;">
+                                    
+                                    <apex:outputPanel rendered="{!IF(batchError, true, false)}">
+                                        <div class="slds-notify slds-notify--toast slds-theme--inverse-text errorHead" role="alert">
+                                            <span class="slds-assistive-text">Schedule Time Info</span>
+                                            <div class="notify__content" style = "font-weight: 400;">
+                                                <p><apex:pagemessages ></apex:pagemessages></p>
+                                            </div>
+                                        </div>
+                                    </apex:outputPanel>
+                                    <div class="slds-grid" style="border-bottom:1px solid #ccc;border-top:1px solid #ccc;padding-top: 7px;padding-bottom: 7px;">
+                                        
+                                        <div class="slds-col slds-size--3-of-6" style="padding-left: 8px;">
+                                        
+                                            You currently have <b> {!selRecords} recipient(s) </b> selected to receive this email.</div>
+                                        <div class="slds-col slds-size--3-of-6"></div>
+                                        
+                                    </div>
+                                    <!--<div class = "slds-table slds-table--bordered" style="border:1px solid #ccc;border-radius:5px;">-->
+                                        <div class="slds-grid slds-text-heading--label slds-theme--shade thHeadTemp slds-table slds-table--bordered">
+                                            <div class="slds-col slds-size--1-of-6">Email Delivery Options</div>
+                                        </div>
+                                        <div class="slds-grid pad">
+                                            <div class="slds-col slds-size--1-of-6"></div>
+                                            <div class="slds-col slds-size--4-of-6 bottomPad">
+                                                <apex:inputHidden value="{!sendOpt}" id="sendOptions"/>
+                                                <apex:outputPanel rendered="{!IF(checkSchedule, true, false)}">
+                                                    <div class="slds-notify slds-notify--toast slds-theme--inverse-text errorHead" role="alert">
+                                                        <span class="slds-assistive-text">Schedule Time Info</span>
+                                                        <div class="notify__content" style = "font-weight: 400;">
+                                                            <p>*Please provide proper schedule information(Such as Mass Email Name or Date or Time).</p>
+                                                        </div>
+                                                    </div>
+                                                </apex:outputPanel>
+                                                <div class="slds-grid">
+                                                    <div class="slds-col slds-size--3-of-6">
+                                                        <b>Mass Email Name</b>
+                                                    </div>
+                                                    <div class="slds-col slds-size--4-of-6">
+                                                        <apex:inputText styleclass="slds-input" value="{!massEmailName}"/>                                                
+                                                    </div>                                            
+                                                </div><br/>
+                                                <div class="slds-grid">
+                                                    <label class="slds-radio">
+                                                        <input type="radio" name="options" id="sendNow" onclick="removeDateTimeDetail();sendOption('NOW');" class="NOW"/>
+                                                        <span class="slds-radio--faux"></span>
+                                                        <span class="slds-form-element__label">&nbsp;Send Now</span>
+                                                    </label>                                           
+                                                </div>
+                                                <div class="slds-grid">
+                                                    <div class="slds-col slds-size--3-of-7">
+                                                        <label class="slds-radio">
+                                                            <input type="radio" name="options" id="schedule" onclick="addDateTimeDetail();sendOption('SCHEDULE');" class="SCHEDULE"/>
+                                                            <span class="slds-radio--faux"></span>
+                                                            <span class="slds-form-element__label">&nbsp;Schedule For Delivery On</span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="slds-col slds-size--4-of-7" id = "scheduleDt" style="display:none;">
+                                                        <div class="slds-grid">
+                                                            <div class="slds-col">
+                                                            <div class="slds-form-element ">
+                                                           
+                                                               <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon--right">
+                                                                   <svg aria-hidden="true" class="slds-input__icon" >
+                                                                     <use xlink:href="{!URLFOR($Resource.SalesforceLightning, 'assets/icons/utility-sprite/svg/symbols.svg#event')}"></use>
+                                                                   </svg>
+                                                                   <apex:inputText value="{!scheduleDate}" styleClass="scDate slds-input" html-placeholder="Pick a Date"/> 
+                                                               </div>
+                                                           </div>
+                                                           </div>
+                                                           <div class="slds-col">
+                                                           <div class="slds-form-element ">
+                                                           <div class="taskRem slds-form-element__control slds-input-has-icon slds-input-has-icon--right">
+                                                                <svg aria-hidden="true" class="taskRemSvg slds-input__icon">
+                                                                  <use xlink:href="{!URLFOR($Resource.SalesforceLightning, 'assets/icons/utility-sprite/svg/symbols.svg#clock')}"></use>
+                                                                </svg> 
+                                                                <apex:inputText value="{!scheduleTime}" styleClass="taskRemTime slds-input" html-placeholder="Pick a time"/> 
+                                                            </div>
+                                                            <div class="taskRemTimeDiv"></div>
+                                                        </div>
+                                                        </div>
+                                                    </div>
+                                                   </div>                                                                                                                                                                                      
+                                                </div>
+                                            </div>
+                                            <div class="slds-col slds-size--1-of-6"></div>
+                                            
+                                        </div>
+                                    <!--</div>-->
+                                </div>
+                                <div class="slds-col slds-size--1-of-6"></div>
+                            </div><br/>
+                        </div>
+    
+                    <!-------------------------------------End of Schedule Section-------------------------------------------------------------->
+                    <div class="slds-grid slds-grid--align-center slds-theme--info">
+                        <apex:commandButton action="{!previous}" value="Previous" styleClass="slds-button slds-button--inverse slds-m-around--x-small"/>
+                        <apex:commandButton value="Next" styleClass="slds-button slds-button--inverse slds-m-around--x-small" action="{!sendEmail}"/>
+                    </div>
+                </apex:form>
+            </apex:outputPanel>
+            <apex:outputPanel rendered="{!!isAccessible}">
+                <div class="slds-notify slds-notify--toast slds-theme--inverse-text errorHead" role="alert">
+                    <span class="slds-assistive-text">Page Message Info</span>
+                    <div class="notify__content" style = "font-weight: 400;">
+                        <p>
+                            You have some permission issue on objects and fields, please contact your system administrator.
+                        </p>
+                    </div>
+                </div>
+            </apex:outputPanel>
+        </div>
+    </html>
+</apex:page>

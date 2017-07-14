@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Mass Email</fullName>
+    <apiAccessLevel>Unrestricted</apiAccessLevel>
+    <description>This is an app to send mass email. User can select object, set filter criteria, recipient type, email template. User can send now or can schedule in future.</description>
+    <namespacePrefix>IBSmassemail</namespacePrefix>
+    <types>
+        <members>BatchSendMassEmailController</members>
+        <members>CRUD_FLS_CheckUtility</members>
+        <members>ScheduledBatchSendMassEmailController</members>
+        <members>SendMassEmailController</members>
+        <members>SendMassEmailUtility</members>
+        <members>TestSendMassEmailUtility</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>SendMassEmailHeader</members>
+        <members>SendMassEmailUtility</members>
+        <members>SvgComponent</members>
+        <members>WizardHeader</members>
+        <members>multiSelectSvg</members>
+        <name>ApexComponent</name>
+    </types>
+    <types>
+        <members>ScheduleMassEmail</members>
+        <members>SelectFilterAndCondition</members>
+        <members>SelectRecipientType</members>
+        <members>SelectTemplate</members>
+        <members>SendMassEmailThanks</members>
+        <members>SendMassEmails</members>
+        <members>ShowRecords</members>
+        <name>ApexPage</name>
+    </types>
+    <types>
+        <members>Mass_Emails</members>
+        <name>CustomApplication</name>
+    </types>
+    <types>
+        <members>Mass_Emails</members>
+        <name>CustomTab</name>
+    </types>
+    <types>
+        <members>Mass_Email_Logo</members>
+        <members>Mass_Email_Logo/Mass_Email_Logo.png</members>
+        <name>Document</name>
+    </types>
+    <types>
+        <members>SalesforceLightning</members>
+        <members>SendMassEmail</members>
+        <members>aljs</members>
+        <members>jQuery</members>
+        <name>StaticResource</name>
+    </types>
+    <version>36.0</version>
+</Package>

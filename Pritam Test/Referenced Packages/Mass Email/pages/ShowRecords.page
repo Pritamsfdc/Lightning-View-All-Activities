@@ -1,0 +1,194 @@
+<apex:page controller="IBSmassemail.SendMassEmailController" standardStylesheets="false" sidebar="false" tabStyle="Mass_Emails__tab" applyBodyTag="false" docType="html-5.0">
+    <html
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink">
+        <head>
+            <apex:includeScript value="{!URLFOR($Resource.IBSmassemail__jQuery)}"/>
+            <style>
+                .thRecHead{
+                    font-weight: bold !important;
+                    text-align: center !important;
+                    color: white;
+                }
+                .thRow{
+                    text-align: center !important;
+                }
+                .errorHead{
+                    background-color: #f2dede !important;
+                    border-color: #eed3d7 !important;
+                    color: #b94a48 !important;
+                }
+            </style>
+            <script>
+                function selectAll(){
+                    $('#parentChk').click(function(){
+                        $('.recordChk').prop('checked',$(this).is(':checked'));
+                    });
+                }
+                $(document).ready(function(){
+                    selectAll();
+                });
+            </script>
+        </head>
+        <div class="slds">
+            <c:WizardHeader />
+            <c:SendMassEmailUtility />
+            <apex:outputPanel rendered="{!isAccessible}" layout="none"> 
+                <apex:form id="frm">
+                    <apex:inputHidden value="{!pageNo}" id="pg"/>
+                    <apex:actionFunction name="previousPage" action="{!previous}" status="addStatus">
+                        <apex:param assignTo="{!pageNo}" value="" name="pg"/>
+                    </apex:actionFunction>
+                    <div data-reactid=".5.0.1" role="alert" class="slds-notify slds-notify--alert slds-theme--inverse-text slds-theme--alert-texture slds-m-top--large">
+                        <span class="slds-assistive-text">Success</span>
+                        <h2>
+                            <svg class="slds-icon icon-text-email slds-icon--small slds-m-right--x-small" aria-hidden="true">
+                                <use xlink:href="{!URLFOR($Resource.SalesforceLightning, '/assets/icons/utility-sprite/svg/symbols.svg#check')}"/>
+                            </svg>
+                            <span>Step 3 of 7</span>
+                        </h2>
+                    </div>
+                    <br/>
+                    <!-------------------------------------Records Section-------------------------------------------------------------->
+                    <div class="slds-backdrop"></div>
+                    <div class="myapp">
+                            <!--    QUERY : {!sqlQuery}
+                                    
+                            <br/>
+                                OBJECT : {!objName}
+                                    
+                            <br/>-->
+                            <div class="slds-grid">
+                                <div class="slds-col slds-size--3-of-6">
+                                    <apex:outputPanel rendered="{!IF(checkRecord, true, false)}">
+                                        <div class="slds-notify slds-notify--toast slds-theme--inverse-text errorHead" role="alert">
+                                            <span class="slds-assistive-text">Single Record Info</span>
+                                            <div class="notify__content" style = "font-weight: 400;">
+                                                <p>*Please select at least one record.</p>
+                                            </div>
+                                        </div>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel rendered="{!IF(sobjList.size==0 && !standardError, true, false)}">
+                                        <div class="slds-notify slds-notify--toast slds-theme--inverse-text errorHead" role="alert">
+                                            <span class="slds-assistive-text">Record not found Info</span>
+                                            <div class="notify__content" style = "font-weight: 400;">
+                                                <p>There are no records found.</p>
+                                            </div>
+                                        </div>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel rendered="{!IF(standardError, true, false)}">
+                                        <div class="slds-notify slds-notify--toast slds-theme--inverse-text errorHead" role="alert">
+                                            <span class="slds-assistive-text">Page Message Info</span>
+                                            <div class="notify__content" style = "font-weight: 400;">
+                                                <p>
+                                                    <apex:pageMessages ></apex:pageMessages>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </apex:outputPanel>
+                                </div>
+                                <div class="slds-col slds-size--3-of-6"></div>
+                            </div>
+                            <apex:outputPanel rendered="{!IF(sobjList.size>0, true, false)}" id = "details">
+                            <div class="slds-grid sld-wrap">
+                                <div class="slds-size--12-of-12">
+                                    <apex:commandButton styleClass="slds-button slds-button--neutral slds-button--brand slds-float--right " value="Last" rerender="details" action="{!end}" disabled="{!nxt}" status="addStatus" oncomplete="selectAll();return false;" style="margin-left:4px"/>
+                                    <apex:commandButton styleClass="slds-button slds-button--neutral slds-button--brand slds-float--right " value="Next" rerender="details" action="{!next}" disabled="{!nxt}" status="addStatus" oncomplete="selectAll();return false;"/>
+                                    <apex:commandButton styleClass="slds-button slds-button--neutral slds-button--brand slds-float--right " value="Previous" rerender="details" action="{!previousPg}" disabled="{!prev}" status="addStatus" oncomplete="selectAll();return false;"/>
+                                    <apex:commandButton styleClass="slds-button slds-button--neutral slds-button--brand slds-float--right " value="First" rerender="details" action="{!beginning}" disabled="{!prev}" status="addStatus" oncomplete="selectAll();return false;"/>
+     
+                                    <br/>
+                                </div>
+                                
+                            </div>
+                            <div class="slds-grid">
+                                <div class="slds-size--12-of-12">
+                                    <div class="slds-float--right slds-p-top--small slds-p-right--large" style = "">
+                                        <p>
+                                            <b>{!totalRecs} Records</b>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                                <!--<div class="slds-size--4-of-12"></div>
+                                
+                                <div class="slds-size--5-of-12">
+                                    <apex:commandButton styleClass="slds-button slds-button--neutral slds-button--brand" value="First" rerender="details" action="{!beginning}" disabled="{!prev}" status="addStatus" oncomplete="selectAll();return false;"/>
+                                    <apex:commandButton styleClass="slds-button slds-button--neutral slds-button--brand" value="Previous" rerender="details" action="{!previousPg}" disabled="{!prev}" status="addStatus" oncomplete="selectAll();return false;"/>
+                                    <apex:commandButton styleClass="slds-button slds-button--neutral slds-button--brand" value="Next" rerender="details" action="{!next}" disabled="{!nxt}" status="addStatus" oncomplete="selectAll();return false;"/>
+                                    <apex:commandButton styleClass="slds-button slds-button--neutral slds-button--brand" value="Last" rerender="details" action="{!end}" disabled="{!nxt}" status="addStatus" oncomplete="selectAll();return false;"/>
+                                    <br/>
+                                    <div class="slds-float--right" style = "padding-right:15px;padding-top:5px;">
+                                        <p>
+                                            <b>{!totalRecs} Records</b>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>-->
+                            
+                            
+                            <div class= "slds-scrollable--x">
+                                <table class="slds-table slds-table--bordered slds-m-top--large" style="border:1px solid #ccc;border-radius:5px;">
+                                    <thead>
+                                        <tr class="slds-text-heading--label slds-theme--shade slds-theme--info">
+                                            <th scope="col" class="thRecHead">
+                                                <label class="slds-checkbox">
+                                                    <input type="checkbox" id="parentChk" />
+                                                    <span class="slds-checkbox--faux"></span>
+                                                </label>
+                                            </th>
+                                            <apex:repeat value="{!fieldsPageList}" var="fl">
+                                                <th scope="col" class="thRecHead">
+                                                    <span class="slds-truncate">{!fieldLabelMap[fl]}</span>
+                                                </th>
+                                            </apex:repeat>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <apex:repeat value="{!filterRecordsList}" var="rec">
+                                            <apex:repeat value="{!rec.recordsList}" var="recf">
+                                                <tr>
+                                                    <td class="thRow">
+                                                        <label class="slds-checkbox">
+                                                            <apex:inputCheckbox value="{!rec.flag}" styleClass="recordChk"/>
+                                                            <span class="slds-checkbox--faux"></span>
+                                                        </label>                                                    
+                                                    </td>
+                                                    <apex:repeat value="{!fieldsList}" var="fl">
+                                                        <td class="thRow">
+                                                            <apex:outputText rendered="{!IF(CONTAINS(fieldTypeMap[fl], 'DATE'),False, True)}">
+                                                                        {!recf[fl]} 
+                                                                    </apex:outputText>
+                                                            <apex:outputText value="{0,date,MM'/'dd'/'yyyy}" rendered="{!IF(CONTAINS(fieldTypeMap[fl], 'DATE'),True, False)}">
+                                                                <apex:param value="{!recf[fl]}" />
+                                                            </apex:outputText>
+                                                        </td>
+                                                    </apex:repeat>
+                                                </tr>
+                                            </apex:repeat>
+                                        </apex:repeat>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </apex:outputPanel>
+                    </div>
+                    <!-------------------------------------End of Records Section-------------------------------------------------------------->
+                    <div class="slds-grid slds-grid--align-center slds-theme--info">
+                        <apex:commandButton action="{!previous}" value="Previous" styleClass="slds-button slds-button--inverse slds-m-around--x-small"/>
+                        <apex:commandButton value="Next" styleClass="slds-button slds-button--inverse slds-m-around--x-small" action="{!stepRecipientType}" disabled="{!IF(sobjList.size==0,true,false)}"/>
+                    </div>
+                </apex:form>
+            </apex:outputPanel>
+            <apex:outputPanel rendered="{!!isAccessible}">
+                <div class="slds-notify slds-notify--toast slds-theme--inverse-text errorHead" role="alert">
+                    <span class="slds-assistive-text">Page Message Info</span>
+                    <div class="notify__content" style = "font-weight: 400;">
+                        <p>
+                            You have some permission issue on objects and fields, please contact your system administrator.
+                        </p>
+                    </div>
+                </div>
+            </apex:outputPanel>
+        </div>
+    </html>
+</apex:page>

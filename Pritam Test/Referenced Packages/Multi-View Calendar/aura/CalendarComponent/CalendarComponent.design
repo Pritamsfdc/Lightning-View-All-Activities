@@ -1,0 +1,6 @@
+<design:component label="TS Calendar Display">
+	<design:attribute name="title" label="Calendar Title" description="Title of the calendar." />
+	<design:attribute name="titlefontsize" label="Title Font size" description="The font size of the title." />	
+	<design:attribute name="titlecolor" label="Title Font color" description="The font color of the title." />
+	<design:attribute name="titlebackgroundcolor" label="Title Background color" description="The background color of the title." />	
+</design:component>
