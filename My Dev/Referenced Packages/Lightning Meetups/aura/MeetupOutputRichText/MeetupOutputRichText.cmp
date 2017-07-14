@@ -1,0 +1,4 @@
+<aura:component extends="ui:outputRichText">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="richText" type="String" />
+</aura:component>

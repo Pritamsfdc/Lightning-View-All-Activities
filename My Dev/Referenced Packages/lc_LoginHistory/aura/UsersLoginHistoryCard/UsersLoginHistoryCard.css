@@ -1,0 +1,39 @@
+.THIS .itemTitle {
+    font-size: 20px;
+    padding-bottom: 3px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #ffffff;
+}
+.THIS .recordItem {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #ffffff;
+}
+.THIS .userPhoto {
+    float: left;
+    margin-right: 20px;
+    border-radius: 50%;
+    width: 50px;
+    border: solid #ddd;
+}
+
+.THIS .imgComp {
+    max-width: 32px;
+    max-height: 32px;
+}
+
+.THIS .imgFlag {
+    max-width: 32px;
+    max-height: 32px;
+    padding-right: 9px;
+}
+
+.THIS .recName {
+    float: left;
+}
+
+.THIS .errorMsg {
+    color: red;
+}

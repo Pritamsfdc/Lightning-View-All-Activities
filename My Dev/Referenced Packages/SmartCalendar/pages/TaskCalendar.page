@@ -1,0 +1,14 @@
+<!-----------------------------------------------------------
+    Name        : TaskCalendar.
+    Function    : Visualforce Page for Showing Calendar
+    Description : Component (Visulaforce Page) of the product for sending the Task & Event Reminder by sending Emails to the 
+                  assigned to User or its related Contact/Attendee and showing the Calendar. This Vf Page is used to 
+                  showing the calendar of Task & Event of the currenly logged User
+    Author      : Kamini Singh.
+    Created On  : 31-10-12
+    Modified On : 31-10-12
+------------------------------------------------------------>
+<apex:page standardStylesheets="false" sidebar="false" showChat="false">
+  <apex:stylesheet value="{!URLFOR($Resource.Cal__AstreaResource, 'stylesheets/homeCalendar.css')}" />
+  <c:AstreaCalendar />
+</apex:page>

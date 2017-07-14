@@ -1,0 +1,13 @@
+<design:component label="USA Opportunity Value Map" >
+    <design:attribute name="mapTitle" label="Title"/>
+    <design:attribute name="entity"
+                      label="Object"
+                      datasource="Account - Billing Address, Account - Shipping Address"
+                      description="Indicate which field you want to use for the map"/>
+
+    <design:attribute name="size" label="Specify card size"
+                      datasource="Small, Medium, Large"/>
+    <design:attribute name="zoom" label="Allow map zooming"/>
+    <design:attribute name="border" label="Apply card styling"/>
+
+</design:component>

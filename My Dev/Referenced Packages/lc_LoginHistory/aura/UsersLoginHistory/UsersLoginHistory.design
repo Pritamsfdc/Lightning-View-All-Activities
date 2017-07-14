@@ -1,0 +1,5 @@
+<design:component label="Users Login History">
+    
+	<design:attribute name="componentName" label="Label"/>
+    <design:attribute name="limitRows" min="1" max="12" label="Number of Records to Display (between 1 and 12)"/>
+</design:component>

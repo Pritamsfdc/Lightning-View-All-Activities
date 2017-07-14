@@ -1,0 +1,417 @@
+<apex:page sidebar="false" standardStylesheets="false" docType="html-5.0" controller="webkul_cms.backendtemplate" >
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<apex:includeScript value="{!URLFOR($Resource.webkul_cms__CMSResources,'small-icon/jqueyfile.js')}"/>
+<apex:includeScript value="{!URLFOR($Resource.webkul_cms__CMSResources,'small-icon/bootstrap.js')}"/>
+<apex:stylesheet value="{!URLFOR($Resource.webkul_cms__CMSResources,'small-icon/bootstrap.css')}"/>
+<style>
+body
+{
+font-size:12px!important;
+}
+   .noSidebarCell{
+        padding:0px !important;
+    }
+    .navbar-nav{
+     
+        float:right;
+    }
+    .navbar{
+        border-radius:0px!important;
+        min-height:40px;
+        margin-bottom:0px;
+    }
+    .navbar-inverse{
+        background:#316E9C!important;
+        border:none !important;
+        height:40px;
+        border-radius:none!important;
+    }
+    .navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:focus, .navbar-inverse .navbar-nav > .active > a:hover {
+    background-color: #26608B;
+    color: #98D3DB;
+}
+.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:focus, .navbar-inverse .navbar-nav > .open > a:hover {
+    background-color: #26608B;
+    color: #98D3DB;
+} 
+    .dropdown-menu .divider{
+     background-color:#CCCCCC;
+     padding:0px;
+     margin:0px;
+    }
+    ul li, ol li {
+        margin-left: 0px;
+        padding-left: 0;
+    }
+    .navbar-inverse .navbar-nav > li > a {
+        color: #fff;
+        padding-left:40px;
+        padding-right:10px;
+        padding-top:10px;
+        padding-bottom:10px;
+        
+    }
+    .dropdown-menu{
+        background-color:#fff;
+        border:0px;
+        color:#fff!important;
+    
+    }
+    .dropdown-menu:hover,.dropdown-menu:active,.dropdown-menu:focus{
+        background-color:#fff;
+        border:0px;
+        color:#333!important;
+    }
+
+    .dropdown-submenu {
+        position: relative;
+    }
+    
+    .dropdown-submenu>.dropdown-menu {fff
+        top: 0;
+        left: 100%;
+        margin-top: -6px;
+        margin-left: -1px;
+        -webkit-border-radius: 0 6px 6px 6px;
+        -moz-border-radius: 0 6px 6px;
+        border-radius: 0 6px 6px 6px;
+    }
+    
+    .dropdown-submenu:hover>.dropdown-menu {
+        display: block;
+    }
+    .dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu>.dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -6px;
+    margin-left: -1px;
+    -webkit-border-radius: 0 6px 6px 6px;
+    -moz-border-radius: 0 6px 6px;
+    border-radius: 0 6px 6px 6px;
+}
+
+.dropdown-submenu:hover>.dropdown-menu {
+    display: block;
+}
+
+     .dropdown-menu:hover>.dropdown-submenu{
+        display: block;
+      }
+      
+      
+        .dropdown-menu > li > a{
+  color:#333;
+  padding-top:8px;
+  padding-bottom:8px;
+  padding-left:40px;
+  }
+       .dropdown-menu > li > a:hover{
+          background-color:#26608B;
+          color:#81BCCB;
+      }
+      .dropdown-menu > li > a:active{
+          background-color:#26608B;BackendTemplate
+          color:#81BCCB;
+      }
+      .navbar-inverse .navbar-brand {
+        color: #d5f437;
+        
+    }
+    .navbar-brand{
+        font-size:20px;
+    }
+    .division{
+        height:30px;
+        background-color:#5791BD;
+        width:1px;
+       margin:5px 0px;
+    }
+    .leevel{
+    padding:0px!important;
+    margin:0px!important;
+    }
+
+.dropdown-menu > li >.menuimage{
+
+background:url('{!URLFOR($Resource.webkul_cms__CMSResources,'small-icon/dropdown-icon/icon-image-slider-black.png')}') no-repeat 12px 11px;
+}
+ .dropdown-menu > li >.menuimage:hover , .dropdown-menu > li >.menuimage:focus, .dropdown-menu > li >.menuimage:active{
+
+background:#26608B url('{!URLFOR($Resource.webkul_cms__CMSResources,'small-icon/dropdown-icon/icon-image-slider-blue.png')}') no-repeat 12px 11px;
+}
+.dropdown-menu > li >.menumap{
+
+background:url('{!URLFOR($Resource.webkul_cms__CMSResources,'small-icon/dropdown-icon/icon-map-black.png')}') no-repeat 12px 9px;
+}
+ .dropdown-menu > li >.menumap:hover , .dropdown-menu > li >.menumap:focus, .dropdown-menu > li >.menumap:active{
+
+background: #26608B url('{!URLFOR($Resource.webkul_cms__CMSResources,'small-icon/dropdown-icon/icon-map-blue.png')}') no-repeat 12px 9px;
+}
+.dropdown-menu > li >.menuvideo{
+
+background:url('{!URLFOR($Resource.webkul_cms__CMSResources,'small-icon/dropdown-icon/icon-video-black.png')}') no-repeat 12px 11px;
+}
+ .dropdown-menu > li >.menuvideo:hover , .dropdown-menu > li >.menuvideo:focus, .dropdown-menu > li >.menuvideo:active{
+
+background: #26608B url('{!URLFOR($Resource.webkul_cms__CMSResources,'small-icon/dropdown-icon/icon-video-blue.png')}') no-repeat 12px 11px;
+}
+.dropdown-menu > li >.menusocial{
+
+background:url('{!URLFOR($Resource.webkul_cms__CMSResources,'small-icon/dropdown-icon/icon-social-connect-black.png')}') no-repeat 12px 9px;
+}
+ .dropdown-menu > li >.menusocial:hover , .dropdown-menu > li >.menusocial:focus, .dropdown-menu > li >.menusocial:active{
+
+background:#26608B url('{!URLFOR($Resource.webkul_cms__CMSResources,'small-icon/dropdown-icon/icon-social-connect-blue.png')}') no-repeat 12px 9px;
+}
+.dropdown-menu > li >.menulogo{
+
+background:url('{!URLFOR($Resource.webkul_cms__CMSResources,'small-icon/dropdown-icon/icon-logo-black.png')}') no-repeat 12px 9px;
+}
+ .dropdown-menu > li >.menulogo:hover , .dropdown-menu > li >.menulogo:focus, .dropdown-menu > li >.menulogo:active{
+
+background:#26608B url('{!URLFOR($Resource.webkul_cms__CMSResources,'small-icon/dropdown-icon/icon-logo-blue.png')}') no-repeat 12px 9px;
+}
+.dropdown-menu > li >.menufooter{
+
+background:url('{!URLFOR($Resource.webkul_cms__CMSResources,'small-icon/dropdown-icon/icon-text-black.png')}') no-repeat 12px 9px;
+}
+ .dropdown-menu > li >.menufooter:hover , .dropdown-menu > li >.menufooter:focus, .dropdown-menu > li >.menufooter:active{
+
+background:#26608B url('{!URLFOR($Resource.webkul_cms__CMSResources,'small-icon/dropdown-icon/icon-text-blue.png')}') no-repeat 12px 9px;
+}
+.dropdown-menu > li >.menupage{
+
+background:url('{!URLFOR($Resource.webkul_cms__CMSResources,'small-icon/dropdown-icon/icon-articles-black.png')}') no-repeat 12px 9px;
+}
+ .dropdown-menu > li >.menupage:hover , .dropdown-menu > li >.menupage:focus, .dropdown-menu > li >.menupage:active{
+
+background:#26608B url('{!URLFOR($Resource.webkul_cms__CMSResources,'small-icon/dropdown-icon/icon-articles-blue.png')}') no-repeat 12px 9px;
+}
+.dropdown-menu > li >.menuabout{
+
+background:url('{!URLFOR($Resource.webkul_cms__CMSResources,'small-icon/dropdown-icon/icon-about-us-black.png')}') no-repeat 12px 9px;
+}
+ .dropdown-menu > li >.menuabout:hover , .dropdown-menu > li >.menuabout:focus, .dropdown-menu > li >.menuabout:active{
+
+background:#26608B url('{!URLFOR($Resource.webkul_cms__CMSResources,'small-icon/dropdown-icon/icon-about-us-blue.png')}') no-repeat 12px 9px;
+}
+.dropdown-menu > li >.menulayout{
+
+background:url('{!URLFOR($Resource.webkul_cms__CMSResources,'small-icon/dropdown-icon/icon-layout-setting-black.png')}') no-repeat 12px 9px;
+}
+ .dropdown-menu > li >.menulayout:hover , .dropdown-menu > li >.menulayout:focus, .dropdown-menu > li >.menulayout:active{
+
+background:#26608B url('{!URLFOR($Resource.webkul_cms__CMSResources,'small-icon/dropdown-icon/icon-layout-setting-blue.png')}') no-repeat 12px 9px;
+}
+
+.dropdown-menu > li >.menuicon{
+
+background:url('{!URLFOR($Resource.webkul_cms__CMSResources,'small-icon/dropdown-icon/icon-menu-black.png')}') no-repeat 12px 9px;
+}
+ .dropdown-menu > li >.menuicon:hover , .dropdown-menu > li >.menuicon:focus, .dropdown-menu > li >.menuicon:active{
+
+background:#26608B url('{!URLFOR($Resource.webkul_cms__CMSResources,'small-icon/dropdown-icon/icon-menu-blue.png')}') no-repeat 12px 9px;
+}
+.dropdown-menu > li >.menumanage{
+
+background:url('{!URLFOR($Resource.webkul_cms__CMSResources,'small-icon/dropdown-icon/icon-manage-black.png')}') no-repeat 12px 12px;
+}
+ .dropdown-menu > li >.menumanage:hover , .dropdown-menu > li >.menumanage:focus, .dropdown-menu > li >.menumanage:active{
+
+background:#26608B url('{!URLFOR($Resource.webkul_cms__CMSResources,'small-icon/dropdown-icon/icon-manage-blue.png')}') no-repeat 12px 12px;
+}
+   .menufontuser{
+        background:url('{!URLFOR($Resource.webkul_cms__CMSResources,'small-icon/icon-user-white.png')}') no-repeat 12px 9px;
+        font-size:17px !important;
+     }
+    .navbar-inverse .navbar-nav > li > .menufontuser:hover, .navbar-inverse .navbar-nav > li > .menufontuser:focus,  .navbar-inverse .navbar-nav > li > .menufontuser:active{
+    color:#98D3DB!important;
+    background:#26608B url('{!URLFOR($Resource.webkul_cms__CMSResources,'small-icon/icon-user-blue.png')}') no-repeat 12px 9px;
+    }
+    .navbar-inverse .navbar-nav >li> .menutext{
+    color:#fff;
+   }
+   .navbar-inverse .navbar-nav >li>  .menutext:hover,.navbar-inverse .navbar-nav >li> .menutext:active,.navbar-inverse .navbar-nav >li>  .menutext:focus{
+   color:#98D3DB!important;
+   }
+      .menufontmenu{
+        background:url('{!URLFOR($Resource.webkul_cms__CMSResources,'small-icon/icon-menu-white.png')}') no-repeat 12px 9px;
+        font-size:17px !important;
+        color:#fff;
+     }
+     .navbar-inverse .navbar-nav > .menufontmenu:hover, .navbar-inverse .navbar-nav > .menufontmenu:focus ,.navbar-inverse .navbar-nav> .menufontmenu:active{
+    color:#98D3DB!important;
+    background: #26608B url('{!URLFOR($Resource.webkul_cms__CMSResources,'small-icon/icon-menu-blue.png')}') no-repeat 12px 9px;
+    }
+      .navbar-inverse .navbar-nav > .menufontmenu:hover >.dropdown-menu {
+      display:block;
+      }
+ 
+
+     .menufontcat{
+        background:url('{!URLFOR($Resource.webkul_cms__CMSResources,'small-icon/icon-categories-white.png')}') no-repeat 12px 9px;
+        font-size:17px !important;
+     }
+     .navbar-inverse .navbar-nav > li > .menufontcat:hover,.navbar-inverse .navbar-nav > li > .menufontcat:focus,.navbar-inverse .navbar-nav > li > .menufontcat:active{
+    color:#98D3DB!important;
+    background:#26608B url('{!URLFOR($Resource.webkul_cms__CMSResources,'small-icon/icon-categories-blue.png')}') no-repeat 12px 9px;
+    }
+      .menufontart{
+        background:url('{!URLFOR($Resource.webkul_cms__CMSResources,'small-icon/icon-article-white.png')}') no-repeat 12px 9px;
+        font-size:17px !important;
+     }
+     .navbar-inverse .navbar-nav > li > .menufontart:hover, .navbar-inverse .navbar-nav > li > .menufontart:focus, .navbar-inverse .navbar-nav > li > .menufontart:active{
+    color:#98D3DB!important;
+    background: #26608B url('{!URLFOR($Resource.webkul_cms__CMSResources,'small-icon/icon-article-blue.png')}') no-repeat 12px 9px;
+    }
+    
+      .menufonttemp{
+        background:url('{!URLFOR($Resource.webkul_cms__CMSResources,'small-icon/icon-template-white.png')}') no-repeat 12px 9px;
+        font-size:17px !important;
+     }
+      .navbar-inverse .navbar-nav > li > .menufonttemp:hover,.navbar-inverse .navbar-nav > li > .menufonttemp:focus,.navbar-inverse .navbar-nav > li > .menufonttemp:active{
+    color:#98D3DB!important;
+    background: #26608B url('{!URLFOR($Resource.webkul_cms__CMSResources,'small-icon/icon-template-blue.png')}') no-repeat 12px 9px;
+    }
+      .menufontglobal{
+        background:url('{!URLFOR($Resource.webkul_cms__CMSResources,'small-icon/icon-globle-setting-white.png')}') no-repeat 12px 9px;
+        font-size:17px !important;
+     }
+      .navbar-inverse .navbar-nav >  .menufontglobal:hover,.navbar-inverse .navbar-nav > .menufontglobal:focus,.navbar-inverse .navbar-nav > .menufontglobal:active{
+    color:#98D3DB!important;
+    background:#26608B url('{!URLFOR($Resource.webkul_cms__CMSResources,'small-icon/icon-globle-setting-blue.png')}') no-repeat 12px 9px;
+    }
+    .navbar-inverse .navbar-nav > .menufontglobal:hover >.dropdown-menu {
+      display:block;
+      }
+      .menufontmod{
+        background:url('{!URLFOR($Resource.webkul_cms__CMSResources,'small-icon/icon-modules-white.png')}') no-repeat 12px 9px;
+        font-size:17px !important;
+     }
+     .navbar-inverse .navbar-nav > .menufontmod:hover, .navbar-inverse .navbar-nav > .menufontmod:focus, .navbar-inverse .navbar-nav >.menufontmod:active{
+    color:#98D3DB!important;
+    background: #26608B url('{!URLFOR($Resource.webkul_cms__CMSResources,'small-icon/icon-modules-blue.png')}') no-repeat 12px 9px;
+    }
+     .navbar-inverse .navbar-nav > .menufontmod:hover >.dropdown-menu {
+      display:block;
+      }
+        
+     .menufonthelp{
+        background:url('{!URLFOR($Resource.webkul_cms__CMSResources,'small-icon/icon-help-white.png')}') no-repeat 12px 9px;
+        font-size:17px !important;
+     }
+      .navbar-inverse .navbar-nav > li > .menufonthelp:hover,  .navbar-inverse .navbar-nav > li > .menufonthelp:focus,  .navbar-inverse .navbar-nav > li > .menufonthelp:active{
+    color:#98D3DB!important;
+    background: #26608B url('{!URLFOR($Resource.webkul_cms__CMSResources,'small-icon/icon-help-blue.png')}') no-repeat 12px 9px;
+    }
+     .navbar-inverse .navbar-nav > .menufonthelp:hover >.dropdown-menu {
+      display:block;
+      }
+   
+</style>
+
+<apex:form >
+<nav class="navbar navbar-inverse">
+      <div class="navbar-header"></div>
+              <ul class="nav navbar-nav">
+           <li >
+               <a id="dLabel" class="menufontuser"  href="/apex/CMS_User_Manager">{!$label.Users}</a>
+           </li>
+           <li class="division"></li>
+           <li class="dropdown menufontmenu">
+             <a id="dLabel" role="button" data-toggle="dropdown" class="menutext" data-target="#" href="page.html">{!$label.Menus}<span class="caret"></span></a>
+                 <ul class="dropdown-menu multi-level leevel" role="menu" aria-labelledby="dropdownMenu">
+                   <li class="dropdown-submenu ">
+                      <a tabindex="-1" href="/apex/CMS_Menu_Manager" class="menumanage">{!$label.Manage}</a>
+                   
+                    </li>
+                     <li class="divider"></li>
+                     <apex:repeat value="{!menus}" var="menu">
+                      <li class="dropdown-submenu ">
+                        <a tabindex="-1" href="#" class="menuicon">{!menu.name}</a>
+                        <ul class="dropdown-menu leevel">
+                          <li ><apex:outputLink value="/{!menu.id}" target="_blank" styleclass="menuicon">{!$Label.webkul_cms__add_menu_items}</apex:outputlink></li>
+                        </ul>
+                      </li>
+                    </apex:repeat>
+                    <apex:repeat value="{!menulinks}" var="menu">
+                      <li class="dropdown-submenu">
+                        <a tabindex="-1" href="#" class="menuicon">{!menu.name}</a>
+                        <ul class="dropdown-menu leevel">
+                          <li><apex:outputLink value="/{!menu.id}" target="_blank" styleclass="menuicon">{!$Label.webkul_cms__add_menu_items}</apex:outputlink></li>
+                        </ul>
+                      </li>
+                    </apex:repeat>
+                    
+                  </ul> 
+              </li> 
+               <li class="division"></li>
+               <li class="dropdown">
+                    <a id="dLabel"  class="menufontcat"  href="/apex/CMS_Category_Manager">{!$label.Categories}</a>
+               </li>
+                <li class="division"></li>
+               <li class="dropdown">
+                   <a id="dLabel" class="menufontart" data-target="#" href="/apex/CMS_Article_Manager">{!$label.Articles}</a>
+               </li>
+                <li class="division"></li>
+               <li class="dropdown">
+                    <a id="dLabel" class="menufonttemp" data-target="#" href="/apex/CMS_Template_Manager">{!$label.Templates}</a>
+               </li> 
+                <li class="division"></li>
+               <li class="dropdown  menufontglobal">
+                    <a id="dLabel" role="button" data-toggle="dropdown" class="menutext" data-target="#" href="page.html">{!$label.Global_Settings}<span class="caret"></span></a>
+                    <ul class="dropdown-menu multi-level leevel" role="menu" aria-labelledby="dropdownMenu">
+                        <li >
+                            <a tabindex="-1" href="/apex/CMS_Layout_Manager" class="menulayout">{!$label.Layout_Settings}</a>
+                        </li>
+                        <li class="divider"></li>
+                         <li>
+                           <a tabindex="-1" href="/apex/CMS_Pagecontent" class="menupage">Page-Content</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a tabindex="-1" href="/apex/CMS_aboutus" class="menuabout">{!$label.About_Us}</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                           <a tabindex="-1" href="/apex/CMS_footerline_Manager" class="menufooter">{!$label.Footer_text}</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                           <a tabindex="-1" href="/apex/CMS_logo_Manager" class="menulogo">{!$label.logo}</a>
+                        </li>
+                    </ul>
+               </li>
+                <li class="division"></li>
+                <li class="dropdown menufontmod">
+                    <a id="dLabel" role="button" data-toggle="dropdown" class="menutext" data-target="#" href="page.html">{!$label.Modules}<span class="caret"></span></a>
+                        <ul class="dropdown-menu multi-level leevel" role="menu" aria-labelledby="dropdownMenu">
+                           <li>
+                              <a tabindex="-1" href="/apex/CMS_Image_Slider_Manager" class="menuimage">{!$label.Image_Slider}</a>
+                           </li>
+                           <li class="divider"></li>
+                            <li>
+                               <a tabindex="-1" href="/apex/CMS_Address_Manager" class="menumap">{!$label.Map}</a>
+                           </li>
+                           <li class="divider"></li>
+                           <li>
+                               <a tabindex="-1" href="/apex/CMS_video_Manager" class="menuvideo">{!$label.Video}</a>
+                           </li>
+                           <li class="divider"></li>
+                            <li>
+                               <a tabindex="-1" href="/apex/CMS_SocialKeys_Manager" class="menusocial">{!$label.Social_Keys}</a>
+                           </li>
+                       </ul>
+                  </li>
+                   <li class="division"></li>
+                  <li class="dropdown  listimghelp menufonthelp">
+                        <a id="dLabel" class="menufonthelp"  href="http://webkul.com/blog/salesforce-cmskul/" target="_blank">{!$label.Help}<span class="caret"></span></a>
+                  </li>
+              </ul>
+   </nav>
+</apex:form>
+</apex:page>

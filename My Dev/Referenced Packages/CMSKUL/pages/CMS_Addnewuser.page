@@ -1,0 +1,127 @@
+<apex:page controller="webkul_cms.customerPortalCls" >
+
+<head>
+<style>
+.info{
+font-size:16px;
+color:red;
+border:2px solid black;
+padding:12px;
+}
+.btn.btn-pop {
+    background: #89C47F none repeat scroll 0 0;
+    border: 0 none !important;
+    color: #fff !important;
+    font-size: 14px;
+    margin: 10px !important;
+    padding: 8px 15px !important;
+}
+.btn.btn-pop-reset{
+ background: #CCCCCC none repeat scroll 0 0;
+    border: 0 none !important;
+    color: #fff !important;
+    font-size: 14px;
+    margin: 10px !important;
+    padding: 8px 15px !important;
+}
+.btn {
+    border: medium none;
+    border-radius: 3px;
+    font-size: 17px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    margin-right: 10px;
+    padding: 12px 25px;
+    position: relative;
+    text-shadow: none;
+    text-transform: uppercase;
+}
+body .bDetailBlock.bPageBlock .pbBody .labelCol, body .bDetailBlock.bPageBlock .pbBody .dataCol, body .bDetailBlock.bPageBlock .pbBody .data2Col, body .bPageBlock.bEditBlock .pbBody .labelCol, body .bPageBlock.bEditBlock .pbBody .dataCol, body .bPageBlock.bEditBlock .pbBody .data2Col
+{
+border:none;
+}
+label{
+color:#333;
+font-size:14px;
+display:block;
+margin-top:4px;
+}
+
+input {
+    font-size:14px;
+    border: 1px solid #333;
+    border-radius: 3px;
+    padding: 5px;
+}
+</style>
+</head>
+
+<apex:form >
+
+<apex:pageBlock id="pageBlockId"  mode="maindetail">
+
+
+    
+        <apex:pageBlockSection columns="2">
+        
+                <apex:pageBlockSectionItem >
+            
+                <apex:outputLabel styleclass="titletext" for="cFirstName" value="{!$Label.webkul_cms__first_name}"/>
+            
+                <apex:inputField value="{!c.FirstName}" id="cFirstName"/>
+            
+                </apex:pageBlockSectionItem>
+            
+                <apex:pageBlockSectionItem >
+            
+                     <apex:outputLabel value="{!$Label.webkul_cms__lastname}" for="cLastName"/>
+                    
+                     <apex:inputField value="{!c.LastName}" id="cLastName"/>
+                
+               </apex:pageBlockSectionItem>
+        
+               <apex:pageBlockSectionItem >
+            
+                    <apex:outputLabel value="{!$Label.webkul_cms__email}" for="cEmail" />
+                
+                    <apex:inputField value="{!c.Email}" id="cEmail"/>
+            
+                </apex:pageBlockSectionItem>
+             
+                 <apex:pageBlockSectionItem >
+        
+                    <apex:outputLabel value="{!$Label.webkul_cms__username}" for="uUsername" />
+               
+                    <apex:inputField value="{!u.username}" id="uUsername"/>
+                
+            </apex:pageBlockSectionItem>
+            
+        </apex:pageBlockSection>
+        
+        <apex:pageBlockSection columns="1">
+        
+            <apex:pageBlockSectionItem >
+        
+                    <apex:outputLabel for="profileList" value="{!$Label.webkul_cms__profiles}"/>
+                
+                        <apex:selectList value="{!selectedProfileId}" multiselect="false" id="profileList">
+                
+                                <apex:selectOptions value="{!customerPortalProfiles}"/>
+                
+                            </apex:selectList>
+        
+            </apex:pageBlockSectionItem>
+        
+            
+        
+        </apex:pageBlockSection>
+<center>
+        
+        <apex:commandButton disabled="{!(!IF(isDisabled=true,false,true))}" styleClass="btn btn-pop" onclick="return confirm('Are you sure you want to create this portal user in your org?')" action="{!createPortaluser}" value="{!$Label.webkul_cms__add}"/>
+        
+        <apex:commandButton disabled="{!(!IF(isDisabled=true,true,false))}" styleClass="btn btn-pop-reset" rerender="pageBlockId" action="{!reset}" value="{!$Label.webkul_cms__reset}" />
+        
+       </center>
+</apex:pageBlock>
+</apex:form>
+</apex:page>

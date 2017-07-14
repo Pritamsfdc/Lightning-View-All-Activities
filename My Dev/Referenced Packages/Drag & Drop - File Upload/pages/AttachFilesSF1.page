@@ -1,0 +1,4 @@
+<apex:page docType="html-5.0" sidebar="false" standardStylesheets="false" showHeader="false">
+    <c:AttachFilesSF1Component >
+    </c:AttachFilesSF1Component>    
+</apex:page>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>lc_LoginHistory</fullName>
+    <apiAccessLevel>Unrestricted</apiAccessLevel>
+    <description>Login History is a Lightning Component that allows a Salesforce administrator to see the latest set of users that tried to access their Salesforce.com org and any eventual error message.</description>
+    <namespacePrefix>roreblcloghist</namespacePrefix>
+    <types>
+        <members>LoginHistoryObject</members>
+        <members>test_LoginHistory</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>UsersLoginHistory</members>
+        <members>UsersLoginHistoryCard</members>
+        <name>AuraDefinitionBundle</name>
+    </types>
+    <types>
+        <members>btstrp12</members>
+        <members>greenflag</members>
+        <members>redflag</members>
+        <name>StaticResource</name>
+    </types>
+    <version>36.0</version>
+</Package>

@@ -1,0 +1,4 @@
+<aura:event type="APPLICATION" description="Event" access="global" >
+	<aura:attribute name="id" type="String" description="Event object id."/>
+	<aura:attribute name="subject" type="String" description="Event subject."/>
+</aura:event>

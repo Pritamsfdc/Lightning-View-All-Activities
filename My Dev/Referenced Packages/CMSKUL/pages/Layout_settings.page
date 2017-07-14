@@ -1,0 +1,102 @@
+<apex:page standardController="webkul_cms__Template_setting__c" extensions="webkul_cms.templatesetting" >
+<apex:includeScript value="{!URLFOR($Resource.webkul_cms__CMSResources,'small-icon/jqueyfile.js')}"/>
+<apex:includeScript value="{!URLFOR($Resource.webkul_cms__CMSResources,'small-icon/bootstrap.js')}"/>
+<apex:stylesheet value="{!URLFOR($Resource.webkul_cms__CMSResources,'small-icon/bootstrap.css')}"/>
+<apex:form >
+<style>
+.btn.btn-pop {
+    background: #89C47F none repeat scroll 0 0;
+    border: 0 none !important;
+    color: #fff !important;
+    font-size: 14px;
+    margin: 10px !important;
+    padding: 8px 15px !important;
+}
+.btn.btn-pop-cancel{
+ background: #CCCCCC none repeat scroll 0 0;
+    border: 0 none !important;
+    color: #fff !important;
+    font-size: 14px;
+    margin: 10px !important;
+    padding: 8px 15px !important;
+}
+.btn {
+    border: medium none;
+    border-radius: 3px;
+    font-size: 17px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    margin-right: 10px;
+    padding: 12px 25px;
+    position: relative;
+    text-shadow: none;
+    text-transform: uppercase;
+}
+body .bDetailBlock.bPageBlock .pbBody .labelCol, body .bDetailBlock.bPageBlock .pbBody .dataCol, body .bDetailBlock.bPageBlock .pbBody .data2Col, body .bPageBlock.bEditBlock .pbBody .labelCol, body .bPageBlock.bEditBlock .pbBody .dataCol, body .bPageBlock.bEditBlock .pbBody .data2Col
+{
+border:none;
+}
+label{
+color:#333;
+font-size:14px;
+display:block;
+margin-top:4px;
+}
+
+input {
+    font-size:14px;
+    border: 1px solid #333;
+    border-radius: 3px;
+    padding: 5px;
+}
+</style>
+<apex:pageblock mode="maindetail" >
+
+<apex:pageblocksection >
+  <apex:inputField value="{!webkul_cms__Template_setting__c.name}"/>
+     <apex:pageBlockSectionItem >
+   
+          <apex:outputLabel value="Templates" for="pages"/>
+          <apex:selectList size="1" value="{!selected}" id="pages" required="true" >
+              <apex:actionSupport event="onchange" rerender="a" />
+              <apex:selectOptions id="optionval" value="{!pagenames}"></apex:selectOptions>
+             
+          </apex:selectList>
+      </apex:pageBlockSectionItem>
+      </apex:pageblocksection>
+    <apex:outputpanel id="a"  >
+      <apex:pageblockSection >
+              
+                
+                <apex:inputField value="{!webkul_cms__Template_setting__c.webkul_cms__Header_panel_left__c}" />
+                <apex:inputField value="{!template_setting__c.Header_panel_right__c   }"/>
+                
+                <apex:inputField value="{!webkul_cms__Template_setting__c.webkul_cms__Logo_panel__c}"/>
+                <apex:inputField value="{!webkul_cms__Template_setting__c.webkul_cms__Top_Menu_panel__c}"/>
+               
+                <apex:inputField value="{!webkul_cms__Template_setting__c.webkul_cms__Image_slider_panel__c}"/>
+                <apex:inputField value="{!webkul_cms__Template_setting__c.webkul_cms__Video_panel__c}"/>
+                <apex:inputField value="{!webkul_cms__Template_setting__c.webkul_cms__Contact_us_panel__c}"/>
+                <apex:inputField value="{!webkul_cms__Template_setting__c.webkul_cms__Footer_text_panel__c}"/>
+              
+      </apex:pageblockSection>
+
+</apex:outputpanel>
+<center>
+<apex:commandButton value="{!$Label.webkul_cms__save}" action="{!savesetting}" styleClass="btn btn-pop"/>
+<apex:commandButton value="{!$Label.webkul_cms__cancel}" action="{!cancel}" styleClass="btn btn-pop-cancel"/>
+</center>
+</apex:pageblock>
+</apex:form>
+<script>
+$(document).ready(function(){
+  
+
+    $(function () {
+       
+
+    });
+
+});
+</script>
+</apex:page>

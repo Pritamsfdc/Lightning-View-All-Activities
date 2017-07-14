@@ -1,0 +1,158 @@
+<apex:page standardController="webkul_cms__Photo__c" extensions="webkul_cms.CMS_addimage" sidebar="false">
+<apex:includeScript value="{!urlfor($Resource.webkul_cms__CMSResources, 'small-icon/tinymce/js/tinymce/tinymce.min.js')}"/>
+<style>
+.wk_media-pop{
+
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid black;
+
+    left: 71%;
+    margin-left: -450px;
+    margin-top: -235px;
+    position: fixed;
+    top: 66%;
+    z-index: 999;
+
+}
+.model-box{
+ position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:#000;
+    opacity:0.3;
+    z-imdex:998;
+    display:none;
+
+
+}
+.close{
+        float:right;
+        margin-right:30px;
+        cursor:pointer;
+}
+.heading{
+
+}
+.btn.btn-pop {
+    background: #89C47F none repeat scroll 0 0;
+    border: 0 none !important;
+    color: #fff !important;
+    font-size: 14px;
+    margin: 10px !important;
+    padding: 8px 15px !important;
+}
+.btn {
+    border: medium none;
+    border-radius: 3px;
+    font-size: 17px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    margin-right: 10px;
+    padding: 12px 25px;
+    position: relative;
+    text-shadow: none;
+    text-transform: uppercase;
+}
+
+.btn {
+    -moz-user-select: none;
+    background-image: none;
+    border: 0px solid transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857;
+    margin-bottom: 0;
+    padding: 6px 12px;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+.colum{
+margin-right:1%;
+}
+
+.modal-dialog.modal-lg.upload-popup{
+width:500px;
+margin:11% auto;
+outline:10px solid #cccccc;
+}
+.upload-content{
+border-radius:0px!important;
+}
+ button.close-upload, button.close-upload:hover{
+    background:url('{!URLFOR($Resource.webkul_cms__CMSResources,'small-icon/icon-close-grey.png')}') no-repeat center;
+    width:40px;
+    height:39px;
+    margin-right:0px!important;
+    opacity:1!important;
+    float:right;
+    }
+    body .bDetailBlock.bPageBlock .pbBody .labelCol, body .bDetailBlock.bPageBlock .pbBody .dataCol, body .bDetailBlock.bPageBlock .pbBody .data2Col, body .bPageBlock.bEditBlock .pbBody .labelCol, body .bPageBlock.bEditBlock .pbBody .dataCol, body .bPageBlock.bEditBlock .pbBody .data2Col
+{
+border:none;
+}
+label{
+color:#333;
+font-size:14px;
+display:block;
+margin-top:4px;
+}
+
+input[type="text"] {
+    font-size:14px;
+    border: 1px solid #333;
+    border-radius: 3px;
+    padding: 5px;
+}
+
+.btn.btn-pop-cancel{
+   background: #CCCCCC none repeat scroll 0 0;
+    border: 0 none !important;
+    color: #fff !important;
+    font-size: 14px;
+    margin: 10px !important;
+    padding: 8px 15px !important;
+}
+</style>
+<apex:form >
+<apex:pageBlock mode="maindetail">
+
+
+<apex:pageBlockSection columns="1">
+     <apex:inputfield value="{!webkul_cms__Photo__c.name}"/>
+     <apex:inputfield value="{!webkul_cms__Photo__c.webkul_cms__Imageorder__c}"/>
+  </apex:pageBlockSection>
+ <apex:pageBlockSection >
+ <apex:pageBlockSectionItem >
+ <apex:outputLabel value="{!$Label.webkul_cms__upload_image}"></apex:outputLabel>
+ <apex:inputFile value="{!picture}" accept="image/*" />
+ </apex:pageBlockSectionItem>
+ </apex:pageBlockSection>
+<apex:pageBlockSection columns="1">
+ <apex:inputfield value="{!webkul_cms__Photo__c.webkul_cms__Description__c}"/>
+
+
+<script type="text/javascript">
+       tinymce.init({
+    selector: "textarea",
+    plugins: [
+        "advlist autolink lists link image charmap print preview anchor",
+        "searchreplace visualblocks code fullscreen",
+        "insertdatetime media table contextmenu paste"
+    ],
+    toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
+});
+    </script>
+</apex:pageBlockSection>
+
+        <center><apex:commandButton action="{!save}" value="{!$Label.webkul_cms__save}" styleClass="btn btn-pop"/>
+        <apex:commandButton action="{!cancel}" value="{!$Label.webkul_cms__cancel}" styleClass="btn btn-pop-cancel"/>
+        </center>
+</apex:pageBlock>
+</apex:form>
+</apex:page>

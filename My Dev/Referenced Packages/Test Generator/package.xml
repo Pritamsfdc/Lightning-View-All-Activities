@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Test Generator</fullName>
+    <apiAccessLevel>Unrestricted</apiAccessLevel>
+    <namespacePrefix>tgen</namespacePrefix>
+    <types>
+        <members>CodeCoverageController</members>
+        <members>CodeCoverageController_Test</members>
+        <members>TestData</members>
+        <members>TestData_Test</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>testGen</members>
+        <name>ApexPage</name>
+    </types>
+    <types>
+        <members>Test_Generator</members>
+        <name>CustomApplication</name>
+    </types>
+    <types>
+        <members>Test_Generator</members>
+        <name>CustomTab</name>
+    </types>
+    <types>
+        <members>Custom</members>
+        <members>CustomCSS</members>
+        <members>CustomTree</members>
+        <members>ICheckResource</members>
+        <members>Mustache</members>
+        <members>Popups</members>
+        <members>TestResource</members>
+        <members>chosen</members>
+        <members>snippet</members>
+        <name>StaticResource</name>
+    </types>
+    <version>36.0</version>
+</Package>

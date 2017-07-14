@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Lightning Meetups</fullName>
+    <apiAccessLevel>Unrestricted</apiAccessLevel>
+    <description>Lightning Component for Meetup Events</description>
+    <namespacePrefix>lmeetup</namespacePrefix>
+    <types>
+        <members>MeetupEvent</members>
+        <members>MeetupListCtrl</members>
+        <members>MeetupService</members>
+        <members>MeetupSettings</members>
+        <members>TestMeetupListCtrl</members>
+        <members>TestMeetupMock</members>
+        <members>TestMeetupService</members>
+        <members>TestMeetupSettings</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>MeetupList</members>
+        <members>MeetupOutputRichText</members>
+        <members>MeetupSearch</members>
+        <members>MeetupSearchEvent</members>
+        <name>AuraDefinitionBundle</name>
+    </types>
+    <types>
+        <members>MeetupAPI</members>
+        <name>RemoteSiteSetting</name>
+    </types>
+    <types>
+        <members>MeetupResources</members>
+        <name>StaticResource</name>
+    </types>
+    <version>36.0</version>
+</Package>

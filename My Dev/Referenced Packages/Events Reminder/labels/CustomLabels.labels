@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>BirthdayTemplate</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>BirthdayTemplate</shortDescription>
+        <value>Birthday Email Template</value>
+    </labels>
+    <labels>
+        <fullName>CustomerTemplate</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>CustomerTemplate</shortDescription>
+        <value>Customer Anniversary Email Template</value>
+    </labels>
+    <labels>
+        <fullName>Customise</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Customise</shortDescription>
+        <value>Customise Event Reminder</value>
+    </labels>
+    <labels>
+        <fullName>EmailSettings</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>EmailSettings</shortDescription>
+        <value>Email Settings</value>
+    </labels>
+    <labels>
+        <fullName>MarriageTemplate</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>MarriageTemplate</shortDescription>
+        <value>Marriage Anniversary Email Template</value>
+    </labels>
+    <labels>
+        <fullName>NoBirthday</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>NoBirthday</shortDescription>
+        <value>No upcoming Birthday in these days</value>
+    </labels>
+    <labels>
+        <fullName>NoCustomerAnni</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>NoCustomerAnni</shortDescription>
+        <value>No upcoming Customer Anniversary in these days</value>
+    </labels>
+    <labels>
+        <fullName>NoMarriageAnni</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>NoMarriageAnni</shortDescription>
+        <value>No upcoming Marriage Anniversary in these days</value>
+    </labels>
+    <labels>
+        <fullName>NoWorkAnni</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>NoWorkAnni</shortDescription>
+        <value>No upcoming Work Anniversary in these days</value>
+    </labels>
+    <labels>
+        <fullName>UserCC</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>UserCC</shortDescription>
+        <value>User In CC</value>
+    </labels>
+    <labels>
+        <fullName>WorkTemplate</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>WorkTemplate</shortDescription>
+        <value>Work Anniversary Email Template</value>
+    </labels>
+    <labels>
+        <fullName>birthday</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>birthday</shortDescription>
+        <value>Birthdays</value>
+    </labels>
+    <labels>
+        <fullName>cancel</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>cancel</shortDescription>
+        <value>Cancel</value>
+    </labels>
+    <labels>
+        <fullName>customeranni</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>customeranni</shortDescription>
+        <value>Customer Anniversary</value>
+    </labels>
+    <labels>
+        <fullName>days</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>days</shortDescription>
+        <value>Days</value>
+    </labels>
+    <labels>
+        <fullName>daysaway</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>daysaway</shortDescription>
+        <value>Days Away</value>
+    </labels>
+    <labels>
+        <fullName>events</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>events</shortDescription>
+        <value>Events</value>
+    </labels>
+    <labels>
+        <fullName>information</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>information</shortDescription>
+        <value>Information</value>
+    </labels>
+    <labels>
+        <fullName>marriageanni</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>marriageanni</shortDescription>
+        <value>Marriage Anniversary</value>
+    </labels>
+    <labels>
+        <fullName>save</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>save</shortDescription>
+        <value>Save</value>
+    </labels>
+    <labels>
+        <fullName>setting</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>setting</shortDescription>
+        <value>Settings</value>
+    </labels>
+    <labels>
+        <fullName>theme</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>theme</shortDescription>
+        <value>Themes</value>
+    </labels>
+    <labels>
+        <fullName>upcomingevent</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>upcomingevent</shortDescription>
+        <value>Upcoming Events in</value>
+    </labels>
+    <labels>
+        <fullName>view</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>view</shortDescription>
+        <value>View</value>
+    </labels>
+    <labels>
+        <fullName>workanni</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>workanni</shortDescription>
+        <value>Work Anniversary</value>
+    </labels>
+</CustomLabels>

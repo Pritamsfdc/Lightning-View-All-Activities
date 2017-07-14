@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ViewAllActivities</fullName>
+    <apiAccessLevel>Unrestricted</apiAccessLevel>
+    <namespacePrefix>allactivities</namespacePrefix>
+    <types>
+        <members>ShowAllActivityTest</members>
+        <members>ShowAllSObjectActivityctr</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>ShowAllActivity</members>
+        <name>AuraDefinitionBundle</name>
+    </types>
+    <version>36.0</version>
+</Package>

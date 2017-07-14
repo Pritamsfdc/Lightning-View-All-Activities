@@ -1,0 +1,114 @@
+<!-----------------------------------------------------------
+    Name        : TaskReminderVFPage.
+    Function    : Visualforce Page for Astrea Task/Event Reminder
+    Description : Component (Visulaforce Page) of the product for sending the Task & Event Reminder by sending Emails to the 
+                  assigned to User or its related Contact/Attendee. This Vf Page is used to create the record of 
+                  Astrea Task Reminder which will contains the information related to Task & Event Reminder.
+    Author      : Kamini Singh.
+    Created On  : 31-10-12
+    Modified On : 31-10-12
+------------------------------------------------------------>
+<apex:page controller="Cal.TaskReminderCtr" sidebar="false">
+    
+    <!--<apex:form id="FormId1" rendered="{!if(ExpirationCheck==true,false,true)}">
+        <font face="Arial" Style="color:red;" size="2pt"><b>Your Trial version has been expired. Please contact to Astrea (ngabrani@astreait.com) to renew the version.</b></font>
+    </apex:form>-->
+    
+    <!--<apex:form id="FormId" rendered="{!if(AND(YEAR(TODAY())== 2013, MONTH(TODAY()) == 3),true,false)}">-->
+    <!--<apex:form id="FormId" rendered="{!if(ExpirationCheck==true,true,false)}" >-->
+    
+    <apex:form id="FormId">
+        <apex:pageMessages ></apex:pageMessages>
+        <apex:pageBlock title="Create Task or Event Reminder Settings" id="mainBlock">
+        <br/>
+           <!-------------- Show section if any current record exist ------------------------------------->
+            <apex:pageBlockSection title="Current configuration for Task & Event Reminder" rendered="{!if(CurrentRecord==true,true,false)}" id="PSection1">
+                <apex:outputText value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Task Reminder Values" style="font-weight: bold;text-align:right;" escape="false" />
+                <apex:outputText value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Event Reminder Values" style="font-weight: bold;text-align:right;" escape="false" />
+                <apex:outputField value="{!aTRemainder.Cal__Send_Reminder_for_Today_or_Tomorrow__c}" />
+                <apex:outputField value="{!aTRemainder.Cal__Send_Reminder_for_Today_or_TomorrowEvent__c}" />
+                <apex:outputField value="{!aTRemainder.Cal__Time_for_Task_Scheduling__c}" />
+                <apex:outputField value="{!aTRemainder.Cal__Time_for_Event_Scheduling__c}" />
+                <!--<apex:outputField value="{!aTRemainder.Type_of_Task__c}" />--> 
+                <!--<apex:outputField value="{!aTRemainder.Type_of_Event__c}" /> -->
+                <apex:outputField value="{!aTRemainder.Cal__Send_Reminder_to_Related_To__c}" />
+                <apex:outputField value="{!aTRemainder.Cal__Send_Reminder_to_Related_ContactEvent__c}" />
+                <apex:outputText value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" style="font-weight: bold;text-align:right;" escape="false" />
+                <apex:outputField value="{!aTRemainder.Cal__Send_Reminder_to_Related_To_Event__c}" />
+                
+                <apex:outputText value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No Task Reminder batch has been scheduled." style="font-weight: bold;text-align:right;color:green;" escape="false" rendered="{!if(aTRemainder.Cal__Time_for_Task_Scheduling__c =='',true,false)}"/>
+                <apex:outputText value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp&nbsp;&nbsp;" style="font-weight: bold;text-align:right;color:green;" escape="false" rendered="{!if(aTRemainder.Cal__Time_for_Task_Scheduling__c !='',true,false)}"/>
+
+                <apex:outputText value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No Event Reminder batch has been scheduled." style="font-weight: bold;text-align:right; color:green;" escape="false" rendered="{!if(aTRemainder.Cal__Time_for_Event_Scheduling__c =='',true,false)}"/>
+                <apex:outputText value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp&nbsp;&nbsp;" style="font-weight: bold;text-align:right;color:green;" escape="false" rendered="{!if(aTRemainder.Cal__Time_for_Event_Scheduling__c !='',true,false)}"/>
+
+            </apex:pageBlockSection>
+      
+            <apex:pageBlockSection title="Current selection for Task & Event Reminder" rendered="{!if(CurrentRecord == true,false,true)}">
+                <b>There is no current record for Task and Event Reminder settings.</b>
+            </apex:pageBlockSection>
+            
+            <!---------------------- Show option -> Task Reminder, Event Reminder, Both , None --------------->
+            <apex:pageBlockSection title="Edit configuration for Task & Event Reminder">
+            <small><b>Edit the current selection of Task &amp; Event Reminder.</b></small>
+                <center>
+                <apex:actionStatus startText=" Processing the stuff " stopText=" Done " id="counterStatus"  >
+                    <apex:facet name="start" ><b>Processing.....</b>
+                        <img src="/apexpages/devmode/img/saveStatus.gif" />
+                    </apex:facet>
+                    <apex:facet name="stop">
+                        <apex:selectRadio value="{!SelectedValue}" onchange="setOp();" >  
+                            <apex:selectOptions value="{!selectOptionValue}" />
+                            <apex:actionFunction action="{!ShowSection}" name="setOp" status="counterStatus" rerender="counterStatus,mainBlock,FormId"/>
+                        </apex:selectRadio>
+                    </apex:facet>
+                </apex:actionStatus>
+                </center>
+            </apex:pageBlockSection>
+            
+            <!--------------------------------Section for Task Reminder------------------------------>
+            <apex:pageBlockSection collapsible="true" title="Task Reminder" rendered="{!ShowTaskSection}">
+            
+                <apex:selectList size="1" value="{!a.Cal__Send_Reminder_for_Today_or_Tomorrow__c}">
+                    <apex:selectOptions value="{!statusOptions}"/>
+                </apex:selectList>
+                <apex:inputField value="{!a.Cal__Send_Reminder_to_Related_To__c}"/>
+                <!--<apex:inputField value="{!a.Type_of_Task__c}"/>-->
+                <apex:selectList size="1" value="{!a.Cal__Time_for_Task_Scheduling__c}">
+                    <apex:selectOptions value="{!selectTimeValue}"/>
+                </apex:selectList>
+            </apex:pageBlockSection>
+            
+            <!--------------------------------Section for Event Reminder------------------------------>
+            <apex:pageBlockSection collapsible="true" title="Event Reminder" rendered="{!ShowEventSection}">
+                <apex:selectList size="1" value="{!a.Cal__Send_Reminder_for_Today_or_TomorrowEvent__c}">
+                    <apex:selectOptions value="{!statusOptions}"/>
+                </apex:selectList>
+                <apex:selectList size="1" value="{!a.Cal__Time_for_Event_Scheduling__c}">
+                    <apex:selectOptions value="{!selectTimeValue}"/>
+                </apex:selectList>
+                <apex:inputField value="{!a.Cal__Send_Reminder_to_Related_To_Event__c}"/>
+                <apex:inputField value="{!a.Cal__Send_Reminder_to_Related_ContactEvent__c}"/>
+                <!--<apex:inputField value="{!a.Type_of_Event__c}"/> -->           
+            </apex:pageBlockSection>
+            
+            <center>
+            
+            <apex:actionStatus startText=" Processing the stuff " stopText=" Done " id="counterStatus"  >
+                <apex:facet name="start" ><b>Processing.....</b>
+                    <img src="/img/loading32.gif" />
+                </apex:facet>
+                
+                <!------------------------------ Button for creating a new record of astrea Task Reminder ----------->
+                <apex:facet name="stop">
+                    <apex:commandButton value="Submit" status="counterStatus" rerender="mainBlock" action="{!CreateTaskReminder}"  rendered="{!if(OR(ShowTaskSection == true,ShowEventSection==true),true,false)}"/>
+                </apex:facet>
+                
+            </apex:actionStatus>
+            <!---------------- Button if SelectedValue -> None ----------------->
+            <apex:commandButton value="Submit"  action="{!CreateTaskReminder}"  rendered="{!if((SelectedValue == 'None'),true,false)}"/>
+            
+            </center>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

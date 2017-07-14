@@ -1,0 +1,407 @@
+<apex:page controller="IBSmassemail.SendMassEmailController" standardStylesheets="false" sidebar="false" tabStyle="Mass_Emails__tab" applyBodyTag="false" docType="html-5.0">
+    <html
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink">
+        <head>
+            <apex:includeScript value="{!URLFOR($Resource.IBSmassemail__jQuery)}"/>
+            <style>
+                .errorHead{
+                    background-color: #f2dede !important;
+                    border-color: #eed3d7 !important;
+                    color: #b94a48 !important;
+                }
+                .thHead{
+                    font-weight: bold !important;
+                    text-align: center !important;
+                    color: black;
+                }
+                .thHeadTemp{
+                    font-weight: bold !important;
+                    color: black !important;
+                    height: 35px;
+                    padding-top: 9px;
+                    padding-left: 8px;
+                }
+                .trGridPre{
+                    padding-left: 2%;
+                }
+                .pad{
+                    padding-top: 1%;
+                }
+                .trGrid{
+                    padding-top: 9px;
+                }
+                .trGrid:hover{
+                    box-shadow: #d8dde6 0 -1px 0 inset;
+                    background-color: #f4f6f9;
+                }
+                .slds-radio--faux{
+                    border: 1px solid #005fb2 !important;
+                }
+            </style>
+            <script>
+                function openPopup(param){
+                    //alert(param);
+                    showPreview(param);
+                    $('#tempPreview').addClass('slds-fade-in-open');
+                    $('.slds-backdrop').addClass('slds-backdrop--open');
+                }
+                function closePrePopup(){
+                    $('#tempPreview').removeClass('slds-fade-in-open');
+                    $('.slds-backdrop').removeClass('slds-backdrop--open');
+                }
+                function sendSelEmailTemplate(tempValue){
+                    //alert(tempValue);
+                    $('[id$=selEmailTemp]').val(tempValue);
+                    
+                    //alert($('[id$=selEmailTemp]').val());
+                }
+                function selectTemp(){
+                   // alert('come');
+                    var conVal = $('[id$=selEmailTemp]').val();
+                    //alert(conVal);
+                    if(conVal !=''){
+                        $('[rowdata='+conVal+']').prop('checked', true);
+                    }
+                }
+                $(document).ready(function (){
+                    selectTemp();
+                });
+            </script>
+        </head>
+        <div class="slds">
+            <c:WizardHeader />
+            <c:SendMassEmailUtility />
+            <apex:outputPanel rendered="{!isAccessible}" layout="none">      
+                <apex:form id="frm">
+                    <apex:actionFunction name="showPreview" status="addStatus" reRender="tempModel" action="{!showEmailTemplatePreview}">
+                        <apex:param assignTo="{!emailTemplatePreviewId}" value="" name="pre"/>
+                    </apex:actionFunction>
+                    <div data-reactid=".5.0.1" role="    alert" class="slds-notify slds-notify--alert slds-theme--inverse-text slds-theme--alert-texture slds-m-top--large">
+                        <span class="slds-assistive-text">Success</span>
+                        <h2>
+                            <svg class="slds-icon icon-text-email slds-icon--small slds-m-right--x-small" aria-hidden="true">
+                                <use xlink:href="{!URLFOR($Resource.SalesforceLightning, '/assets/icons/utility-sprite/svg/symbols.svg#check')}"/>
+                            </svg>
+                            <span>Step 5 of 7</span>
+                        </h2>
+                    </div>
+                    <br/>
+                    <!-------------------------------------Email Template Section-------------------------------------------------------------->
+                    <div class="slds-backdrop"></div>
+                    <div class="myapp">
+                        <div class="slds-grid">
+                            <div class="slds-col slds-size--1-of-6"></div>
+                            <div class="slds-col slds-size--4-of-6">
+                                <apex:outputPanel rendered="{!IF(checkTemplate, true, false)}">
+                                    <div class="slds-notify slds-notify--toast slds-theme--inverse-text errorHead" role="alert">
+                                        <span class="slds-assistive-text">Email Template Info</span>
+                                        <div class="notify__content" style = "font-weight: 400;">
+                                            <p>*Please select at least one email template to send email.</p>
+                                        </div>
+                                    </div>
+                                </apex:outputPanel>
+                                <apex:outputPanel id="temp">
+                                    <table class="slds-table slds-table--bordered slds-m-top--large" style="border:1px solid #ccc;border-radius:5px;">
+                                        <thead>
+                                            <tr class="slds-text-heading--label slds-theme--shade">
+                                                <th scope="col" class="thHead">
+                                                    <span class="slds-truncate">Select Email Template</span>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <apex:selectList value="{!selectedEmailTemplateFolder}" size="1" styleClass="slds-select">
+                                                        <apex:selectOptions value="{!emailTemplateFolderOpts}" />
+                                                        <apex:actionSupport event="onchange" action="{!refreshEmailTemplateSection}" rerender="temp,sm" status="addStatus"/>
+                                                    </apex:selectList>
+                                                    <br/>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <br/>
+                                    <apex:outputPanel rendered="{!IF(EmailTemplateList.size == 0 && selectedEmailTemplateFolder != null, true, false)}">
+                                        There are no email templates in this folder.<br/>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel id="emailTemplateContentPanel" rendered="{!IF(EmailTemplateList.size>0, true, false)}">
+                                        <apex:inputHidden value="{!chosenEmailTemplate}" id="selEmailTemp"/>
+                                        <div class = "slds-table slds-table--bordered" style="border:1px solid #ccc;border-radius:5px;">
+                                            <div class="slds-grid slds-text-heading--label slds-theme--shade thHeadTemp slds-table slds-table--bordered">
+                                                <div class="slds-col slds-size--1-of-6">PREVIEW</div>
+                                                <div class="slds-col slds-size--2-of-6">NAME</div>
+                                                <div class="slds-col slds-size--1-of-6">TYPE</div>
+                                                <div class="slds-col slds-size--2-of-6">DESCRIPTION</div>
+                                            </div>
+                                            <div class= "slds-scrollable--y" style="max-height:300px !important">
+                                                
+                                                <apex:repeat value="{!EmailTemplateList}" var="emTemp">
+                                                    <div class="slds-grid trGrid slds-table" style="border-bottom:1px solid #ccc;">
+                                                        <div class="slds-col slds-size--1-of-6 trGridPre">
+                                                            <apex:outputLink onclick="openPopup('{!emTemp.id}');return false;">Preview</apex:outputLink>
+                                                        </div>
+                                                        <div class="slds-col slds-size--2-of-6">
+                                                            <div class="slds-grid">                                                            
+                                                                    <div class="slds-col slds-size--1-of-6">
+                                                                        <label class="slds-radio" for="{!emTemp.id}">                                                                        
+                                                                            <input type="radio" name="templates" id="{!emTemp.id}" onclick="sendSelEmailTemplate('{!emTemp.id}');" rowdata="{!emTemp.id}"/>
+                                                                            <span class="slds-radio--faux"></span>
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="slds-col slds-size--5-of-6">{!emTemp.name}</div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="slds-col slds-size--1-of-6">{!emTemp.templatetype}</div>
+                                                        <div class="slds-col slds-size--2-of-6">{!emTemp.description}</div>
+                                                    </div>
+                                                </apex:repeat>
+                                            </div>
+                                        </div>
+                                    </apex:outputPanel>
+                                </apex:outputPanel>
+                            </div>
+                            <div class="slds-col slds-size--1-of-6"></div>
+                        </div>
+                    </div>
+                    <!-------------------------------------End of Email Template Section-------------------------------------------------------------->
+                    <!----------------------Preview Email Template----------------------------->
+                    <div aria-hidden="true" role="dialog" class="slds-modal slds-modal--large" id = "tempPreview">
+                        <div class="slds-modal__container">
+                            <div class="slds-modal__header">
+                                <div class="slds-notify-container">
+                                    <div class="slds-notify slds-notify--toast slds-theme--info" role="alert">
+                                        <span class="slds-assistive-text">Information</span>
+                                        <button class="slds-button slds-button--icon-inverse slds-notify__close" onclick="closePrePopup();return false;">
+                                            <svg aria-hidden="true" class="slds-button__icon slds-button__icon--large">
+                                                <use xlink:href="{!URLFOR($Resource.SalesforceLightning, '/assets/icons/utility-sprite/svg/symbols.svg#close')}"></use>
+                                            </svg>
+                                            <span class="slds-assistive-text">Close</span>
+                                        </button>
+                                        <div class="notify__content slds-grid">
+                                            <div class="slds-col slds-align-middle">
+                                                <h2 class="slds-text-heading--small">Template Preview</h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h2 class="slds-text-heading--medium">Modal Header</h2>
+                            </div>
+                            <div class="slds-modal__content">
+                                <apex:outputPanel id="tempModel">
+                                    <div class = "slds-table slds-table--bordered" style="border:1px solid #54698d;border-radius:5px;">
+                                        <div style = "background-color: #f4f6f9;">
+                                            <div class="slds-grid" style="border-bottom:1px solid #ccc;padding-top: 7px;padding-bottom: 7px;">
+                                                <div class="slds-col slds-size--1-of-6"></div>
+                                                <div class="slds-col slds-size--4-of-6">
+                                            Below is the template you selected, You can modify template data if you want, using 'Email Template' in setup.
+                                        </div>
+                                                <div class="slds-col slds-size--1-of-6"></div>
+                                            </div>
+                                            <div class="slds-grid pad">
+                                                <div class="slds-col slds-size--1-of-6"></div>
+                                                <div class="slds-col slds-size--2-of-6">
+                                                    <div class="slds-grid">
+                                                        <div class="slds-col slds-size--3-of-6">
+                                                            <b>Folder Name</b>
+                                                        </div>
+                                                        <div class="slds-col slds-size--3-of-6">
+                                                    {!selectedEmailTemplateFolderName}
+                                                </div>
+                                                    </div>
+                                                </div>
+                                                <div class="slds-col slds-size--1-of-6"></div>
+                                                <div class="slds-col slds-size--2-of-6"></div>
+                                            </div>
+                                            <div class="slds-grid pad">
+                                                <div class="slds-col slds-size--1-of-6"></div>
+                                                <div class="slds-col slds-size--2-of-6">
+                                                    <div class="slds-grid">
+                                                        <div class="slds-col slds-size--3-of-6">
+                                                            <b>Email Template Name</b>
+                                                        </div>
+                                                        <div class="slds-col slds-size--3-of-6">
+                                                            <apex:outputField value="{!emailTempPreview.name}"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="slds-col slds-size--1-of-6"></div>
+                                                <div class="slds-col slds-size--2-of-6">
+                                                    <div class="slds-grid">
+                                                        <div class="slds-col slds-size--3-of-6">
+                                                            <b>Available For Use</b>
+                                                        </div>
+                                                        <div class="slds-col slds-size--3-of-6">
+                                                            <apex:outputField value="{!emailTempPreview.isActive}"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="slds-grid pad">
+                                                <div class="slds-col slds-size--1-of-6"></div>
+                                                <div class="slds-col slds-size--2-of-6">
+                                                    <div class="slds-grid">
+                                                        <div class="slds-col slds-size--3-of-6">
+                                                            <b>Template Unique Name </b>
+                                                        </div>
+                                                        <div class="slds-col slds-size--3-of-6">
+                                                            <apex:outputField value="{!emailTempPreview.DeveloperName}"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="slds-col slds-size--1-of-6"></div>
+                                                <div class="slds-col slds-size--2-of-6">
+                                                    <div class="slds-grid">
+                                                        <div class="slds-col slds-size--3-of-6">
+                                                            <b>Last Used Date</b>
+                                                        </div>
+                                                        <div class="slds-col slds-size--3-of-6">
+                                                            <apex:outputField value="{!emailTempPreview.LastUsedDate}"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="slds-grid pad">
+                                                <div class="slds-col slds-size--1-of-6"></div>
+                                                <div class="slds-col slds-size--2-of-6">
+                                                    <div class="slds-grid">
+                                                        <div class="slds-col slds-size--3-of-6">
+                                                            <b>Encoding</b>
+                                                        </div>
+                                                        <div class="slds-col slds-size--3-of-6">
+                                                            <apex:outputField value="{!emailTempPreview.Encoding}"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="slds-col slds-size--1-of-6"></div>
+                                                <div class="slds-col slds-size--2-of-6">
+                                                    <div class="slds-grid">
+                                                        <div class="slds-col slds-size--3-of-6">
+                                                            <b>Times Used</b>
+                                                        </div>
+                                                        <div class="slds-col slds-size--3-of-6">
+                                                            <apex:outputField value="{!emailTempPreview.TimesUsed}"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="slds-grid pad">
+                                                <div class="slds-col slds-size--1-of-6"></div>
+                                                <div class="slds-col slds-size--2-of-6">
+                                                    <div class="slds-grid">
+                                                        <div class="slds-col slds-size--3-of-6">
+                                                            <b>Author</b>
+                                                        </div>
+                                                        <div class="slds-col slds-size--3-of-6">
+                                                            <apex:outputField value="{!emailTempPreview.owner.name}"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="slds-col slds-size--1-of-6"></div>
+                                                <div class="slds-col slds-size--2-of-6"></div>
+                                            </div>
+                                            <div class="slds-grid pad">
+                                                <div class="slds-col slds-size--1-of-6"></div>
+                                                <div class="slds-col slds-size--2-of-6">
+                                                    <div class="slds-grid">
+                                                        <div class="slds-col slds-size--3-of-6">
+                                                            <b>Description</b>
+                                                        </div>
+                                                        <div class="slds-col slds-size--3-of-6">
+                                                            <div style="white-space:normal">
+                                                                <apex:outputField value="{!emailTempPreview.Description}"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="slds-col slds-size--1-of-6"></div>
+                                                <div class="slds-col slds-size--2-of-6"></div>
+                                            </div>
+                                            <div class="slds-grid pad" style="border-bottom:1px solid #ccc;padding-bottom: 1%;">
+                                                <div class="slds-col slds-size--1-of-6"></div>
+                                                <div class="slds-col slds-size--2-of-6">
+                                                    <div class="slds-grid">
+                                                        <div class="slds-col slds-size--3-of-6">
+                                                            <b>Created By</b>
+                                                        </div>
+                                                        <div class="slds-col slds-size--3-of-6">
+                                                            <apex:outputField value="{!emailTempPreview.CreatedBy.name}"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="slds-col slds-size--1-of-6"></div>
+                                                <div class="slds-col slds-size--2-of-6">
+                                                    <div class="slds-grid">
+                                                        <div class="slds-col slds-size--3-of-6">
+                                                            <b>Modified By</b>
+                                                        </div>
+                                                        <div class="slds-col slds-size--3-of-6">
+                                                            <apex:outputField value="{!emailTempPreview.LastModifiedBy.name}"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="slds-grid pad">
+                                                <div class="slds-col slds-size--3-of-6 trGridPre">
+                                                    <div class="slds-grid">
+                                                        <div class="slds-col slds-size--2-of-6">
+                                                            <b>
+                                                                <u>Subject</u>
+                                                            </b>
+                                                        </div>
+                                                        <div class="slds-col slds-size--4-of-6">
+                                                            <apex:outputField value="{!emailTempPreview.Subject}"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="slds-col slds-size--3-of-6"></div>
+                                            </div>
+                                            <div class="slds-grid pad">
+                                                <div class="slds-col slds-size--1-of-6 trGridPre">
+                                                    <b>
+                                                        <u>Plain Text Preview</u>
+                                                    </b>
+                                                </div>
+                                                <div class="slds-col slds-size--5-of-6"></div>
+                                            </div>
+                                            <div class="slds-grid pad">
+                                                <div class="slds-col slds-size--4-of-6 trGridPre">
+                                                    <ul class="slds-list--vertical slds-has-cards--space has-selections">
+                                                        <li class="slds-list__item">
+                                                            <div class="slds-tile slds-tile--board">
+                                                                <apex:outputField value="{!emailTempPreview.Body}"/>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="slds-col slds-size--2-of-6"></div>
+                                            </div>
+                                            <br/>
+                                        </div>
+                                    </div>
+                                </apex:outputPanel>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-backdrop"></div>
+                    <!-----------------------End of Preview Email Template ---------------------->
+                    <div class="slds-grid slds-grid--align-center slds-theme--info">
+                        <apex:commandButton action="{!previous}" value="Previous" styleClass="slds-button slds-button--inverse slds-m-around--x-small"/>
+                        <apex:commandButton value="Next" styleClass="slds-button slds-button--inverse slds-m-around--x-small" action="{!scheduleMassEmail}"/>
+                    </div>
+                </apex:form>
+            </apex:outputPanel>
+            <apex:outputPanel rendered="{!!isAccessible}">
+                <div class="slds-notify slds-notify--toast slds-theme--inverse-text errorHead" role="alert">
+                    <span class="slds-assistive-text">Page Message Info</span>
+                    <div class="notify__content" style = "font-weight: 400;">
+                        <p>
+                            You have some permission issue on objects and fields, please contact your system administrator.
+                        </p>
+                    </div>
+                </div>
+            </apex:outputPanel>
+        </div>
+    </html>
+</apex:page>
