@@ -1,0 +1,6 @@
+<design:component label="Meetup List">
+    <design:attribute name="searchTerms" label="Search Terms" description="Terms are always OR'd. If no search terms are provided, the component will search for the top 5 chatter topics of the running user" />
+    <design:attribute name="radius" label="Radius" description="Mile radius around the provided Zip Code" />
+    <design:attribute name="zipCode" label="Zip Code" description="A valid US zip code" />
+    <design:attribute name="maxResults" label="Max Results" />
+</design:component>

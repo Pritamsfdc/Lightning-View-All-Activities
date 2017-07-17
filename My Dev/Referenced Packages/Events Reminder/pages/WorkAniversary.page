@@ -1,0 +1,66 @@
+<apex:page controller="webkul_er.WorkAniversary"  showheader="false" sidebar="false" standardstylesheets="false">
+    <apex:stylesheet value="{!URLFOR($Resource.webkul_er__Wk_bdayresource, 'Birthdaythemes/'+HTMLENCODE(JSENCODE(themes))+'/style03.css')}"/>
+    
+    <style>
+        .er_pos{
+            margin-left:96px;
+        }
+        .er_work{
+                background: transparent url('/resource/1459780935000/webkul_er__Wk_bdayresource/Birthdaythemes/{!HTMLENCODE(JSENCODE(themes))}/work-a.png') no-repeat center;
+        
+        }
+        .er_work-Theme03{
+                background-position:center 2px;
+        
+        }
+        .er_work-Theme04{
+                background-position:center left;
+            }
+    </style>
+    <apex:composition template="webkul_er__ApexEventsReminderThemeTemplate">
+        <apex:define name="title">Work Anniversary</apex:define>
+        <apex:define name="Eventlist">
+            <apex:outputPanel layout="block" rendered="{!IF(feed.size>0, false, true)}" styleClass="er_empty">
+                <span>No Work Anniversaries In selected Days</span>
+            </apex:outputPanel>
+            <apex:repeat value="{!feed}" var="bday">
+                <div class="er_feed_container">
+                    <div class="er_photo er_photo-{!bday.daysLeft}-day">
+                        <apex:image value="{!bday.photourl}" styleclass="roundimg"/>
+                    </div>
+                    <div class="er_details er_details-{!bday.daysLeft}-day">
+                        <apex:outputLink value="/{!bday.id}"  styleclass="er_name" target="_top">{!bday.Name}</apex:outputLink>
+                        <apex:outputText value="{!bday.dueDate}" styleclass="er_dueDate" ></apex:outputText>
+                        <div class="notify">
+                             <apex:outputText value="Today" styleclass="date italic"  rendered="{!(bday.daysLeft=0)}" ></apex:outputText>
+                             <apex:outputText value="Tomorrow" styleclass="date italic"  rendered="{!(bday.daysLeft=1)}" ></apex:outputText>
+                             <apex:outputText value="{!bday.daysLeft} {!$Label.daysaway}" styleclass="date italic"  rendered="{!(AND(bday.daysLeft!=0,bday.daysLeft!=1))}" ></apex:outputText><br/>
+                        </div>
+                    </div>
+                    <div class="er_days">
+                           <apex:outputPanel rendered="{!(!OR(bday.daysLeft=0,bday.daysLeft=1))}">
+                                <div class=" days_away er_calender">
+                                    <div class="days"> {!bday.daysLeft}</div>
+                                </div>
+                           </apex:outputPanel>
+                           <apex:outputPanel rendered="{!(OR(bday.daysLeft=0))}">
+                                 <div class="today er_calender"></div>
+                           </apex:outputPanel>  
+                           <apex:outputPanel rendered="{!(OR(bday.daysLeft=1))}">
+                             <div class="er_calender Tomorrow"></div> 
+                            </apex:outputPanel> 
+                    </div>
+                    <div style="clear:both;"></div>
+                </div>
+            </apex:repeat>
+        </apex:define>
+        <apex:define name="pagination">
+            <div class="er_prev-next">
+                <apex:commandbutton action="{!prev}" rerender="Datapanel" disabled="{!hasprev}" status="waitstatus" styleclass="prev"></apex:commandbutton>
+                <div class="seperator"></div>
+                <apex:commandbutton action="{!nxt}" rerender="Datapanel"  disabled="{!hasnxt}" status="waitstatus" styleclass="prev rotate"></apex:commandbutton>
+            </div>
+            <div style="clear:both;"></div>
+        </apex:define>
+    </apex:composition>
+</apex:page>

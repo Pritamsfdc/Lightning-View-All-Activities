@@ -1,0 +1,93 @@
+<apex:page controller="IBSmassemail.SendMassEmailController" standardStylesheets="false" sidebar="false" tabStyle="Mass_Emails__tab" applyBodyTag="false" docType="html-5.0">
+   <html
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink">
+        <head>
+            <apex:includeScript value="{!URLFOR($Resource.IBSmassemail__jQuery)}"/>
+            <style>
+                .errorHead{
+                    background-color: #dff0d8!important;
+                    border-color: #d6e9c6 !important;
+                    color: #3c763d !important;
+                }  
+                .emailBg {
+                    background-color: #3c763d !important;
+                }
+                .msgWidth{
+                    width: 100% !important;
+                }         
+                .spinner{
+                    float: left;
+                }
+                .custPopup{
+                    left:2%;
+                    top=57%;
+                    z-index: 9999;                    
+                }             
+            </style>
+        </head>
+        
+        <div class="slds">
+            <c:WizardHeader />
+            <apex:outputPanel rendered="{!isAccessible}" layout="none">      
+                <apex:form id="frm">
+                     <div data-reactid=".5.0.1" role="alert" class="slds-notify slds-notify--alert slds-theme--inverse-text slds-theme--alert-texture slds-m-top--large">
+                        <span class="slds-assistive-text">Success</span>
+                        <h2>
+                            <svg class="slds-icon icon-text-email slds-icon--small slds-m-right--x-small" aria-hidden="true">
+                                <use xlink:href="{!URLFOR($Resource.SalesforceLightning, '/assets/icons/utility-sprite/svg/symbols.svg#check')}"/>
+                            </svg>
+                            <span>Step 7 of 7</span>
+                        </h2>
+                    </div>
+                    <br/>
+                    <div class="slds-backdrop"></div>
+                    <div class="myapp">
+                        <div class="slds-grid">
+                            <div class="slds-col slds-size--1-of-6"></div>
+                            <div class="slds-col slds-size--4-of-6">
+                                <apex:pagemessages ></apex:pagemessages>
+                                <div class="slds-notify slds-notify--toast slds-theme--inverse-text errorHead msgWidth" role="alert">
+                                    <span class="slds-assistive-text">Thanks Info</span>
+                                    <div class="notify__content" style = "font-weight: 400;">
+                                        Batch to send mass emails initiated. Will take Up to a few minutes to complete.
+                                            <br/> 
+                                            <apex:outputPanel id="wrapper" layout="block">
+                                                <apex:outputPanel rendered="{!isProcessing}">
+                                                    <div class="slds-spinner--small spinner">
+                                                        <img src="{!URLFOR($Resource.SendMassEmail, 'loading5.gif')}" alt="Loading..." class="custPopup" />
+                                                    </div>
+                                                    &nbsp;&nbsp;{!batchMessage}
+                                                </apex:outputPanel> 
+                                                  
+                                                <apex:outputPanel rendered="{!NOT(isProcessing)}">
+                                                    
+                                                    <img src="{!IF(batchMessage == 'Batch Not Found.', URLFOR($Resource.SendMassEmail, 'error.png'),URLFOR($Resource.SendMassEmail, 'thumb-up.png'))}" alt="Loading..."/>
+                                                    &nbsp;&nbsp;{!batchMessage}  
+                                                </apex:outputPanel>   
+                                            </apex:outputPanel>   
+                                            <apex:actionPoller action="{!checkBatch}" rendered="{!isProcessing}" rerender="wrapper" interval="5" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size--1-of-6"></div>
+                        </div>
+                    </div>
+                    <div class="slds-grid slds-grid--align-center slds-theme--info">                    
+                        <apex:commandButton value="Return to Home" styleClass="slds-button slds-button--inverse slds-m-around--x-small" action="{!returnToHome}"/>
+                    </div>
+                </apex:form>
+            </apex:outputPanel>
+            <apex:outputPanel rendered="{!!isAccessible}">
+                <div class="slds-notify slds-notify--toast slds-theme--inverse-text errorHead" role="alert">
+                    <span class="slds-assistive-text">Page Message Info</span>
+                    <div class="notify__content" style = "font-weight: 400;">
+                        <p>
+                            You have some permission issue on objects and fields, please contact your system administrator.
+                        </p>
+                    </div>
+                </div>
+            </apex:outputPanel>
+        </div>
+   </html>
+</apex:page>

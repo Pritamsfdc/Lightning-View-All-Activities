@@ -1,0 +1,121 @@
+.THIS {
+  background-color: #ffffff;
+}
+.THIS .btn-wrp{
+    text-align:center;
+}
+.THIS .cal-month-day {
+  height: 80px;
+}
+.THIS .cal-month-box [class*="cal-cell"] {
+  min-height: 80px;
+}
+.THIS .cal-month-day {
+  height: 80px;
+}
+.THIS .pull-left {
+  float: left !important;
+}
+.THIS .pull-right {
+  float: right !important;
+}
+.THIS .list-unstyled {
+  padding-left: 0;
+  list-style: none;
+}
+.THIS .btn-group{
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+}
+.THIS h3{
+  padding: 5px;
+}
+.THIS .page-header{
+  text-align: center;
+  padding:1px 5px 15px 5px;
+}
+.THIS #cal-slide-content {
+  padding: 10px;
+  color: #ffffff;
+  background-image: none;
+  box-shadow: none;
+  background-color: #333!important;
+}
+.THIS span[data-cal-date] {
+	margin-top: 5px;
+	margin-right: 5px
+}
+.THIS .day-event-a {
+  width: 98%;
+  margin:0px 5px 5px 5px;
+  height: 70px;
+  background-color: #EFEFEF;
+  padding-left: 8px;
+  padding-top: 8px;
+}
+.THIS .day-event-hours{
+  font-size: 1.1em;
+  font-weight: normal;
+  display: inline-block;
+  vertical-align: top;
+}
+.THIS .event-item-a{
+  font-size: 1.1em;
+  font-weight: normal;
+  width: 55%;
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+  text-overflow: ellipsis;
+}
+.THIS .event-item-b{
+  margin-left: 5px;
+  text-overflow: ellipsis;
+  width: 96%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.THIS .dhc-event-info{
+  border-left: 3px solid #1e90ff;
+}
+.THIS .dhc-event-success{
+  border-left: 3px solid #006400;
+}
+.THIS .dhc-event-important{
+  border-left: 3px solid #ad2121;
+}
+.THIS .dhc-{
+  border-left: 3px solid #c3c3c3;
+}
+.THIS .day-event-wrp{  
+  min-height: 400px;
+}
+.THIS .tc_uname{
+  text-align: right;
+  position: relative;
+  float: right;
+    margin-right:5px;
+}
+.THIS a.event-item {
+    word-break: break-all;
+}
+.THIS .dh-event-info{
+     background-color:#9acde5!important;
+}
+.THIS .dh-event-success{
+     background-color:#91DBB9!important;    
+}
+.THIS .tc-active{
+  background-color: #c3c3c3!important;
+  background-image: linear-gradient(#c3c3c3,#c3c3c3);
+}
+.THIS .tc-title {
+
+}
+.THIS .tc-title-contaner{
+    text-align: center;
+    vertical-align: middle;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}

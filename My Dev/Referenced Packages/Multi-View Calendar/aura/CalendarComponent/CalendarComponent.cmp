@@ -1,0 +1,45 @@
+<aura:component controller="mvc.EventController" implements="force:appHostable,flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes"  description="Multi-View Calendar. Released by TerraSky." >
+	<aura:attribute access="global" name="title" type="String" default="" description="Title of the calendar."  />
+	<aura:attribute access="global" name="titlefontsize" type="String" default="1.2em" description="The font size of the title." />
+	<aura:attribute access="global" name="titlecolor" type="String" default="#FFFFFF" description="The font color of the title." />
+	<aura:attribute access="global" name="titlebackgroundcolor" type="String" default="#5b1a85" description="The background color of the title."  />
+	
+
+	<link rel="stylesheet" href="/resource/mvc__CalendarLib/css/calendar.css" /> 
+	<ltng:require scripts="/resource/mvc__CalendarLib/components/jquery/jquery.min.js,/resource/mvc__CalendarLib/components/underscore/underscore-min.js,/resource/mvc__CalendarLib/js/hammer.min.js,/resource/mvc__CalendarLib/js/calendar.min.js " afterScriptsLoaded="{!c.afterScriptsLoaded}"/>
+
+    <aura:registerEvent name="SelectUserEvent" type="mvc:SelectUserEvent" />
+
+    <aura:handler event="mvc:SelectUserEvent" action="{!c.SelectUserEvent}"/>
+    <aura:handler event="aura:waiting" action="{!c.showSpinner}"/>
+    <aura:handler event="aura:doneWaiting" action="{!c.hideSpinner}"/>
+
+    <div class="page-header" >
+		<div class="tc-title-contaner"  style="{! 'color:' + v.titlecolor + ';background-color:' + v.titlebackgroundcolor + ';font-size:' + v.titlefontsize }">
+            <span class="tc_title">{!v.title}</span>
+		</div>
+		<div >
+            <span class="tc_uname">
+            {!v.uName}
+			</span>
+		<h3></h3>
+		</div>
+
+		<div class="btn-wrp">
+			<div class="btn-group">
+				<button class="default uiBlock uiButton" data-calendar-nav="prev">&lt;&lt;</button>
+				<button class="default uiBlock uiButton" data-calendar-nav="today">Today</button>
+				<button class="default uiBlock uiButton" data-calendar-nav="next">&gt;&gt;</button>
+			</div>
+			<div class="btn-group">
+				<button class="default uiBlock uiButton" data-calendar-view="month">Month</button>
+				<button class="default uiBlock uiButton" data-calendar-view="week">Week</button>
+				<button class="default uiBlock uiButton" data-calendar-view="day">Day</button>
+			</div>
+		</div>
+		<h2></h2>
+	</div>
+
+	<div><center><ui:spinner aura:id="spinner" isVisible="false"/></center></div>
+    <div id="TC_calendar"></div>
+</aura:component>

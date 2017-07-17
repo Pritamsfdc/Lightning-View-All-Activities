@@ -1,0 +1,73 @@
+<apex:page id="loginPage" showHeader="false" title="{!$Label.site.site_login}">
+ 
+<style>
+.errorbox{
+width:600px;
+min-height:370px;
+border:1px solid #C5CFDA;
+ box-shadow: 0 0 5px #888;
+
+background:url('{!URLFOR($Resource.webkul_cms__CMSResources,'small-icon/errorbackground.png')}') right bottom no-repeat;
+}
+.title1{
+color:#FF8E42;
+font-family:'Roboto',sans-serif!important;
+font-weight:500; 
+font-size:20px;
+margin-top:20px;      
+margin-left:15px;
+text-align:left;
+}
+.errorline{
+color:#6b6b6b;
+font-family:'Roboto',sans-serif!important;
+font-weight:500; 
+font-size:14px;
+word-wrap:break-word;
+margin-left:70px;
+text-align:left;
+}
+.alertimg{
+margin-left:20px;
+margin-top:20px;
+
+}
+.errormainbox{
+
+}
+label{
+color:#FF8E42;
+}
+.form-group{
+display:inline-block;
+}
+</style>
+  <apex:composition template="webkul_cms__CMS_SiteTemplate">
+
+    
+      <apex:define name="body">
+    <br/>
+    <div class="errormainbox">
+      <center>
+      <div class="errorbox">
+                <apex:image styleclass="alertimg pull-left" url="{!URLFOR($Resource.webkul_cms__CMSResources, 'small-icon/alert.png')}"/>
+                <apex:panelGroup >
+                 <div class="title1"> <apex:outputText styleClass="title1" value="{!$Label.webkul_cms__login_here}"/></div>
+                 <div class="errorline">
+                <c:CMS_SiteLogin id="siteLogin" />
+                  </div>
+                  <br/>
+                  <br/>
+                </apex:panelGroup>
+                <apex:outputText value=""/>
+                <apex:outputText value=""/>
+               
+                <br/>
+              
+        </div>   
+      </center>
+      </div>
+      <br/>
+    </apex:define>
+  </apex:composition>
+</apex:page>

@@ -1,0 +1,23 @@
+<apex:page showHeader="false" showChat="false" sidebar="false" standardStylesheets="false" title="Storage Helper Jasmine BDD Runner">
+
+  <apex:stylesheet value="{! URLFOR($Resource.SFStyleSheets, 'SFStyleSheets/assets/styles/salesforce-lightning-design-system-vf.min.css')}" />
+        
+  <apex:stylesheet value="{! URLFOR($Resource.HS_Jquery, 'jquery-ui.min.css')}" />
+  <apex:includeScript value="{! URLFOR($Resource.HS_Jquery, 'jquery-1.12.1.min.js')}" />
+  <apex:includeScript value="{! URLFOR($Resource.HS_Jquery, 'jquery-ui.min.js')}" />
+
+  <apex:image url="{!URLFOR($Resource.SH2__Jasmine, 'jasmine_favicon.png')}"/> 
+  <apex:stylesheet value="{!URLFOR($Resource.SH2__Jasmine, 'jasmine.css')}"/> 
+  
+  <apex:includeScript value="{!URLFOR($Resource.SH2__Jasmine, 'jasmine.js')}"/>
+  <apex:includeScript value="{!URLFOR($Resource.SH2__Jasmine, 'jasmine-html.js')}"/>
+  <apex:includeScript value="{!URLFOR($Resource.SH2__Jasmine, 'boot.js')}"/>
+ 
+  <!-- include source files here... -->
+  <apex:includeScript value="{!$Resource.SH2__DSH_Utility_JS}"/>  
+
+  <!-- include spec files here... -->
+  <apex:includeScript value="{!$Resource.SH2__DSH_JS_Behavior}"/> 
+   
+
+</apex:page>

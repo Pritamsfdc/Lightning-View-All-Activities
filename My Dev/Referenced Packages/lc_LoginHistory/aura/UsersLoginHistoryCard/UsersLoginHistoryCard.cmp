@@ -1,0 +1,17 @@
+<aura:component >
+    <!-- Attribute for the card's expense record -->
+    <aura:attribute name="followedrecord" type="roreblcloghist.LoginHistoryObject" />
+    <ltng:require styles="/resource/roreblcloghist__btstrp12" />
+	<div class="ifollow" onclick="{!c.linkToRecord}">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-2 col-sm-1"><img class="imgFlag" src="{!v.followedrecord.objStatus == 'Success' ? '/resource/roreblcloghist__greenflag' : '/resource/roreblcloghist__redflag'}"/></div>
+                <div class="col-xs-2 col-sm-1"><img class="imgComp" src="{!v.followedrecord.iconUrl}"/></div>
+                <div class="col-xs-4 col-sm-3"><span class="recName">{!v.followedrecord.userFullName}</span></div>
+                <div class="col-xs-4 col-sm-3"><span class="recName">{!v.followedrecord.LoginTime}</span></div>  
+                <div class="col-xs-12 col-sm-4"><span class="errorMsg">{!v.followedrecord.ErrorMsg}</span></div>
+            </div>    
+        </div>
+   </div>
+    
+</aura:component>

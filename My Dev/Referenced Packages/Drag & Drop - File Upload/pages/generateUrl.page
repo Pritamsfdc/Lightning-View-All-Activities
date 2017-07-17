@@ -1,0 +1,119 @@
+<apex:page title="Generate Button URL" controller="dropzone.generateUrlController" id="pg" readOnly="true">
+    <apex:stylesheet value="{!URLFOR($Resource.dropzone__bootstrap,'bootstrap/css/bootstrap.css')}"/>
+    <link rel="stylesheet" href="{!$Resource.animate}"/>
+    <style>
+        .brandPrimaryFgr{
+            font-size : 12px;
+        }
+        * {
+            -webkit-box-sizing: initial;
+            -moz-box-sizing: initial;
+            box-sizing: initial;
+        }
+        .custom-well {
+            min-height: 20px;
+            padding: 19px;
+            background-color: #f5f5f5;
+            border-radius: 2px;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+            margin-bottom: -10px;
+        }
+        .custom-btn {
+            display: inline-block;
+            padding: 6px 12px;
+            margin-bottom: 0;
+            font-size: 12px;
+            font-weight: normal;
+            line-height: 1.42857143;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            -ms-touch-action: manipulation;
+            touch-action: manipulation;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            background-image: none;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+       
+        .custom-btn:hover, .custom-btn:focus, .custom-btn.focus {
+            color: #FFF;
+            text-decoration: none;
+        }
+    </style>
+    <apex:form id="frm">
+        <script>
+            function fetchUrl() {
+                var val = document.getElementById('pg:frm:objectList').value ;
+                
+                if (val != '') {
+                    jsfetchUrl(val);
+                }
+                else {
+                    alert('Please select an object');
+                }
+            }
+        </script>
+        <apex:actionRegion >
+        <apex:actionFunction name="jsfetchUrl" action="{!generateURL}" reRender="urlshow,error" status="mystatus">
+            <apex:param name="p1" value="" assignTo="{!selected}"/>
+        </apex:actionFunction>
+        </apex:actionRegion>
+         <div class="panel panel-primary" style="color: #777;background:#F4F4F4;padding-bottom: 10px;">  
+            <div class="panel-heading"> 
+                <h3 class="panel-title" id="panel-title">Generate Button URL </h3>
+            </div>
+            <div class="center-block">
+                <apex:outputPanel id="pb">
+                    <apex:pageMessages id="error" />
+                    <apex:outputPanel id="pbs">
+                        <div>
+                            <apex:outputPanel id="pbsi" layout="block" style="float:left;" styleClass="custom-well well-sm"> 
+                                <apex:outputLabel style="font-size: 12px;margin-top: 5px;" for="objectList" value="Select Object"></apex:outputLabel> 
+                                <apex:selectList value="{!selected}" size="1" style="width: 250px;" styleClass="form-control" id="objectList">
+                                    <apex:selectOptions value="{!objectSelectList}"> </apex:selectOptions>                        
+                                </apex:selectList>
+                            </apex:outputPanel>
+                            
+                            <apex:outputPanel layout="block" style="float:right;min-height: 60px; padding-top: 4%; width: 70%;">
+                                    <apex:outputPanel layout="block" styleclass="form-group" style="float:left;">
+                                        <button style="padding: 6px;" class="custom-btn btn-primary" onclick="fetchUrl();return false;"> Generate Button URL </button>
+                                        <span id="myactionstatus" >
+                                            <apex:actionStatus id="mystatus">
+                                                <apex:facet name="start" >
+                                                    <img src="/img/loading.gif" style="margin:-3px 5px"/>                       
+                                                </apex:facet>
+                                            </apex:actionStatus>
+                                        </span>
+                                    </apex:outputPanel>     
+                            </apex:outputPanel>
+                        </div>
+                        <div class="clearfix"></div>
+                        <apex:outputPanel layout="block"  styleClass="custom-well well-sm">
+                           <apex:outputLabel style="font-size: 12px;float: left; margin-top: 3px; margin-right: 20px;" for="urlshow" value="Generated URL:"></apex:outputLabel> 
+                           <apex:outputPanel layout="block" style="font-family: cursive;" id="urlshow">
+                                <apex:outputPanel id="urlMsg" rendered="{!attachFileURL != ''}">
+                                    <span style="font-weight:bold;"> For Upload Attachment Page </span> - &nbsp; &nbsp; &nbsp; <apex:outputText value="{!attachFileURL}" ></apex:outputText>  <br/>
+                                    <span style="font-weight:bold;"> For Send Email Page </span> -  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <apex:outputText value="{!sendMailURL}" ></apex:outputText> 
+                                    <br/><br/>
+                                    <div style="font-size:14px;width: 70%;" role="alert" class="alert alert-success"> 
+                                        <span style="font-size:16px;font-weight:bold;" class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                                        Please copy the above url and paste in detail page button of selected object. 
+                                    </div>
+                                </apex:outputPanel>
+                           </apex:outputPanel>   
+                        </apex:outputPanel>
+                    </apex:outputPanel>
+                    
+                </apex:outputPanel>
+                
+             </div>
+         </div>
+    </apex:form> 
+    
+</apex:page>

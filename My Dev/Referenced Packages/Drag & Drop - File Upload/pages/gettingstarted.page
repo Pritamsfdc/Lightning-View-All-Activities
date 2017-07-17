@@ -1,0 +1,240 @@
+<apex:page title="Drag & Drop - File Upload">
+
+   
+    
+        <p>
+            <span style="color: #0094FF"><span style="font-size: 24px">Drag &amp; Drop - File Upload</span></span></p>
+        <p>
+            Thank you again for choosing our Drag &amp; Drop App!<br/> Whether you&#39;re a Salesforce admin, consultant, or otherwise we know your life is busy so we truly appreciate the time you’ve taken to find and try Drag &amp; Drop - File Upload.</p>
+        <p>
+            <span style="font-size: 18px"><span style="color: #0094FF">Features</span></span></p>
+        <ul>
+        <p>Our App will allow your company to drag, drop, and upload multiple files to the Chatter feed or Notes &amp; Attachments section of any record.
+        </p>
+        <p>Just place them inside of your Salesforce today. Select our App from the top right of your Salesforce account to get started on the configuration steps. 
+        </p>
+        
+        <p>1. Quickly add a button to your accounts, opportunities, contact or lead layout with ease using our &#39;Generate URL&#39; for any object or custom object button. 
+        </p>
+        
+        <p>2. Find the &#39;Generate URL&#39; tab in your Salesforce tabs for use on any object or custom object button. 
+        </p>
+        
+        <p>
+        Note: Be sure you have enabled Salesforce Content too before using the App.
+        </p>
+        
+        <p>
+        Now you are ready to start dragging documents into Salesforce.
+        </p>
+        
+            <li>
+                Quickly add (upload) files by Drag &amp; Drop.</li>
+            <li>
+                Works for any standard or custom objects to quickly add attachments (for e.g., quickly add screenshots to cases or sales orders to opportunities).</li>
+            <li>
+                Quickly add (upload) documents or contents.</li>
+            <li> 
+                Quickly post files in chatter feed. </li>
+            <li> Works with Salesforce1 app. </li>
+            <li> Drag as many files as needed </li>
+            <li> Eliminate unnecessary clicks </li>
+                              
+        </ul>
+        
+        <p>
+            <span style="font-size: 18px"><span style="color: #0094FF">Upload Documents</span></span></p>
+        <p>
+            In order to drag and drop documents, navigate to &ldquo;Upload Documents&rdquo; tab.</p>
+        <p>
+            The tab will open a new page that lets you drag &amp; drop files into the outlined area for instant uploading. Status of the files that have been uploaded as well as awaiting upload shows below the outlined area.</p>
+        <p>
+            No configuration or setup is required for &#39;Upload Documents&#39;. </p>
+        <p>To use &#39;Upload Documents&#39;, you will need Read &amp; Create (Write) access to the Document object.</p>
+        
+        <p>
+            <span style="font-size: 18px"><span style="color: #0094FF">Upload Contents</span></span></p>
+        <p>
+            In order to drag and drop contents, navigate to &ldquo;Upload Contents&rdquo; tab.</p>
+        <p>
+            The tab will open a new page that lets you drag &amp; drop files into the outlined area for instant uploading. Status of the files that have been uploaded as well as awaiting upload shows below the outlined area.</p>
+        <p>
+            No configuration or setup is required for &#39;Upload Contents&#39;.</p>
+        <p>To use &#39;Upload Contents&#39;, you will need &#39;Salesforce CRM Content User&#39; permission enabled for your user profile.</p>
+                
+                
+        <p>
+            <span style="font-size: 18px"><span style="color: #0094FF">Upload Attachments</span></span></p>
+        <p>
+            In order to drag and drop attachments, you will need to create a detail page button. Below are the required steps for adding custom detail page button &quot;Attach File&quot;:</p>
+        <p>
+            Let&rsquo;s take an example of adding a button on Contact object (same process can be followed to other objects).
+        </p>
+        <ol>
+            <li>
+                Go To setup -&gt; Customize -&gt; Contacts-&gt;Buttons Links, and Actions</li>
+            <li>
+                Click on New Button or Link and Enter details</li>
+            <li>
+                Provide following information in above screen :
+                <ol>
+                    <li>
+                        Label : Attach Files (you can change it, if required)</li>
+                    <li>
+                        Name : Attach_Files (you can change it, if required)</li>
+                    <li>
+                        Description : Optional</li>
+                    <li>
+                        Display Type : Detail Page Link or Detail Page Button</li>
+                    <li>
+                        Behavior : Display in existing window without sidebar or header</li>
+                    <li>
+                        Content Source : URL</li>
+                    <li>
+                        Formula Editor : Open the Generate Url tab and select the object where you want to add the button and click on "Generate Button Url". Copy the generated url and paste in formula editor of button.
+                    </li>    
+                </ol>
+            </li>
+         <ul style="margin-left: 40px">
+            where<br/>
+            <li>
+                id = Id of object/record on which button need to be enabled</li>
+        </ul>
+        <li>
+            Finally add the button to required page layouts of Contact (or object for which this button was created) and it&#39;s ready for use.
+        </li>
+        </ol>           
+        <p>
+            &nbsp;<strong>Sample Formulas</strong> -  /apex/dropzone__AttachFiles?id=&#123;!Contact.Id}</p>
+        
+
+        <p>
+            <span style="font-size: 18px"><span style="color: #0094FF">Send Email With Attachments using Drag and Drop </span></span></p>
+        <p>
+            In order send email with attachments using drag and drop, you will need to create a detail page button. Below are the required steps for adding custom detail page button &quot;Send Email&quot;:</p>
+        <p>
+            Let&rsquo;s take an example of adding a button on Account object (same process can be followed to other objects).
+        </p>
+        <ol>
+            <li>
+                Go To setup -&gt; Customize -&gt; Account -&gt;Buttons Links, and Actions</li>
+            <li>
+                Click on New Button or Link and Enter details</li>
+            <li>
+                Provide following information in above screen :
+                <ol>
+                    <li>
+                        Label : Send Email (you can change it, if required)</li>
+                    <li>
+                        Name : Send_Email (you can change it, if required)</li>
+                    <li>
+                        Description : Optional</li>
+                    <li>
+                        Display Type : Detail Page Link or Detail Page Button</li>
+                    <li>
+                        Behavior : Display in existing window without sidebar or header</li>
+                    <li>
+                        Content Source : URL</li>
+                    <li>
+                        Formula Editor : Open the Generate Url tab and select the object where you want to add the button and click on "Generate Button Url". Copy the generated url and paste in formula editor of button.
+                    </li>    
+                </ol>
+            </li>
+         <ul style="margin-left: 40px">
+            where<br/>
+            <li>
+                id = Id of object/record on which button need to be enabled</li>
+        </ul>
+        <li>
+            Finally add the button to required page layouts of Account (or object for which this button was created) and it&#39;s ready for use.
+        </li>
+        </ol>           
+        <p>
+            &nbsp;<strong>Sample Formulas</strong> -  /apex/dropzone__sendemail?id=&#123;!Account.Id}</p>
+            
+            
+        <p>
+            Please click the Generate URL tab and select the object and click on "Generate URL button". Use the Generated URL for button for any object.
+        </p>
+        <p>
+            <span style="font-size: 18px"><span style="color: #0094FF">Upload Attachments Using Salesforce1</span></span></p>
+        <p>
+            In order to upload attachments using salesforce1 app, you will need to add a action (Attach files - already created global action) to page layout of a object. Below are brief instructions to finalize your installation for Salesforce1 app:</p>
+        
+        <p>
+            Let&rsquo;s take an example of adding a action to Account object page layout. (same process can be followed to other objects).
+        </p>
+        <ol>
+            <li>
+                Go To setup -&gt; Customize -&gt; Account-&gt; Page Layouts</li>
+            <li>
+                Click Edit next to a page layout.</li>
+            <li>
+                Click the Salesforce1 Actions category in the palette, then drag the &quot;Attach Files&quot; actions into the left side of the Actions in the "Actions in the Salesforce1 Action Bar" section. If "Actions in the Salesforce1 Action bar" section is not showing any action then click on "override the predefined actions" link or wrench icon in the same section in order to enable customaization. </li>
+            <li>
+                Click Save.</li>
+        </ol>
+        <p> Our new Attach Files action will now show up in the action bar on account records in Salesforce1. </p>
+        
+        
+        <p>
+            <span style="font-size: 18px"><span style="color: #0094FF">Adding Action (Quick Upload) in Chatter Publisher </span></span></p>
+        <p>
+            In order to post files in chatter feed, you will need to add a action (Quick Upload - already created global action) to page layout of a object. This action can also be added to publisher layout. Below are brief instructions :</p>
+        
+        <p>
+            Let&rsquo;s take an example of adding a action to Account object page layout. (same process can be followed to other objects).
+        </p>
+        <ol>
+            <li>
+                Go To setup -&gt; Customize -&gt; Account-&gt; Page Layouts</li>
+            <li>
+                Click Edit next to a page layout.</li>
+            <li>
+                <ul>
+                    <li>
+                        <p><strong> Adding Quick Action </strong> </p>
+                        <p> Click the Quick Actions category in the palette, then drag the &quot;Quick Upload&quot; actions into the left side of the Actions in the Publisher section.</p>       
+                    </li>
+                        
+                    <li>
+                        <p><strong> Actions in the Salesforce1 Action Bar (Shows Acions in salesforce1 only) </strong> </p>
+                        <p>  Click the Salesforce1 Actions category in the palette, then drag the &quot;Quick Upload&quot; actions into the left side of the Actions in the "Actions in the Salesforce1 Action Bar" section. If "Actions in the Salesforce1 Action bar" section is not showing any action then click on "override the predefined actions" link or wrench icon in the same section in order to enable customaization. </p>
+                    </li>
+                </ul>
+                </li>
+            <li>
+                Click Save.</li>
+        </ol>
+        <p> Our new Quick Upload action will now show up in the action bar on account records in object feeds layout and Salesforce1. </p>
+        <p> We can also add Quick Upload actions to global layouts to let users post files from the publisher on the Home page and the Chatter tab in the full Salesforce site, or from the action bar on global pages such as Feed or Groups in Salesforce1.</P>
+        
+        <p>
+            <span style="font-size: 18px"><span style="color: #0094FF">Setting up community url for Drag &amp; Drop - File Upload App</span></span></p>
+           <ol>
+            <li>
+                Go To setup -&gt; Develop -&gt; Custtom Setting </li>
+            <li>
+                Click on Manage next to an already created custom setting <strong> Configuration </strong></li>
+            
+            <li>
+                Select User or Profile and Provide community URL</li>
+            <li>
+                Click on Save in order to save the setting. </li>
+            
+        </ol>
+        <p> Now we are ready to use Drag &amp; Drop - File Upload app for community portals. </p>
+         <br/><br/>
+        
+        <br/><br/>
+        <p>
+            <span style="font-size: 18px"><span style="color: #0094FF">Let us hear from you on AppExchange</span></span>
+        
+        </p>
+        
+        <!--<p>
+            <span style="color: #0094FF"><span style="font-size: 18px">Support</span>&nbsp;</span></p>
+            -->
+        Developed and Supported by <a target="_blank" href="http:/www.appcino.com">Appcino Technologies</a>. Visit us today <a target="_blank" href="http:/www.appcino.com">http:/www.appcino.com</a>
+        
+</apex:page>

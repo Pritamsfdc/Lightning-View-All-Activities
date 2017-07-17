@@ -1,0 +1,490 @@
+<apex:page showHeader="false" controller="webkul_cms.modtemplate1set">
+ <meta charset="utf-8"/>
+ <meta name="viewport" content="width=device-width, initial-scale=1"/>
+<apex:includeScript value="{!URLFOR($Resource.webkul_cms__CMSResources,'small-icon/jqueyfile.js')}"/>
+<apex:includeScript value="{!URLFOR($Resource.webkul_cms__CMSResources,'small-icon/bootstrap.js')}"/>
+<apex:stylesheet value="{!URLFOR($Resource.webkul_cms__CMSResources,'small-icon/bootstrap.css')}"/>
+  <apex:stylesheet value="{!URLFOR($Resource.webkul_cms__CMSResources,'small-icon/roboto.css')}"/>
+ 
+  <style type="text/css">
+  .wrapper1{
+    
+        background-color: #fff;
+    
+    }
+   
+     .header-div{
+        height:58px;
+        background-color:#3A4557;
+      color:#B1B1B1;
+    }
+    .email-cal{
+        margin-top:20px;
+        }
+      .mail{
+          margin-right:10px;
+          margin-top:10px;
+  }
+ 
+   .login-register{
+  margin-top:10px;
+  }
+    .menu-div{
+        height:65px;
+        padding-top:8px;
+        font-size:16px;
+         font-family:'Roboto',sans-serif!important;
+         font-weight:500; 
+     }
+     .navbar{
+     border-radius:0px!important;
+     }
+  .navbar-inverse{
+  background-color:#fff!important;
+  color:#26BDD7!important;
+  border:0px!important;
+  min-height:60px!important;
+
+  }
+    .navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:focus, .navbar-inverse .navbar-nav > .active > a:hover
+  {
+  background-color:#fff;
+  color:#ff7800!important;
+[Visualforce Pages Development Mode Tools]  CMS_Mod_Te
+
+  
+  }
+  .navbar-inverse .navbar-nav > li > a{
+  color:#26BDD7!important;
+  }
+  ul li, ol li{
+  margin-left:0px!important;
+  }
+
+  .navbar-brand{
+padding:0px;
+  }
+  .fixed{
+  position:fixed;
+  width:100%;
+    height:65px!important;
+  z-index:1000;
+  top:0;
+  padding-top:8px;
+ 
+  }
+  .menu-heading {
+    background-color: #f56262;
+    color: #fff;
+    font-size: 28px!important;
+    margin-bottom: -5px !important;
+    min-height: 80px!important;
+    padding-top: 5%!important;
+    text-align: center;
+}
+.menu-font {
+    background: #02a5be url("/resource/1453283088000/CMSResources/small-icon/menu-normal.png") no-repeat scroll 115px center !important;
+    border-bottom: 3px outset #02899e;
+    color: #fff !important;
+    font-size: 22px!important;
+    font-weight: 400;
+    height: 68px!important;
+    padding-left:115px !important;
+    padding-top: 5% !important;
+}
+   .left-menu{
+        float: left;
+        min-height: 500px;
+        border:1px dotted black;
+        
+        border-top: none;
+        border-radius: 6px;
+       
+    }
+    .article-box{
+        margin-left:-2%!important;
+    }
+    .Image-slider-div{
+        clear: both;
+        min-height:600px;
+         border:1px dotted black;
+        
+    }
+    .map-div{
+        min-height:380px;
+      
+    }
+     .Video-div{
+        min-height:483px!important;
+        
+    }
+    .Get-in-touch-div{
+        min-height:400px;
+      
+    }
+    .contact-with-us{
+        min-height:350px;
+        background-color:#2D3E50;
+        padding:1%;
+        color:white;sliderimgtest
+        padding-top:50px;
+    }
+    .footer{
+        min-height:50px;
+       
+        background-color:#3D546C;
+        color:#B1B1B1;
+        text-align:center;
+        padding-top:14px;
+       font-size:16px;
+    }
+    .logout{
+    float:right;
+    }
+    .social{
+    display:inline;
+    width:31%;
+    }
+    .loginpop{
+    display:none;
+    }
+    .box1{
+    width:100%;
+    float:left;
+    font-size:18px;
+    margin-top:30px;
+    }
+    .links-footer ,link-footer:hover{
+    text-decoration:none!important;
+    color:#8E9195!important;
+    font-size:16px;
+
+    }
+    .texts-footer1{
+     color:#8E9195!important;
+     font-size:16px;
+    }
+     .texts-footer{
+     color:#fff!important;
+     font-size:16px;
+   
+    }
+.btn.btn-warning {
+    background: #ce4e4e none repeat scroll 0 0!important;
+    border-bottom: 3px solid #a73e3e!important;
+    color: #fff !important;
+    font-size:18px;
+      width:96px;
+    height:36px;
+    padding:0px;
+    font-weight:500;
+   
+    margin-right:10px!important;
+     font-family:'Roboto',sans-serif!important;
+     border-top:0px!important;
+      border-right:0px!important;
+       border-left:0px!important;
+        border-radius: 2px!important;
+}
+.btn.btn-warning1{
+    background: #e0995e none repeat scroll 0 0!important;
+    border-bottom:3px solid #Ca864e!important;
+    color: #fff !important;
+    font-size:16px;
+    width:126px;
+    height:36px;
+    padding:0px;
+    font-weight:500;
+     font-family:'Roboto',sans-serif!important;
+     border-top:0px!important;
+      border-right:0px!important;
+       border-left:0px!important;
+        border-radius: 2px!important;
+}
+.btn {
+    border: medium none;
+   letter-spacing: 0.5px;
+    margin-right: 10px;
+    padding: 12px 25px;
+    position: relative;
+    text-shadow: none;
+    text-transform: uppercase;
+    
+}
+
+.headermodal{
+background-color:#2D3E50;
+text-align:center;
+color:#fff;
+border-radius-top-left:3px;
+border-radius-top-right:3px;
+}
+.modalboxlogin{
+width:50%;
+margin:0 auto;
+}
+.logoutbox{
+ background: #e0995e none repeat scroll 0 0!important;
+    border-bottom: 2px solid #Ca864e!important;
+    color: #fff !important;
+    font-size: 14px;
+    width:100px;
+    height:29px;
+     padding:0px;
+    font-weight:500;
+    margin-top:6px!important;
+     font-family:'Roboto',sans-serif!important;
+     border-top:0px!important;
+      border-right:0px!important;
+       border-left:0px!important;
+      
+    border-radius: 3px!important;
+     letter-spacing: 0.5px;
+    text-align:center;
+    padding:3px;
+    text-decoraton:none!important;
+    text-transform: uppercase;
+
+}
+.logout,.logout:hover,.logout:active{
+text-decoration:none!important;
+}
+.menutable{
+
+width:100%;
+}
+.sidemenu{
+width:30%;
+background-color:#3D546C;
+position:relative;
+}
+content{
+width:70%;
+background-color:yellow;
+
+}
+.featurebox {
+    margin-top: 30px;
+}
+.featureheading{
+margin-top:30px;
+}
+ .show{
+ display:block;
+ }
+ .hide{
+ display:none;
+ }
+ .men{
+ margin-left:-2%;
+ }
+  </style>
+
+<body>
+<div class="wrapper1">
+  <div class="{!headergenerator}">
+    <div class="header-div">
+        <div class="container-fluid">
+            <div class="row">
+             <div class="{!leftheader}">
+                <div class="col-md-6 col-sm-12 col-xs-12 pull-left email-cal">
+                    <span class="mail">
+                         <apex:image url="{!URLFOR($Resource.webkul_cms__CMSResources,'small-icon/mail-icon.png')}"/>  {!$Label.webkul_cms__xxxxxxxx_xxx_xxx}
+                     </span>
+                     <span class="mail">
+                        <apex:image url="{!URLFOR($Resource.webkul_cms__CMSResources,'small-icon/divide-icon.png')}"/> 
+                     </span>
+                     <span class="mail">
+                         <apex:image url="{!URLFOR($Resource.webkul_cms__CMSResources,'small-icon/phone-icon.png')}"/> {!$label.Call_Us} {!$label.X0000_000_000_000}
+                     </span>
+                </div>
+                </div>
+                 <div class="{!rightheader}">
+                <div class="col-md-6 col-sm-12 col-xs-12 login-register">
+                   <div class="pull-right">
+                             <a href="{!$Site.Prefix}/secur/logout.jsp" class="logout" target="_top"><div class="logoutbox">{!$label.Logout}</div></a>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="{!logomenuheader}">
+    <div class="menu-div">
+        <nav class="navbar navbar-inverse ">
+                <div class="container-fluid">
+                <div class="{!logoheader}">
+                           <div class="navbar-header">
+                                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                    </button>
+                                    <a class="navbar-brand logo"><c:logo ></c:logo></a>
+                                </div>
+                                </div>
+                                 <div class="{!topmenuheader}">
+                               
+                                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                    <ul class="nav navbar-nav navbar-right custom-menu">
+                                        <li class="active" style="margin-left:30px!important;"> <c:Toplink position="Topblock"/></li>
+                                        
+                                    </ul>
+                              </div>
+                                </div>
+                                </div>
+                         </nav>
+                  
+    </div>
+</div>
+ 
+ <div class="{!imagesliderpanel}">
+  
+    <div class="image-slider-div">
+          <apex:include pageName="webkul_cms__sliderimgtest"/>   
+    </div>
+
+</div>
+    <div class="{!pagecontent}">
+         <c:pagecontent />
+     </div>
+
+  
+  
+     
+  <div cla1ss="article-box" >
+      <div class="col-md-3 col-sm-12 col-xs-12 men ">
+                   
+                       <c:Menuverticalfull ></c:Menuverticalfull>
+                       </div>
+     <div class="col-md-9 col-sm-12 col-xs-12 ">
+    
+                       <c:article ></c:article>
+             </div>
+       </div>
+
+   <div class="{!videopanel}">
+  
+    <div class="Video-div">
+       <c:video />
+    </div>
+
+</div>
+ <div class="{!mappanel}">
+ 
+    <div class="map-div">
+       <c:map />
+    </div>
+  
+  </div>
+  <div class="{!bottomPanel}">
+ 
+    <div class="contact-with-us">
+        <div class="container-fluid">
+          <div class="row">
+             
+                <div class="{!bottomsectionA}">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="box1">{!$Label.webkul_cms__useful_links}
+                         <hr/>
+                            <c:BottomLink position="Bottom-left-block"/>
+                     </div>
+                </div>
+                </div>
+                <div class="{!bottomsectionB}">
+                 <div class="col-md-3 col-sm-6 col-xs-12">
+                     <div class="box1">{!$Label.webkul_cms__getting_helps_temo}
+                           <hr/>
+                              <c:BottomLink position="Bottom-right-block"/>
+                      </div>
+                </div>
+                </div>
+                <div class="{!bottomsectionC}">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                      <div class="box1">{!$Label.webkul_cms__about_us}
+                      <hr/>
+                         <span class="texts-footer"><c:aboutus /></span>
+                      </div>
+                </div>
+                </div>
+                <div class="{!bottomsectionSocial}">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                       <div class="box1">{!$Label.webkul_cms__get_in_touch_temp}
+                           <hr/>
+                           <div class="texts-footer">{!$Label.webkul_cms__on_the_social_web}</div><br/><c:socialicon />
+                      </div>
+                </div>
+                </div>
+             </div>
+        </div>
+    </div>
+ 
+   </div>
+      <c:Backtotop />
+     <div class="{!footertextpanel}">
+      <div class="footer">
+               <c:footerline ></c:footerline>
+       
+        </div>
+    </DIV>
+    
+</div>
+</body>
+ <script>
+$(document).ready(function(){
+  
+
+    $(function () {
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 50) {
+            $('.header-div').css("display","none");
+               $('.navbar').addClass("fixed");
+             
+            } else {
+                 $('.navbar').removeClass("fixed");
+               $('.header-div').css("display","block");
+            }
+        });
+
+        
+    });
+
+});
+</script>
+<script>
+            $(document).ready(function(){
+                $('.custom-menu a[href^="#"], .intro-scroller .inner-link').on('click',function (e) {
+                    e.preventDefault();
+
+                    var target = this.hash;
+                    var $target = $(target);
+
+                    $('html, body').stop().animate({
+                        'scrollTop': $target.offset().top
+                    }, 900, 'swing', function () {
+                        window.location.hash = target;
+                    });
+                });
+
+                $('a.page-scroll').bind('click', function(event) {
+                    var $anchor = $(this);
+                    $('html, body').stop().animate({
+                        scrollTop: $($anchor.attr('href')).offset().top
+                    }, 1500, 'easeInOutExpo');
+                    event.preventDefault();
+                });
+
+               $(".nav a").on("click", function(){
+                     $(".nav").find(".active").removeClass("active");
+                    $(this).parent().addClass("active");
+                });
+
+             
+               
+            });
+
+        </script>
+
+  </apex:page>

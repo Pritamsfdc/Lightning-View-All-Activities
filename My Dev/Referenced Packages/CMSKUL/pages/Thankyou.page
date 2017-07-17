@@ -1,0 +1,89 @@
+<apex:page showHeader="false" >
+
+<style>
+.errorbox{
+width:600px;
+min-height:370px;
+border:1px solid #C5CFDA;
+ box-shadow: 0 0 5px #888;
+
+
+}
+.title1{
+color:#333333;
+font-family:'Roboto',sans-serif!important;
+font-weight:800; 
+font-size:32px;
+margin-top:10px;      
+}
+.title2{
+color:#333333;
+font-family:'Roboto',sans-serif!important;
+font-weight:400; 
+font-size:14px;
+      
+}
+.errorline{
+color:#6b6b6b;
+font-family:'Roboto',sans-serif!important;
+font-weight:500; 
+font-size:14px;
+word-wrap:break-word;
+margin-top:70px;
+text-align:center;
+}
+.smile{
+
+margin-top:50px;
+
+}
+.errormainbox{
+
+}
+.arrow{
+margin-right:5px;
+}
+label{
+color:#FF8E42;
+}
+.form-group{
+display:inline-block;
+}
+.back{
+text-decoration:none!important;
+}
+
+</style>
+  <apex:composition template="webkul_cms__CMS_SiteTemplate">
+  
+    <apex:define name="body">
+    <br/>
+    <div class="errormainbox">
+      <center>
+      <div class="errorbox">
+           
+                <apex:panelGroup >
+         <apex:image styleclass="smile text-center" url="{!URLFOR($Resource.webkul_cms__CMSResources, 'small-icon/smile.png')}"/>
+              
+                 <div class="title1"> <apex:outputText styleClass="text-center title1" value="{!$Label.webkul_cms__thank_you}"/></div>
+                       <div class="title2"> <apex:outputText styleClass="text-center title2" value="{!$Label.webkul_cms__for_contact_us}"/></div>
+             <div class="errorline">
+              <apex:image styleclass="arrow" url="{!URLFOR($Resource.webkul_cms__CMSResources, 'small-icon/arrow.png')}"/>
+               <apex:outputLink styleclass="back" value="{!$Page.webkul_cms__CMS_Mod_login}">{!$Label.webkul_cms__back_to_home}</apex:outputLink>
+                  </div>
+                  <br/>
+                  <br/>
+                </apex:panelGroup>
+                <apex:outputText value=""/>
+                <apex:outputText value=""/>
+               
+                <br/>
+              
+        </div>   
+      </center>
+      </div>
+      <br/>
+    </apex:define>
+  </apex:composition>
+
+</apex:page>

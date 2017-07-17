@@ -1,0 +1,213 @@
+<apex:page Controller="HTPPV.PrintableViewController" standardStylesheets="false" showHeader="false" action="{!printView}">
+<html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <apex:stylesheet value="{!$Resource.HTPPV__LightningDesign}"/>
+    <style>
+     .bPageBlock .list { width: 120px !important; }
+    .add{height:15px; width:15px; display:none;}
+    .editImage{opacity:0.3;margin-top: 30px;}
+    .frminput{margin-top: 30px;}
+    .list{margin-left:-5px;}
+    .listRalatedCheckbox{margin-top:2px;}
+    .titleclass{font-size: 140%;}
+    .headingClass{background-color: #eee;margin-top: -25px;display:block;}
+    .collapsibleSection{height:17px; width:17px;}
+    .collapsibleRelated{height:15px; width:15px;}
+    .relatedDataClass{background-color: #eee;display: block;}
+    
+   
+    
+    
+    </style>
+    <script>
+   
+        function closeWindow() 
+        {
+           
+           if( (typeof sforce != 'undefined') && (sforce != null) ) {
+                sforce.one.back(true);
+                
+            }
+            else {        
+                window.top.close(); 
+                
+                
+            } 
+        }
+        
+        function printPage() {
+            window.print();
+        } 
+        
+        function hideshowrelated()
+        {
+        var j$ = jQuery.noConflict();
+        j$('#relateddata').toggle();
+        }  
+    </script>  
+    
+    <apex:form id="printPage">
+     <apex:pageBlock id="pageBlock1">
+            <!--<apex:image url="{!URLFOR($Resource.PrintableViewIcons, 'Icons/SFLogo.png')}"  /> -->
+            <apex:image url="{!imageURL}" height="47" width="146"></apex:image>
+            
+            <div class="printControls">
+                <ul>
+                    <li Class="list">
+                       
+                       <apex:outputLink onclick="closeWindow()"  > <apex:image url="{!URLFOR($Resource.HTPPV__PrintableViewIcons, 'Icons/closeicon.png')}" height="16" width="16"/> Close Window</apex:outputLink>
+                    </li>
+                    <li>
+                        <apex:outputLink onclick="printPage()" > <apex:image url="{!URLFOR($Resource.HTPPV__PrintableViewIcons, 'Icons/printicon.png')}" height="16" width="16"/> Print Page</apex:outputLink>
+                    </li>
+                    <li  Class="listRalatedCheckbox">
+                        <apex:inputCheckbox value="{!printRelated}" onchange="hideshowrelated();" >
+                            <!--<apex:actionSupport event="onchange" rerender="printPage"/>-->
+                        </apex:inputCheckbox>
+                        <apex:outputText value="Print Related List"/>
+                    </li>
+                </ul>
+            </div>
+            <div class="title-section">
+                <ul>
+                    <li>
+                        <b>
+                            <apex:outputText styleClass="titleclass" value="{!title}"  rendered="{!!isEditable }"/>
+                        </b>
+                    </li>
+                    <li>
+                        <apex:outputpanel rendered="{!!isEditable }">
+                            <apex:commandLink action="{!EditTitle}" >
+                                <apex:image url="{!URLFOR($Resource.HTPPV__PrintableViewIcons, 'Icons/Edit_Icon.png')}" styleClass="editImage" height="22" width="22"  />
+                            </apex:commandLink>
+                        </apex:outputpanel>
+                    </li>
+                    <apex:outputpanel rendered="{!isEditable }">
+                        <li>
+                            <apex:InputText label="Title" value="{!title}" maxlength="100" styleclass="frminput" html-placeholder="Title"/>
+                        </li>
+                        <li >
+                            <apex:commandLink action="{!saveTitle}">
+                                <apex:image url="{!URLFOR($Resource.HTPPV__PrintableViewIcons, 'Icons/Save_Icon.png')}" height="22" width="22"/>
+                            </apex:commandLink>
+                            <apex:commandLink action="{!cancel}">
+                                <apex:image url="{!URLFOR($Resource.HTPPV__PrintableViewIcons, 'Icons/Cancel_Icon.png')}" height="22" width="22"/>
+                            </apex:commandLink>
+                        </li>
+                    </apex:outputpanel>
+                </ul>
+            </div>
+            <hr/>
+            <div class="details">
+                
+                    
+                    
+                    <!-- Start -->
+                <div>
+                 <apex:variable var="rowNum" value="{!0}"/>
+                    <apex:repeat value="{!listSectionDisplay}" var="outerKey">
+                        <br/>
+                        <h4  Class="headingClass">
+                         <span class="slds-icon_container" title="">
+                        <svg class=" collapsibleSection slds-icon slds-icon--small slds-icon-text-default add" aria-hidden="true" id="{!rowNum}add"  onclick="show{!rowNum}();">
+                        <use xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/utility-sprite/svg/symbols.svg#right')}"></use>
+                        </svg>
+                        <svg class=" collapsibleSection slds-icon slds-icon--small slds-icon-text-default" aria-hidden="true" id="{!rowNum}dash" onclick="hide{!rowNum}();">
+                        <use xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/utility-sprite/svg/symbols.svg#down')}"></use>
+                        </svg>
+                         <span class="slds-assistive-text"> {!outerKey}</span>
+                        </span>
+                       </h4>
+                       <div id="{!rowNum}">
+                        <apex:pageBlockSection >
+                        <apex:repeat value="{!mapDetailDisplay[outerKey]}" var="field">
+                            
+                            <apex:outputField value="{!record[field]}"/>
+                        </apex:repeat>
+                        </apex:pageBlockSection>
+                        </div>
+                          <script>
+                                function show{!rowNum}()
+                                {
+                                var j$ = jQuery.noConflict();
+                                j$('#{!rowNum}').show();
+                                j$('#{!rowNum}dash').show();
+                                j$('#{!rowNum}add').hide();
+                                }
+                                
+                                 function hide{!rowNum}()
+                                {
+                                var j$ = jQuery.noConflict();
+                                j$('#{!rowNum}').hide();
+                                j$('#{!rowNum}dash').hide();
+                                j$('#{!rowNum}add').show();
+                                }
+                        </script>
+                        <apex:variable var="rowNum" value="{!rowNum+1}"/>
+                    </apex:repeat>
+                </div>
+                 <!-- End -->   
+                   
+                
+            </div>
+
+                <div class="sub-destils-data" id="relateddata">
+                    <apex:repeat value="{!listRelatedListsDisplay}" var="outerKey">
+                        <br/>  
+                        
+                        
+                        <h4 class="relatedDataClass">
+                        <span class="slds-icon_container" title="">
+                        <svg class="slds-icon slds-icon--small slds-icon-text-default add" aria-hidden="true" id="{!outerKey}add" onclick="show{!outerKey}();">
+                        <use xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/utility-sprite/svg/symbols.svg#chevronright')}"></use>
+                        </svg>
+                        <svg class="collapsibleRelated slds-icon slds-icon--small slds-icon-text-default" aria-hidden="true" id="{!outerKey}dash"  onclick="hide{!outerKey}();">
+                        <use xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/utility-sprite/svg/symbols.svg#chevrondown')}"></use>
+                        </svg>
+                         <span class="slds-assistive-text">{!mapRelatedListAPILabel[outerKey]}</span>
+                        </span>
+                        </h4>
+                         <div id="{!outerKey}" >
+                        <apex:repeat value="{!relatedListRecordsMap[outerKey]}" var="s">
+                        <hr/>
+                            <apex:repeat id="rep1" value="{!mapRelatedListFields[outerKey]}" var="f">
+                              
+                                <ul>
+                                    <li>
+                                        <apex:outputLabel id="outField2" value="{!mapMapFieldAPILabel[outerKey][f]}"/>
+                                    </li>
+                                    <li>
+                                        <b>
+                                            <apex:outputField id="outField1" value="{!s[f]}" label=""/>
+                                        </b>
+                                    </li>
+                                </ul>
+                                <br/>  
+                                
+                               
+                                
+                            </apex:repeat>
+                        </apex:repeat></div>
+                         <script>
+                                function show{!outerKey}()
+                                {
+                                var j$ = jQuery.noConflict();
+                                j$('#{!outerKey}').show();
+                                j$('#{!outerKey}dash').show();
+                                j$('#{!outerKey}add').hide();
+                                }
+                                
+                                 function hide{!outerKey}()
+                                {
+                                var j$ = jQuery.noConflict();
+                                j$('#{!outerKey}').hide();
+                                j$('#{!outerKey}dash').hide();
+                                j$('#{!outerKey}add').show();
+                                }
+                        </script>
+                    </apex:repeat>
+                </div>
+        </apex:pageBlock>
+    </apex:form>
+    </html>
+</apex:page>
